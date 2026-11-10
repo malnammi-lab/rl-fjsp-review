@@ -1,0 +1,3 @@
+number,duplicate_of,kind,title,doi,kept_doi,first_author,work_type,year
+401,125,no_doi,An Effective Markov Random Fields based Estimation of Distribution Algorithm and Scheduling of Flexible Job Shop Problem (特集 デペンダブルなサービスシステムに貢献する情報・システム技術),,10.1541/ieejeiss.134.796,Xinchang Hao,article,2014
+569,550,repository_copy,A Memetic Algorithm with Reinforcement Learning for Sociotechnical Production Scheduling,10.48550/arxiv.2212.10936,10.1109/access.2023.3292548,Felix Grumbach,article,2022

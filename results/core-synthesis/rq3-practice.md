@@ -1,0 +1,57 @@
+# Metrics and reporting: time, cost, scaling, runs, ablation, release, stability
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+RQ 3.2, 3.3. Studies, as a share of the column's studies with an answer to the question; a study with several codes counts under each.
+
+| Field | Code | All | End to end | Steering |
+| --- | --- | ---: | ---: | ---: |
+| baselines | 1 | 5 (5.1%) | 2 (3.8%) | 3 (6.5%) |
+| baselines | 2 | 13 (13.1%) | 4 (7.5%) | 9 (19.6%) |
+| baselines | 3 or more | 81 (81.8%) | 47 (88.7%) | 34 (73.9%) |
+| metrics | gap | 71 (71.7%) | 45 (84.9%) | 26 (56.5%) |
+| metrics | win-count | 44 (44.4%) | 21 (39.6%) | 23 (50.0%) |
+| metrics | statistical-test | 44 (44.4%) | 22 (41.5%) | 22 (47.8%) |
+| metrics | robustness | 17 (17.2%) | 8 (15.1%) | 9 (19.6%) |
+| metrics | other | 38 (38.4%) | 12 (22.6%) | 26 (56.5%) |
+| metrics | not-reported | 2 (2.0%) | 1 (1.9%) | 1 (2.2%) |
+| decision_time | per-schedule | 52 (52.5%) | 37 (69.8%) | 15 (32.6%) |
+| decision_time | per-decision | 7 (7.1%) | 6 (11.3%) | 1 (2.2%) |
+| decision_time | both | 2 (2.0%) | 1 (1.9%) | 1 (2.2%) |
+| decision_time | not-reported | 38 (38.4%) | 9 (17.0%) | 29 (63.0%) |
+| training_cost | time-and-hardware | 18 (18.2%) | 12 (22.6%) | 6 (13.0%) |
+| training_cost | time | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |
+| training_cost | hardware | 57 (57.6%) | 31 (58.5%) | 26 (56.5%) |
+| training_cost | not-reported | 22 (22.2%) | 8 (15.1%) | 14 (30.4%) |
+| size_scaling | beyond-training | 43 (43.4%) | 37 (69.8%) | 6 (13.0%) |
+| size_scaling | within-training | 48 (48.5%) | 12 (22.6%) | 36 (78.3%) |
+| size_scaling | not-reported | 8 (8.1%) | 4 (7.5%) | 4 (8.7%) |
+| inference_mode | greedy | 38 (38.4%) | 28 (52.8%) | 10 (21.7%) |
+| inference_mode | sampling | 12 (12.1%) | 9 (17.0%) | 3 (6.5%) |
+| inference_mode | search | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |
+| inference_mode | heuristic-run | 33 (33.3%) | 3 (5.7%) | 30 (65.2%) |
+| inference_mode | other | 5 (5.1%) | 5 (9.4%) | 0 (0.0%) |
+| inference_mode | not-stated | 9 (9.1%) | 6 (11.3%) | 3 (6.5%) |
+| headline_statistic | mean | 75 (75.8%) | 38 (71.7%) | 37 (80.4%) |
+| headline_statistic | best | 8 (8.1%) | 5 (9.4%) | 3 (6.5%) |
+| headline_statistic | single-run | 15 (15.2%) | 10 (18.9%) | 5 (10.9%) |
+| headline_statistic | other | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| seeds | reported | 76 (76.8%) | 36 (67.9%) | 40 (87.0%) |
+| seeds | not-reported | 23 (23.2%) | 17 (32.1%) | 6 (13.0%) |
+| seeds | median | 1 | 1 | 10 |
+| seeds | smallest | 1 | 1 | 1 |
+| seeds | largest | 20 | 20 | 20 |
+| seed_spread | reported | 23 (23.2%) | 4 (7.5%) | 19 (41.3%) |
+| seed_spread | not-applicable | 65 (65.7%) | 45 (84.9%) | 20 (43.5%) |
+| seed_spread | not-reported | 11 (11.1%) | 4 (7.5%) | 7 (15.2%) |
+| ablation | reported | 73 (73.7%) | 37 (69.8%) | 36 (78.3%) |
+| ablation | not-reported | 26 (26.3%) | 16 (30.2%) | 10 (21.7%) |
+| code_release | released | 16 (16.2%) | 13 (24.5%) | 3 (6.5%) |
+| code_release | on-request | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| code_release | not-reported | 82 (82.8%) | 39 (73.6%) | 43 (93.5%) |
+| data_release | released | 14 (14.1%) | 7 (13.2%) | 7 (15.2%) |
+| data_release | on-request | 49 (49.5%) | 27 (50.9%) | 22 (47.8%) |
+| data_release | public-only | 7 (7.1%) | 2 (3.8%) | 5 (10.9%) |
+| data_release | not-reported | 29 (29.3%) | 17 (32.1%) | 12 (26.1%) |
+| training_stability | reported | 79 (79.8%) | 46 (86.8%) | 33 (71.7%) |
+| training_stability | not-reported | 20 (20.2%) | 7 (13.2%) | 13 (28.3%) |

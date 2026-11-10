@@ -1,0 +1,127 @@
+# The core (protocol, Two tiers): the claims of step 1, the core rule, the core's counts and
+# the page of its full texts. Read by runners/core_claims.py, core_selection.py,
+# core_statistics.py and core_texts.py.
+#
+# Run: python runners/run_all.py --only core-claims core-selection core-statistics core-texts
+
+[inputs]
+schema = "configs/map.toml"
+map = "datasets/map.csv"
+references = "datasets/references.json"
+scheme = "datasets/coding-scheme.md"
+template = "src/confirm_page.html"
+# The person's answers: the sheet below, filled on its page and saved under this name.
+confirmations = "datasets/core-claims.csv"
+# Read by the core-selection runner: every record's venue band and tier
+# (runners/venue_bands.py), and the axes whose agreement lets them steer step 2
+# (runners/map_vote.py).
+venue_bands = "datasets/venue-bands.csv"
+agreement = "results/map/map-agreement.csv"
+# The core's full texts: the returned answers (runners/core_texts.py), the page's template,
+# and the checksums of the full texts saved, which the studies marked saved must match.
+texts = "datasets/core-texts.csv"
+texts_template = "src/texts_page.html"
+texts_checksums = "datasets/full-texts-sha256.csv"
+
+# The models' coding files, for each model's level and quote: the map's coders, as in
+# configs/map-vote.toml.
+[coders]
+qwen38 = "datasets/map-qwen38.csv"
+gemma26 = "datasets/map-gemma26.csv"
+glimmer30 = "datasets/map-glimmer30.csv"
+
+[outputs]
+# Its page is written beside it, as .html. The page shows the abstracts, which this repository
+# withholds, and the sheet is not released.
+sheet = "../data/core/claims-sheet.csv"
+report = "results/core/claims.md"
+# Written by the core-selection runner: the core, its report, its flow counts, its codes
+# against the rest of the map, and its lock.
+core = "datasets/core.csv"
+selection = "results/core/core-selection.md"
+flow = "results/core/core-flow.csv"
+comparison = "results/core/core-vs-map.csv"
+lock = "results/core/core-lock.json"
+# Written by the statistics runner: the counts of the map, the candidates and the core.
+statistics = "results/core/core-statistics.md"
+statistics_table = "results/core/core-statistics.csv"
+# The map's codes by publication period ([statistics] periods).
+period_statistics = "results/core/map-by-period.md"
+period_table = "results/core/map-by-period.csv"
+period_tex = "results/core/map-by-period.tex"
+# The full-texts runner writes the page on which the gatherer answers, and that page is not
+# released with this repository.
+texts_page = "../core-full-texts/core-papers.html"
+# Written by the full-texts runner once the returned file is in place: its report, and the
+# counts the flow diagram takes (the full texts sought, not retrieved and read).
+texts_report = "results/core/core-texts.md"
+texts_flow = "results/core/core-texts-flow.csv"
+
+# Step 1 of the core rule: the readiness levels whose confirmed claim guarantees a place in
+# the core, at the level the person confirms. A claim confirmed at a test on real data alone
+# (`real-data`) guarantees none; it is reported under question 5.
+[step1]
+levels = ["twin-or-hil", "testbed-or-shadow", "live-system"]
+
+# Steps 2 and 3 and the safeguards that bind at every step (protocol, Two tiers).
+[selection]
+# The core's places.
+size = 100
+# The learners that are not deep, and the most places they may take in the core.
+non_deep = ["tabular", "non-neural"]
+non_deep_cap = 10
+# Step 2's minimum per category, and what it falls to when steps 1 and 2 would hold more
+# studies than the core has places.
+minimums = [3, 2, 1]
+# Records sharing a normalized title are one study only when their first authors agree. A
+# shared DOI or OpenAlex work always makes them one.
+title_needs_first_author = true
+
+# Step 3's strata, each with the roles it holds and its places in the core, in the order that
+# breaks ties between equal remainders.
+[strata.end-to-end]
+roles = ["end-to-end"]
+places = 35
+
+[strata.steering]
+roles = ["steering-rules", "steering-heuristic"]
+places = 35
+
+[strata.role-not-stated]
+roles = ["not-stated"]
+places = 30
+
+# The statistics runner's bins of citation counts (references.json, at the search
+# snapshot): their lower bounds, the last bin open-ended, so 0, 1 to 4, 5 to 9, 10 to 24,
+# 25 to 49, 50 to 99, 100 or more.
+[statistics]
+citation_bins = [0, 1, 5, 10, 25, 50, 100]
+# The axes whose codes are given again over the records that state one, beside the share that
+# states none: the roles of question 1.1.
+stated_axes = ["policy_role"]
+
+# The publication periods of the map-by-period tables; the last ends with the search's year.
+periods = [
+    { label = "2011--2022", start = 2011, end = 2022 },
+    { label = "2023--2024", start = 2023, end = 2024 },
+    { label = "2025--2026", start = 2025, end = 2026 },
+]
+
+# scheduling_action is left out: its agreement is below the bar of configs/map-vote.toml
+# ([agreement] kappa_bar).
+period_axes = [
+    "policy_role",
+    "coordination",
+    "learner_depth",
+    "deep_architecture",
+    "training_algorithm_family",
+    "hybridization",
+    "state_content",
+    "state_encoding",
+    "dynamic_events",
+    "objective",
+    "constraints",
+    "instances",
+    "domain",
+    "readiness_claim",
+]

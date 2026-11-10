@@ -1,0 +1,121 @@
+# A person's check of six questions on the fifth of the core
+# (protocol, Amendments: coding and checking the core), read by runners/core_human_check.py.
+#
+# The runner can write the person's page, its README, and the fifth's PDFs, and those files
+# are not released with this repository. The page holds no
+# model answer. Once the person's exported file is saved as [inputs] answers, the runner
+# compares it with the coding agent's answers, reduced as the protocol states
+# (Amendments: coding and checking the core).
+#
+# Run: python runners/run_all.py --only core-human-check
+
+[inputs]
+references = "datasets/references.json"
+# The draws of runners/core_draws.py; the studies whose draw is [inputs] draw are checked.
+draws = "results/core-coding/draws.csv"
+draw = "fifth"
+# The coding agent's answers, one row per study, with the authors' corrections laid over them
+# (runners/core_gather.py), and its baseline groups (D07).
+coded = "datasets/coded-studies.csv"
+baselines = "datasets/core-baselines.csv"
+# The full texts are named <number>.pdf and are not released with this repository.
+full_texts = "../data/full-texts"
+# Part B's mirror, for the family each algorithm belongs to ([derived.algorithm_family]).
+coding = "configs/core-coding.toml"
+template = "src/human_check_page.html"
+# The person's file, exported by the page under this file's name and saved here.
+answers = "datasets/core-human-check.csv"
+
+[outputs]
+folder = "../human-check"
+page = "../human-check/human-check.html"
+readme = "../human-check/README.md"
+report = "results/core-coding/human-check.md"
+table = "results/core-coding/human-check.csv"
+
+# The six questions, in the page's order. `codes` are the answers the page offers; `number`
+# marks the question answered by a whole number, with `codes` its special answers. The
+# definitions are Part B's (datasets/coding-scheme.md), shortened only where Part B gives
+# instructions to the coding agent rather than to a reader.
+
+[[question]]
+id = "role"
+scheme = "A01 policy_role"
+label = "Policy role"
+codes = ["end-to-end", "steering-rules", "steering-heuristic", "not-stated"]
+ask = "What does one action of the learned policy choose?"
+definition = [
+  "The role follows what one action of the paper's own policy chooses, not the paper's name for it: operations, jobs, machines or the schedule make it end to end; a dispatching rule, an operator, a neighborhood, a parameter or an acceptance decision make it steering.",
+  "end-to-end: the policy's own outputs are the scheduling decisions. It builds the schedule step by step, choosing an operation (or the job whose next operation is processed), a machine, or both; outputs the whole schedule in one pass; or changes a complete schedule, choosing which operations to move and where. It stays end to end when a rule only masks or restricts its choices, nominates its candidates, or completes its decision, and when the paper calls it a learned dispatching rule that picks the operation or machine itself.",
+  "steering-rules: the policy chooses or switches among predefined dispatching rules, or sets the weights or parameters of a rule or of a weighted combination of rules, and the rule decides. One output per rule is steering; one per job, operation or machine is end to end.",
+  "steering-heuristic: the policy controls a heuristic or metaheuristic that builds or improves the schedule: it sets a parameter, chooses an operator or neighborhood, or makes an acceptance decision, as in tuning a genetic algorithm or simulated annealing. Also when a heuristic builds the schedule and the policy decides an auxiliary part beside it, such as how lots are split, or the quantities to produce, release or order beside a fixed rule.",
+  "not-stated: the paper does not say what an action chooses.",
+  "Mixed roles: end-to-end if any learned policy chooses operations or machines itself; with mixed steering kinds, steering-heuristic if a metaheuristic is in the procedure, else steering-rules.",
+]
+
+[[question]]
+id = "algorithm"
+scheme = "B07 algorithm"
+label = "Training algorithm"
+codes = ["monte-carlo", "sarsa", "q-learning", "reinforce", "ppo", "trpo", "a2c-a3c", "ddpg-td3", "sac", "other", "not-stated"]
+ask = "Which algorithm trains the learned policy whose role you coded?"
+definition = [
+  "For a steering policy, the policy that steers, not the heuristic it steers. A paper with two learned policies is coded by the one whose role you coded.",
+  "monte-carlo: Monte Carlo control. sarsa: SARSA and expected SARSA, with or without a network.",
+  "q-learning: Q-learning and the deep Q-network family (DQN, double, dueling, prioritized, D3QN, Rainbow), multi-agent value factorization (QMIX, QTRAN, VDN) included.",
+  "reinforce: REINFORCE, with or without a learned baseline. ppo: proximal policy optimization, its masked and multi-agent forms (MAPPO, IPPO) included. trpo: trust region policy optimization.",
+  "a2c-a3c: advantage actor-critic, synchronous or asynchronous. ddpg-td3: DDPG, TD3 and MADDPG. sac: soft actor-critic.",
+  "other: another algorithm, such as a search-based or evolutionary update. not-stated: the paper does not say.",
+]
+
+[[question]]
+id = "readiness"
+scheme = "F01 readiness_level"
+label = "Readiness level"
+codes = ["L1", "L2", "L3", "L4", "L5"]
+ask = "What is the highest level the paper's own runs reach?"
+definition = [
+  "A claim with no run reported counts at the level its runs reach.",
+  "L1: simulation only, on benchmark or generated instances.",
+  "L2: tested offline on a real company's, factory's or system's data.",
+  "L3: ran inside a digital twin of a named physical system, or with hardware in the loop.",
+  "L4: ran on physical equipment (a testbed), or in shadow mode beside a live shop.",
+  "L5: ran inside a live production or manufacturing execution system.",
+]
+
+[[question]]
+id = "runs"
+scheme = "D14 seeds"
+label = "Training runs"
+number = true
+codes = ["not-reported"]
+ask = "From how many independent training runs (random seeds) do the reported results come?"
+definition = [
+  "Give the number; 1 when the paper trains once. Choose not-reported when the paper does not say.",
+]
+
+[[question]]
+id = "baselines"
+scheme = "D07 baselines, reduced"
+label = "Baselines rerun"
+codes = ["yes", "no", "none"]
+ask = "Did the authors run every baseline on their own instances?"
+definition = [
+  "A baseline is a method the paper's own method is compared with: a dispatching rule, a metaheuristic, an exact solver, a learned policy, or another method.",
+  "yes: every baseline was run by the authors on their own instances.",
+  "no: at least one baseline's results were copied from the paper that published it, or the paper does not say whether it was run.",
+  "none: the paper compares its method with no baseline.",
+]
+
+[[question]]
+id = "transfer"
+scheme = "E01 transfer_tests, reduced"
+label = "Transfer test"
+codes = ["yes", "no"]
+ask = "Does the paper test the trained policy on instances unlike those it was trained on?"
+definition = [
+  "Instances of the same generator, with the same settings and sizes, are not such a test; changed sizes, flexibility, layout, processing times, event rates or settings, objectives or constraints, another factory, a public benchmark after training on generated instances, or real data are.",
+  "It counts only when the paper states that the policy run on those instances was trained on other instances.",
+  "A policy trained within each run on the instance it solves, as when it learns inside a search, has no transfer test, whatever the paper calls its runs on other sets.",
+  "yes: at least one such test. no: none.",
+]

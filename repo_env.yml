@@ -1,0 +1,24 @@
+# Conda environment for rl-scheduling-review.
+#
+#   conda env create -f repo_env.yml
+#   conda activate rl-scheduling-review
+name: rl-scheduling-review
+
+channels:
+  - conda-forge
+
+dependencies:
+  # Python 3.11 or newer is required: the TOML configs are read with the standard tomllib.
+  # The code was run on 3.13.
+  - python=3.13
+
+  # The test suite.
+  - pytest=9.1.1
+
+  # The figures. Seaborn draws them on Matplotlib. These are the versions that drew the
+  # committed figures, pinned so that a later release cannot change them.
+  - matplotlib=3.11.2
+  - pandas=3.1.0
+  - seaborn=0.13.2
+
+  - pip

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The core's full texts</title>
+<!--
+  The full-texts page: one self-contained file, opened from the computer in any browser.
+  runners/core_texts.py fills the sheet-data block below (src/screening.write_page); the page
+  lists the core's studies in a table, one row each, with the DOI link and the answers to
+  give: whether the PDF was saved and in which version, whether supplementary material was
+  saved, whether the DOI opens this very paper and the right DOI where it does not, why a
+  paper could not be obtained, and a note. Answers are kept in the browser as they are typed;
+  "Export CSV" downloads the file the runner reads back, and "Import CSV" reads one in.
+-->
+<style>
+:root {
+  --bg: #fafaf7; --fg: #1d1d1b; --muted: #6b6b66; --line: #dcdbd3; --card: #ffffff;
+  --head: #f1f0ea; --done: #2f7d4f; --issue: #b7791f; --accent: #2b5d8a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615; --fg: #ecebe6; --muted: #a3a29b; --line: #3a3935; --card: #1f1f1d;
+    --head: #262624; --done: #5fb784; --issue: #e0b062; --accent: #7fb0dc;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+       font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { max-width: 1500px; margin: 0 auto; padding: 20px 16px 4px; }
+h1 { font-size: 21px; margin: 0 0 8px; }
+.intro p { margin: 5px 0; max-width: 900px; }
+.tools { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin: 12px 0 8px; }
+.tools label { display: inline-flex; gap: 6px; align-items: center; }
+input[type=text], select { padding: 4px 6px; border: 1px solid var(--line); border-radius: 5px;
+                           background: var(--card); color: inherit; font: inherit;
+                           max-width: 100%; }
+input[type=text]:disabled, select:disabled { opacity: 0.45; }
+#who { width: 240px; }
+/* The page, not a box around the table, scrolls sideways on a narrow screen, so that the
+   table's header stays at the top of the window. */
+.wrap { max-width: 1500px; margin: 0 auto; padding: 0 16px; }
+table { border-collapse: collapse; width: 100%; min-width: 1180px; background: var(--card); }
+th, td { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left;
+         vertical-align: top; }
+th { position: sticky; top: 0; background: var(--head); font-weight: 600; font-size: 13px;
+     z-index: 1; }
+td.num { text-align: right; color: var(--muted); white-space: nowrap; width: 48px; }
+td.paper { width: 380px; max-width: 380px; }
+.title { font-weight: 600; overflow-wrap: anywhere; }
+.meta { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.meta a { color: var(--accent); }
+td.box { text-align: center; width: 64px; }
+td.box input { width: 18px; height: 18px; }
+td.pick select { width: 110px; }
+td.text input { width: 100%; min-width: 150px; }
+tr { border-left: 4px solid transparent; }
+tr.done { border-left-color: var(--done); }
+tr.issue { border-left-color: var(--issue); }
+tr.hidden { display: none; }
+.bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line);
+       margin-top: 16px; }
+.bar .inner { max-width: 1500px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px;
+              align-items: center; flex-wrap: wrap; }
+.bar .grow { flex: 1 1 220px; color: var(--muted); font-size: 13px; }
+.bar button, .bar label.btn { border: 1px solid var(--line); background: var(--card);
+       color: inherit; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+.bar button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+#progress { font-weight: 600; }
+.legend { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="heading">The core's full texts</h1>
+  <div class="intro" id="intro"></div>
+  <div class="tools">
+    <label for="who">Your name <input id="who" type="text" autocomplete="name"></label>
+    <label><input id="only-open" type="checkbox"> Show only the papers not done</label>
+    <span class="legend">A row turns green when done, amber when the paper could not be
+      obtained or its DOI is wrong.</span>
+  </div>
+</header>
+<div class="wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Paper (open the DOI link)</th>
+        <th>PDF saved</th>
+        <th>Version</th>
+        <th>Supplement saved</th>
+        <th>DOI opens this paper?</th>
+        <th>Correct DOI (if not)</th>
+        <th>Not obtained: why</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<div class="bar">
+  <div class="inner">
+    <span id="progress"></span>
+    <span id="status" class="grow"></span>
+    <label class="btn" for="import-file">Import CSV</label>
+    <input id="import-file" type="file" accept=".csv,text/csv" hidden>
+    <button type="button" id="btn-save">Save page with answers</button>
+    <button type="button" id="btn-export" class="primary">Export CSV</button>
+  </div>
+</div>
+
+<script type="application/json" id="sheet-data">__SHEET_DATA__</script>
+<script>
+(function () {
+  'use strict';
+
+  // The page as generated, before anything is drawn: "Save page with answers" writes a
+  // copy of it with the answers put into the data block.
+  var ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var DATA;
+  try {
+    DATA = JSON.parse($('sheet-data').textContent);
+  } catch (e) {
+    document.body.innerHTML = '<p style="padding:24px;font:16px system-ui">This file is the ' +
+      'template, with no papers in it. Open a generated page instead.</p>';
+    return;
+  }
+
+  var RECS = DATA.records || [];
+  var COLUMNS = DATA.columns || [];
+  // The answers, as the exported file names them.
+  var FIELDS = ['pdf_saved', 'version', 'supplement_saved', 'doi_correct', 'correct_doi',
+                'not_retrieved_reason', 'note', 'done_by'];
+  var VERSIONS = ['published', 'accepted', 'preprint'];
+  var YES_NO = ['yes', 'no'];
+  var BY_NUMBER = {};
+  RECS.forEach(function (r) { BY_NUMBER[String(r.number)] = r; });
+
+  // Characters written by code so that this file stays plain ASCII: the byte-order mark the
+  // CSV opens with, and the dot between a paper's details.
+  var BOM = String.fromCharCode(0xFEFF);
+  var DOT = ' ' + String.fromCharCode(0xB7) + ' ';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text != null) { e.textContent = text; }
+    return e;
+  }
+  function trimmed(v) { return v == null ? '' : String(v).trim(); }
+  // A text field counts as answered only when it holds more than spaces.
+  function given(v) { return trimmed(v) !== ''; }
+  // An answer as the page keeps it: the two boxes as yes or blank, the choices in lower case.
+  function clean(a) {
+    a = a || {};
+    var o = {};
+    FIELDS.forEach(function (f) { o[f] = trimmed(a[f]); });
+    ['pdf_saved', 'version', 'supplement_saved', 'doi_correct'].forEach(function (f) {
+      o[f] = o[f].toLowerCase();
+    });
+    o.pdf_saved = o.pdf_saved === 'yes' ? 'yes' : '';
+    o.supplement_saved = o.supplement_saved === 'yes' ? 'yes' : '';
+    if (VERSIONS.indexOf(o.version) < 0) { o.version = ''; }
+    if (YES_NO.indexOf(o.doi_correct) < 0) { o.doi_correct = ''; }
+    return o;
+  }
+  function hash(s) {
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+  function anything(a) {
+    return !!(a.pdf_saved || a.version || a.supplement_saved || a.doi_correct ||
+              given(a.correct_doi) || given(a.not_retrieved_reason) || given(a.note));
+  }
+  // Done: the DOI checked, and the PDF saved with its version, or the reason it was not.
+  function isDone(a) {
+    return a.doi_correct !== '' &&
+      ((a.pdf_saved === 'yes' && a.version !== '') ||
+       (a.pdf_saved !== 'yes' && given(a.not_retrieved_reason)));
+  }
+  function isIssue(a) {
+    return a.doi_correct === 'no' || (a.pdf_saved !== 'yes' && given(a.not_retrieved_reason));
+  }
+
+  // ------------------------------------------------------------------ answers and storage
+
+  var answers = {};
+  RECS.forEach(function (r) { answers[r.number] = clean(r.answer); });
+
+  var KEY = 'texts-page:' + (DATA.sheet_id || 'sheet') + ':' +
+    hash(RECS.map(function (r) { return r.number; }).join(','));
+  var NAME_KEY = 'texts-page:name';
+
+  function readStore(key) {
+    try { var s = window.localStorage.getItem(key); return s ? JSON.parse(s) : null; }
+    catch (e) { return null; }
+  }
+  function writeStore(key, value) {
+    try { window.localStorage.setItem(key, JSON.stringify(value)); return true; }
+    catch (e) { return false; }
+  }
+
+  // Answers kept in this browser fill the papers the page itself holds no answer for.
+  var restored = 0;
+  var stored = readStore(KEY);
+  if (stored && stored.answers) {
+    Object.keys(stored.answers).forEach(function (n) {
+      if (!(n in BY_NUMBER)) { return; }
+      var number = BY_NUMBER[n].number;
+      var a = clean(stored.answers[n]);
+      if (anything(a) && !anything(answers[number])) {
+        answers[number] = a;
+        restored++;
+      }
+    });
+  }
+
+  var saveTimer = null;
+  function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var ok = writeStore(KEY, { answers: answers, at: new Date().toISOString() });
+      status(ok ? 'Kept in this browser at ' + new Date().toLocaleTimeString() + '.' :
+        'This browser does not let the page keep your answers: export the CSV before you close it.');
+    }, 300);
+  }
+  function status(text) { $('status').textContent = text; }
+  function who() { return $('who').value.trim(); }
+
+  // ------------------------------------------------------------------ the rows
+
+  function checkbox(r, field) {
+    var td = el('td', 'box');
+    var box = el('input', field);
+    box.type = 'checkbox';
+    box.setAttribute('aria-label', field.replace('_', ' ') + ', record ' + r.number);
+    box.addEventListener('change', function () {
+      answers[r.number][field] = box.checked ? 'yes' : '';
+      touched(r);
+    });
+    td.appendChild(box);
+    return td;
+  }
+  function choice(r, field, values, blank) {
+    var td = el('td', 'pick');
+    var sel = el('select', field);
+    sel.setAttribute('aria-label', field.replace('_', ' ') + ', record ' + r.number);
+    var none = el('option', null, blank);
+    none.value = '';
+    sel.appendChild(none);
+    values.forEach(function (v) {
+      var o = el('option', null, v);
+      o.value = v;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      answers[r.number][field] = sel.value;
+      touched(r);
+    });
+    td.appendChild(sel);
+    return td;
+  }
+  function text(r, field, placeholder) {
+    var td = el('td', 'text');
+    var input = el('input', field);
+    input.type = 'text';
+    input.placeholder = placeholder;
+    input.setAttribute('aria-label', placeholder + ', record ' + r.number);
+    input.addEventListener('input', function () {
+      answers[r.number][field] = input.value;
+      touched(r, true);
+    });
+    td.appendChild(input);
+    return td;
+  }
+
+  function row(r) {
+    var tr = el('tr');
+    tr.id = 'r' + r.number;
+    tr.appendChild(el('td', 'num', String(r.number)));
+    var paper = el('td', 'paper');
+    paper.appendChild(el('div', 'title', r.title || '(no title)'));
+    paper.appendChild(el('div', 'meta', [r.first_author, r.year, r.venue]
+      .filter(function (x) { return x; }).join(DOT)));
+    var meta = el('div', 'meta');
+    if (r.link) {
+      var a = el('a', null, r.doi || r.link);
+      a.href = r.link; a.target = '_blank'; a.rel = 'noopener';
+      meta.appendChild(a);
+    } else {
+      meta.textContent = 'no DOI';
+    }
+    paper.appendChild(meta);
+    tr.appendChild(paper);
+    tr.appendChild(checkbox(r, 'pdf_saved'));
+    tr.appendChild(choice(r, 'version', VERSIONS, 'choose'));
+    tr.appendChild(checkbox(r, 'supplement_saved'));
+    tr.appendChild(choice(r, 'doi_correct', YES_NO, 'not checked'));
+    tr.appendChild(text(r, 'correct_doi', 'the right DOI'));
+    tr.appendChild(text(r, 'not_retrieved_reason', 'why it could not be obtained'));
+    tr.appendChild(text(r, 'note', 'note'));
+    return tr;
+  }
+
+  // Shows a row's answers, and which fields apply: the version with a saved PDF, the reason
+  // without one, the right DOI when the DOI does not open the paper.
+  function paint(r) {
+    var tr = $('r' + r.number), a = answers[r.number];
+    tr.querySelector('input.pdf_saved').checked = a.pdf_saved === 'yes';
+    tr.querySelector('input.supplement_saved').checked = a.supplement_saved === 'yes';
+    var version = tr.querySelector('select.version');
+    version.value = a.version;
+    version.disabled = a.pdf_saved !== 'yes';
+    tr.querySelector('select.doi_correct').value = a.doi_correct;
+    var right = tr.querySelector('input.correct_doi');
+    right.value = a.correct_doi;
+    right.disabled = a.doi_correct !== 'no';
+    var why = tr.querySelector('input.not_retrieved_reason');
+    why.value = a.not_retrieved_reason;
+    why.disabled = a.pdf_saved === 'yes';
+    tr.querySelector('input.note').value = a.note;
+    shade(r);
+  }
+  function shade(r) {
+    var tr = $('r' + r.number), a = answers[r.number];
+    tr.classList.toggle('done', isDone(a) && !isIssue(a));
+    tr.classList.toggle('issue', isIssue(a));
+    tr.classList.toggle('hidden', $('only-open').checked && isDone(a));
+  }
+  function progress() {
+    var done = RECS.filter(function (r) { return isDone(answers[r.number]); }).length;
+    $('progress').textContent = done + ' of ' + RECS.length + ' done';
+  }
+  // After a change: drop what no longer applies, sign the row, keep it, count it. A change
+  // typed in a text field leaves the other fields as they are, so the cursor stays.
+  function touched(r, typing) {
+    var a = answers[r.number];
+    if (a.pdf_saved !== 'yes') { a.version = ''; } else { a.not_retrieved_reason = ''; }
+    if (a.doi_correct !== 'no') { a.correct_doi = ''; }
+    a.done_by = anything(a) ? (who() || a.done_by) : '';
+    if (typing) { shade(r); } else { paint(r); }
+    autosave();
+    progress();
+  }
+  function drawAll() {
+    var body = $('rows');
+    body.textContent = '';
+    RECS.forEach(function (r) { body.appendChild(row(r)); paint(r); });
+    progress();
+  }
+
+  // ------------------------------------------------------------------ files out and in
+
+  function download(content, name, type) {
+    var blob = new Blob([content], { type: type });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  function basename(p) { return String(p || '').split(/[\\/]/).pop(); }
+  function csvCell(v) {
+    v = v == null ? '' : String(v);
+    return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  // The values the file holds: a box left empty reads no once the paper is done (or, for the
+  // PDF, once a reason is given), and blank before.
+  function exported(r, c) {
+    var a = answers[r.number];
+    if (c === 'pdf_saved') {
+      return a.pdf_saved === 'yes' ? 'yes' : (given(a.not_retrieved_reason) ? 'no' : '');
+    }
+    if (c === 'supplement_saved') {
+      return a.supplement_saved === 'yes' ? 'yes' : (isDone(a) ? 'no' : '');
+    }
+    if (FIELDS.indexOf(c) >= 0) { return trimmed(a[c]); }
+    return r[c] == null ? '' : r[c];
+  }
+  function buildCsv() {
+    var lines = [COLUMNS.map(csvCell).join(',')];
+    RECS.forEach(function (r) {
+      lines.push(COLUMNS.map(function (c) { return csvCell(exported(r, c)); }).join(','));
+    });
+    // UTF-8 with a byte-order mark and CRLF line ends, as the runners and Excel expect.
+    return BOM + lines.join('\r\n') + '\r\n';
+  }
+  function exportName() { return basename(DATA.save_as) || ((DATA.sheet_id || 'texts') + '.csv'); }
+  function doExport() {
+    var name = who();
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      if (anything(a) && !a.done_by && name) { a.done_by = name; }
+    });
+    var count = function (test) {
+      return RECS.filter(function (r) { return test(answers[r.number]); }).length;
+    };
+    var notes = [];
+    var unnamed = count(function (a) { return anything(a) && !a.done_by; });
+    var noVersion = count(function (a) { return a.pdf_saved === 'yes' && !a.version; });
+    var noDoi = count(function (a) { return a.doi_correct === 'no' && !given(a.correct_doi); });
+    var open = count(function (a) { return !isDone(a); });
+    if (unnamed) { notes.push('Type your name at the top: ' + unnamed + ' papers have answers and no name.'); }
+    if (noVersion) { notes.push(noVersion + ' papers have a saved PDF and no version chosen.'); }
+    if (noDoi) { notes.push(noDoi + ' papers have a DOI that does not open the paper, and no right DOI.'); }
+    if (open) { notes.push(open + ' papers are not done yet; they are exported as they stand, and you can carry on later.'); }
+    if (notes.length && !window.confirm(notes.join('\n\n') + '\n\nExport anyway?')) { return; }
+    download(buildCsv(), exportName(), 'text/csv;charset=utf-8');
+    autosave();
+    status('Exported ' + exportName() + ' to your downloads folder.');
+  }
+
+  function parseCsv(content) {
+    content = String(content);
+    if (content.charAt(0) === BOM) { content = content.slice(1); }
+    var rows = [], cells = [], field = '', q = false, i = 0, c;
+    while (i < content.length) {
+      c = content.charAt(i);
+      if (q) {
+        if (c === '"') {
+          if (content.charAt(i + 1) === '"') { field += '"'; i += 2; continue; }
+          q = false; i++; continue;
+        }
+        field += c; i++; continue;
+      }
+      if (c === '"') { q = true; i++; continue; }
+      if (c === ',') { cells.push(field); field = ''; i++; continue; }
+      if (c === '\r') { i++; continue; }
+      if (c === '\n') { cells.push(field); rows.push(cells); cells = []; field = ''; i++; continue; }
+      field += c; i++;
+    }
+    if (field !== '' || cells.length) { cells.push(field); rows.push(cells); }
+    return rows;
+  }
+  function importText(content) {
+    var rows = parseCsv(content);
+    if (!rows.length) { window.alert('The file is empty.'); return; }
+    var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+    var col = {};
+    head.forEach(function (h, i) { col[h] = i; });
+    if (!('number' in col) || !('pdf_saved' in col)) {
+      window.alert('The file has no "number" and "pdf_saved" columns.' +
+        (rows[0].join(',').indexOf(';') >= 0 ? ' It looks separated by semicolons: in Excel, save it as "CSV UTF-8 (Comma delimited)".' : ''));
+      return;
+    }
+    var read = 0, unknown = [];
+    rows.slice(1).forEach(function (cells) {
+      var n = trimmed(cells[col.number]);
+      if (!n) { return; }
+      if (!(n in BY_NUMBER)) { unknown.push(n); return; }
+      var given = {};
+      FIELDS.forEach(function (f) { given[f] = f in col ? cells[col[f]] : ''; });
+      answers[BY_NUMBER[n].number] = clean(given);
+      read++;
+    });
+    drawAll();
+    autosave();
+    status(read + ' papers read from the file.' +
+      (unknown.length ? ' Not on this page, ignored: ' + unknown.join(', ') + '.' : ''));
+  }
+
+  function pageName() {
+    var n = '';
+    try { n = decodeURIComponent(location.pathname.split('/').pop()); } catch (e) { n = ''; }
+    return n || ((DATA.sheet_id || 'texts') + '.html');
+  }
+  function savePage() {
+    var copy = {};
+    Object.keys(DATA).forEach(function (k) { copy[k] = DATA[k]; });
+    copy.records = RECS.map(function (r) {
+      var o = {};
+      Object.keys(r).forEach(function (k) { o[k] = r[k]; });
+      o.answer = answers[r.number];
+      return o;
+    });
+    copy.answers_saved = new Date().toISOString();
+    var json = JSON.stringify(copy).replace(/</g, '\\u003c');
+    var html = ORIGINAL_HTML.replace(/(<script[^>]*id="sheet-data"[^>]*>)[\s\S]*?(<\/script>)/,
+      function (m, open, close) { return open + json + close; });
+    download(html, pageName(), 'text/html;charset=utf-8');
+    status('Saved a copy of this page, with your answers, to your downloads folder.');
+  }
+
+  // ------------------------------------------------------------------ start
+
+  $('heading').textContent = DATA.sheet || 'The core\'s full texts';
+  document.title = DATA.sheet || document.title;
+  (DATA.intro || []).forEach(function (t) { $('intro').appendChild(el('p', null, t)); });
+  $('who').value = readStore(NAME_KEY) || '';
+  $('who').addEventListener('input', function () { writeStore(NAME_KEY, who()); });
+  $('only-open').addEventListener('change', function () { RECS.forEach(shade); });
+  $('btn-export').addEventListener('click', doExport);
+  $('btn-save').addEventListener('click', savePage);
+  $('import-file').addEventListener('change', function (ev) {
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) { return; }
+    var reader = new FileReader();
+    reader.onload = function () { importText(reader.result); ev.target.value = ''; };
+    reader.readAsText(f, 'utf-8');
+  });
+  drawAll();
+  if (restored) { status(restored + ' papers\' answers restored from this browser.'); }
+  else if (!writeStore(KEY + ':probe', 1)) {
+    status('This browser does not let the page keep your answers: export the CSV before you close it.');
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+# The core's synthesis: its inputs, its output folder and the tables it writes (protocol,
+# Synthesis). Read by runners/core_synthesis.py.
+#
+# Run: python runners/run_all.py --only core-synthesis
+
+[inputs]
+spec = "configs/core-coding.toml"
+map = "configs/map.toml"
+coded = "datasets/coded-studies.csv"
+answers = "datasets/core-answers.csv"
+baselines = "datasets/core-baselines.csv"
+claims = "datasets/core-study-claims.csv"
+transfer_tests = "datasets/core-transfer-tests.csv"
+the_map = "datasets/map.csv"
+map_votes = "results/map/map-votes.csv"
+# The core's bibliography, for its BibTeX keys (each entry follows a "% Record N" line); a
+# list's keys are blank without it.
+bib = "datasets/core-references.bib"
+
+[outputs]
+dir = "results/core-synthesis"
+
+# The tables. A field is a question's name (datasets/coding-scheme.md, Part B; section A by
+# its axis), a derived column, `role`, or `map_<axis>` for the map's code from the abstract.
+# An item table's fields are its group's. Kinds and their keys: count (fields), crosstab
+# (rows, cols), items (source, fields, per: item or study), claims, map-cells (fields), list
+# (fields). `roles` limits a table to some roles.
+
+# ---------------------------------------------------------------- question 1: approaches
+
+[[table]]
+id = "rq1-role-by-family"
+title = "Roles by algorithm family"
+rq = "1.1, 1.2"
+kind = "crosstab"
+rows = "policy_role"
+cols = "algorithm_family"
+
+[[table]]
+id = "rq1-approach"
+title = "The approach: study type, coordination, learner, algorithm, paradigm, hybridization"
+rq = "1.1, 1.2"
+kind = "count"
+fields = ["study_type", "coordination", "agent_unit", "multi_agent_training", "sub_decision",
+          "learner_depth", "training_algorithm_family", "algorithm_family", "algorithm",
+          "policy_update", "paradigm", "hybridization"]
+
+[[table]]
+id = "rq1-steering"
+title = "What a steering policy chooses or sets, and the methods it steers"
+rq = "1.1"
+kind = "count"
+fields = ["steering_action", "steered_method"]
+roles = ["steering"]
+
+# ------------------------------------------------------- question 2: formulation and model
+
+[[table]]
+id = "rq2-formulation"
+title = "The decision process: state, action, mask, reward, decision points, observability"
+rq = "2.1"
+kind = "count"
+fields = ["state_content", "scheduling_action", "action_space", "action_set", "action_count",
+          "wait_action", "invalid_actions", "mask_enforces", "reward_measure", "reward_timing",
+          "reward_source", "decision_points", "observability", "training_regime"]
+
+[[table]]
+id = "rq2-action-by-role"
+title = "The scheduling action by role"
+rq = "2.1"
+kind = "crosstab"
+rows = "policy_role"
+cols = "scheduling_action"
+
+[[table]]
+id = "rq2-models"
+title = "Models and the encoding of the state"
+rq = "2.2"
+kind = "count"
+fields = ["deep_architecture", "state_encoding", "input_size"]
+
+# ---------------------------------------------------------------- question 3: evaluation
+
+[[table]]
+id = "rq3-instances"
+title = "Instances, benchmark sets and dynamic events"
+rq = "3.1"
+kind = "count"
+fields = ["instances", "benchmark_sets", "largest_jobs", "largest_machines", "event_processes",
+          "events_in", "reschedule_trigger"]
+
+[[table]]
+id = "rq3-baselines"
+title = "Baselines: the studies that compare with each kind"
+rq = "3.2"
+kind = "items"
+source = "baselines"
+fields = ["kind", "run", "time_limit"]
+per = "study"
+
+[[table]]
+id = "rq3-practice"
+title = "Metrics and reporting: time, cost, scaling, runs, ablation, release, stability"
+rq = "3.2, 3.3"
+kind = "count"
+fields = ["baselines", "metrics", "decision_time", "training_cost", "size_scaling",
+          "inference_mode", "headline_statistic", "seeds", "seed_spread", "ablation",
+          "code_release", "data_release", "training_stability"]
+
+[[table]]
+id = "rq3-claims"
+title = "Shared claims and the comparability of their evidence"
+rq = "3.4"
+kind = "claims"
+
+# ------------------------------------------------------------------ question 4: transfer
+
+[[table]]
+id = "rq4-transfer"
+title = "Transfer: whether studies test it, on what, and how"
+rq = "4"
+kind = "count"
+fields = ["transfer_tests", "train_test_overlap", "training_instances"]
+
+[[table]]
+id = "rq4-tests"
+title = "Transfer tests: how the test instances differ, where they come from, the mode, the outcome"
+rq = "4"
+kind = "items"
+source = "transfer_tests"
+fields = ["differs", "provenance", "mode", "outcome"]
+per = "item"
+
+# ----------------------------------------------------------------- question 5: readiness
+
+[[table]]
+id = "rq5-readiness"
+title = "Readiness: the level reached, and decision deadlines, data, interpretability, robustness, limitations"
+rq = "5"
+kind = "count"
+fields = ["readiness_level", "readiness_claim", "decision_deadlines", "imperfect_data",
+          "interpretability", "robustness", "limitations"]
+
+[[table]]
+id = "rq5-level-by-abstract-claim"
+title = "The level the full text shows, against the claim the abstract makes"
+rq = "5"
+kind = "crosstab"
+rows = "readiness_level"
+cols = "map_readiness_claim"
+
+# ---------------------------- the map's cells and the core's studies, by role and family
+
+# The map's records by the role and family their abstracts give: the paper reports the family
+# each role's abstracts name most often. No field's codes are listed: the paper reports none.
+[[table]]
+id = "map-cells"
+title = "The map's cells: the records of each role and family the abstracts give"
+rq = "1, 2"
+kind = "map-cells"
+fields = []
+
+# Every core study with its cell, which runners/make_figures.py turns into the supplement's
+# list of the core's studies ([core_studies] in configs/figures.toml).
+[[table]]
+id = "studies-by-cell"
+title = "Every core study with its cell and its BibTeX key"
+rq = "1"
+kind = "list"
+fields = ["algorithm", "policy_role", "year"]

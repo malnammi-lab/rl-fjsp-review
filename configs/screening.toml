@@ -1,0 +1,132 @@
+# Title-and-abstract screening: the calibration round, the vote of the three model screeners
+# and the validation sample. Read by runners/screening_calibration.py, screening_consensus.py,
+# screening_validation.py and map_check.py. Paths are relative to the repository root.
+#
+# Run: python runners/run_all.py --only screening-calibration screening-validation screening-consensus
+
+[inputs]
+references = "datasets/references.json"
+duplicates = "datasets/duplicates.csv"
+# Records removed before screening for another reason: no abstract and no DOI.
+dropped = "datasets/dropped.csv"
+# The person's decisions. Each is read only once it exists.
+resolutions = "datasets/screening-resolutions.csv"   # the disagreements, each with a reason and who decided
+validation = "datasets/screening-validation.csv"     # the validation sample, screened blind
+# The second person's decisions on the validation sample's disagreements, screened without
+# the votes or the first person's decisions.
+adjudication = "datasets/screening-adjudication.csv"
+
+# One decision file per model.
+# Exactly three: the vote rule is written for three. The order is the order of columns.
+[screeners]
+qwen38 = "datasets/screening-qwen38.csv"
+gemma26 = "datasets/screening-gemma26.csv"
+glimmer30 = "datasets/screening-glimmer30.csv"
+
+[rules]
+# How many rules each list of the eligibility criteria has (protocol, Eligibility
+# criteria). A reason citing a bare "criterion N" is read as exclusion rule N only when N is
+# above the inclusion rules, since the two lists share the numbers up to there.
+inclusion_rules = 3
+exclusion_rules = 5
+# [preferred, over]: a reason citing both is counted under the first.
+prefer = []
+# A disagreement of the vote is settled by rule, not by a person (src/screening.py, settle):
+# included when at least two screeners include it, otherwise removed, as excluded when any
+# screener excludes it and as uncertain when none does.
+settle_disagreements = true
+
+# Phrases a reason may record in words, each read as the exclusion rule it names
+# ("phrase" = N).
+[rules.aliases]
+
+[agreement]
+# Disagreement weights of Cohen's kappa over exclude < uncertain < include. Linear: exclude
+# against uncertain weighs half of exclude against include.
+kappa_weights = "linear"
+
+[calibration]
+# Batch 01, screened first by the three models and by the person (protocol, Screening): the
+# first `batch_size` records to screen, in the order of references.json. Decision files for
+# round N are <dir>/round-N/<screener>.csv; every round found there is compared.
+batch_size = 25
+# Records of batch 01 taken off the person's calibration sheet.
+leave_out = []
+dir = "datasets/calibration"
+screeners = ["qwen38", "gemma26", "glimmer30", "osamah"]
+models = ["qwen38", "gemma26", "glimmer30"]
+
+[validation]
+# The seed of the draw and of the sheets' order.
+seed = 20261012
+# The strata of the draw. "decision" splits every record decided without a person into those
+# removed by the vote or by the rule for disagreements and those included. "vote" takes the
+# records the vote itself excludes and includes. Without the key, the strata are the
+# unanimous records.
+strata = "decision"
+# A fixed quota per stratum: more removed records than their share, since a relevant study
+# removed is never seen again, and enough included ones to bound the map's wrong inclusions.
+# A `size` key in their place splits that many records in proportion to the strata.
+quota_exclude = 60
+quota_include = 40
+# Batch 01 is left out of both strata: the person screened it at calibration and then saw the
+# models' tables for it, so it cannot be screened blind; the person's own decisions on it are
+# compared in the calibration report and carried into the consensus.
+leave_out_calibration_batch = true
+# One-sided Clopper-Pearson upper bound on the rate of wrong removal, and of wrong inclusion.
+confidence = 0.95
+# A sampled removal counts as wrong when the person's decision is one of these. Both
+# readings (include; include or uncertain) are reported whatever is set here.
+wrong_exclusion = ["include", "uncertain"]
+# The sampled records on which the person's decision differs from the decision made without
+# a person are screened again, blind, by a second person: removed records not excluded and
+# included records not included. The second person's decision settles each, and the
+# statistics are reported both ways.
+adjudicate = true
+
+[page]
+# The screening page: beside each sheet's .md and .csv, the runners write a self-contained
+# .html. It holds the sheet's records, the short and the full criteria, and a form whose
+# "Export CSV" writes the file the runner reads. A blind sheet's page shows what the screeners
+# saw and nothing else; a disagreements page adds the three models' answers and a link to
+# each record's DOI. A criteria file that is absent is left out of the page. The rules are
+# the reason's opening words offered in the form, as the criteria label them. Each names an
+# inclusion, an exclusion rule or, for an uncertain record, the inclusion criterion it leaves
+# open.
+template = "src/screening_page.html"
+criteria_full = "configs/screening-criteria.md"
+rules = [
+    ["Inclusion 1 to 3", "all three hold (an inclusion)"],
+    ["Inclusion 1", "left open: whether the flexible job shop is the paper's own problem"],
+    ["Inclusion 2", "left open: whether reinforcement learning is the paper's own method"],
+    ["Inclusion 3", "left open: whether it is a primary study with quantitative results"],
+    ["Exclusion 1", "the flexible job shop not named, or not the paper's own problem"],
+    ["Exclusion 2", "no name of reinforcement learning, or not the paper's own method"],
+    ["Exclusion 3", "not a primary study with quantitative results (a survey or review)"],
+    ["Exclusion 4", "title or abstract not in English"],
+    ["Exclusion 5", "not a journal article or a conference paper"],
+]
+
+[outputs]
+# The sheets a person filled show the abstracts, which this repository withholds, and those
+# sheets are not released. The published calibration report is
+# results/screening/calibration/calibration-round-1.md, and the published calibration
+# answers are datasets/calibration/round-1/.
+calibration_sheet_md = "../data/screening/calibration/calibration-sheet.md"
+calibration_sheet_csv = "../data/screening/calibration/calibration-sheet.csv"
+calibration_report = "results/screening/calibration/calibration-round-{round}.md"   # one per round
+consensus = "datasets/screening.csv"
+votes = "results/screening/consensus/screening-votes.csv"
+consensus_report = "results/screening/consensus/screening-consensus.md"
+disagreements_md = "results/screening/consensus/screening-disagreements.md"
+disagreements_csv = "results/screening/consensus/screening-disagreements.csv"
+validation_report = "results/screening/validation/screening-validation.md"
+validation_lock = "results/screening/validation/validation-lock.json"   # the person's decisions frozen once complete
+calibration_lock = "results/screening/calibration/calibration-lock.json" # the person's decisions per round, frozen when the round is taken
+# The published validation report is results/screening/validation/screening-validation.md.
+# The published validation answers are datasets/screening-validation.csv, and the published
+# adjudication answers are datasets/screening-adjudication.csv.
+sample_md = "../data/screening/validation/validation-sample.md"
+sample_csv = "../data/screening/validation/validation-sample.csv"
+adjudication_md = "../data/screening/validation/adjudication-sheet.md"
+adjudication_csv = "../data/screening/validation/adjudication-sheet.csv"

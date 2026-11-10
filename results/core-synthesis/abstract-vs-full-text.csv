@@ -1,0 +1,113 @@
+﻿axis,code,studies,same,same_pct,abstract_silent,kappa
+policy_role,,99,67,67.7,29,0.557
+policy_role,end-to-end,99,35 / 53,,,0.604
+policy_role,steering-rules,99,12 / 24,,,0.602
+policy_role,steering-heuristic,99,23 / 22,,,0.914
+policy_role,not-stated,99,29 / 0,,,0.000
+coordination,,99,89,89.9,0,
+coordination,single-agent,99,70 / 70,,,0.854
+coordination,multi-agent,99,29 / 29,,,0.854
+coordination,hierarchical,99,9 / 8,,,0.678
+coordination,not-stated,99,0 / 0,,,
+scheduling_action,,99,58,58.6,37,0.438
+scheduling_action,operation,99,3 / 6,,,0.421
+scheduling_action,machine,99,0 / 4,,,0.000
+scheduling_action,operation-machine-pair,99,23 / 41,,,0.555
+scheduling_action,whole-schedule,99,0 / 0,,,
+scheduling_action,schedule-change,99,1 / 2,,,0.662
+scheduling_action,other,99,0 / 0,,,
+scheduling_action,not-applicable,99,35 / 46,,,0.691
+scheduling_action,not-stated,99,37 / 0,,,0.000
+learner_depth,,99,99,100.0,0,1.000
+learner_depth,deep,99,89 / 89,,,1.000
+learner_depth,non-neural,99,0 / 0,,,
+learner_depth,tabular,99,10 / 10,,,1.000
+learner_depth,not-stated,99,0 / 0,,,
+deep_architecture,,99,46,46.5,28,
+deep_architecture,fully-connected,99,4 / 50,,,0.079
+deep_architecture,convolutional,99,3 / 8,,,0.524
+deep_architecture,recurrent,99,6 / 6,,,1.000
+deep_architecture,graph-neural-network,99,42 / 45,,,0.939
+deep_architecture,attention-transformer,99,17 / 14,,,0.733
+deep_architecture,pointer-network,99,4 / 7,,,0.712
+deep_architecture,other,99,1 / 1,,,1.000
+deep_architecture,not-applicable,99,10 / 10,,,1.000
+deep_architecture,not-stated,99,33 / 5,,,0.192
+training_algorithm_family,,99,66,66.7,31,
+training_algorithm_family,value-based,99,34 / 44,,,0.791
+training_algorithm_family,policy-gradient,99,29 / 53,,,0.529
+training_algorithm_family,actor-critic,99,7 / 8,,,0.784
+training_algorithm_family,other,99,1 / 1,,,-0.010
+training_algorithm_family,not-stated,99,31 / 0,,,0.000
+hybridization,,99,94,94.9,0,0.892
+hybridization,none,99,68 / 65,,,0.886
+hybridization,metaheuristic,99,26 / 30,,,0.901
+hybridization,exact,99,2 / 2,,,1.000
+hybridization,other-learner,99,3 / 2,,,0.795
+hybridization,not-stated,99,0 / 0,,,
+state_content,,99,15,15.2,51,
+state_content,operations,99,33 / 68,,,0.335
+state_content,jobs,99,10 / 42,,,0.127
+state_content,machines,99,35 / 67,,,0.231
+state_content,shop-aggregate,99,6 / 40,,,0.077
+state_content,events,99,7 / 6,,,-0.070
+state_content,other-resources,99,8 / 18,,,0.394
+state_content,search-state,99,6 / 14,,,0.563
+state_content,other,99,0 / 2,,,0.000
+state_content,not-stated,99,51 / 0,,,0.000
+state_encoding,,99,42,42.4,37,
+state_encoding,discrete-states,99,10 / 10,,,1.000
+state_encoding,feature-vector,99,13 / 49,,,0.227
+state_encoding,sequence,99,3 / 6,,,0.653
+state_encoding,set,99,0 / 8,,,0.000
+state_encoding,matrix,99,3 / 3,,,1.000
+state_encoding,disjunctive-graph,99,14 / 23,,,0.639
+state_encoding,heterogeneous-graph,99,23 / 23,,,0.773
+state_encoding,other-graph,99,3 / 5,,,-0.039
+state_encoding,text,99,0 / 0,,,
+state_encoding,other,99,0 / 0,,,
+state_encoding,not-stated,99,37 / 0,,,0.000
+dynamic_events,,99,79,79.8,12,
+dynamic_events,none,99,52 / 58,,,0.837
+dynamic_events,job-arrivals,99,20 / 27,,,0.806
+dynamic_events,machine-breakdowns,99,14 / 21,,,0.759
+dynamic_events,uncertain-processing-times,99,9 / 10,,,0.476
+dynamic_events,other,99,9 / 10,,,0.825
+dynamic_events,not-stated,99,12 / 0,,,0.000
+objective,,99,50,50.5,35,
+objective,makespan,99,50 / 86,,,0.227
+objective,tardiness,99,11 / 17,,,0.670
+objective,flow-time,99,3 / 4,,,0.556
+objective,workload,99,7 / 7,,,0.846
+objective,utilization,99,4 / 5,,,0.186
+objective,energy,99,24 / 26,,,0.947
+objective,cost,99,6 / 5,,,0.711
+objective,robustness,99,5 / 5,,,0.579
+objective,other,99,5 / 4,,,0.418
+objective,not-stated,99,35 / 0,,,0.000
+constraints,,99,68,68.7,2,
+constraints,none,99,47 / 38,,,0.816
+constraints,transport,99,28 / 34,,,0.860
+constraints,setup-times,99,4 / 13,,,0.436
+constraints,workers,99,8 / 7,,,0.784
+constraints,energy,99,3 / 4,,,0.556
+constraints,distributed,99,12 / 13,,,0.954
+constraints,other,99,9 / 30,,,0.374
+constraints,not-stated,99,2 / 0,,,0.000
+instances,,99,33,33.3,41,
+instances,public-benchmark,99,41 / 72,,,0.344
+instances,generated,99,33 / 84,,,0.131
+instances,industrial,99,4 / 14,,,0.170
+instances,not-stated,99,41 / 0,,,0.000
+domain,,99,99,100.0,0,
+domain,manufacturing,99,97 / 97,,,1.000
+domain,computing-networks,99,2 / 2,,,1.000
+domain,other,99,0 / 0,,,
+domain,not-stated,99,0 / 0,,,
+readiness_claim,,99,83,83.8,0,0.300
+readiness_claim,none,99,91 / 82,,,0.326
+readiness_claim,real-data,99,5 / 14,,,0.261
+readiness_claim,twin-or-hil,99,2 / 2,,,0.490
+readiness_claim,testbed-or-shadow,99,1 / 1,,,-0.010
+readiness_claim,live-system,99,0 / 0,,,
+readiness_claim,not-stated,99,0 / 0,,,

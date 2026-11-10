@@ -1,0 +1,39 @@
+# The venue band and tier of every record of the map (protocol, Two tiers). They order the
+# core rule's step 3 and the ties of its steps 2 and 3. Read by runners/venue_bands.py.
+#
+# Run: python runners/run_all.py --only venue-bands
+
+[inputs]
+references = "datasets/references.json"
+# The records whose venue is banded: the map's.
+map = "datasets/map.csv"
+# The two lists are third-party downloads that are not released; their source, edition,
+# download date, and SHA-256 are in datasets/MANIFEST.md. The published venue fields are the
+# sjr_ and icore_ columns of datasets/venue-bands.csv.
+sjr = "../data/venue-lists/scimagojr-2025.csv"
+icore = "../data/venue-lists/icore2026.csv"
+# The person's answers on the proposed ICORE matches: the sheet below, saved under this name.
+confirmations = "datasets/venue-matches.csv"
+
+[lists]
+sjr_edition = "SJR 2025"
+icore_edition = "ICORE2026"
+downloaded = "2026-10-18"
+
+[bands]
+# The tiers, best first, each a list of SJR best quartiles and ICORE ranks. A venue takes the
+# first tier that holds its SJR quartile or its confirmed ICORE rank, the better of the two
+# counting, and a venue that reaches none, or a record without a venue, takes the tier after
+# the last. Band 1 is the first tier, band 2 every other.
+tiers = [["Q1", "A*"], ["Q2", "A"], ["Q3"]]
+# A venue that SJR does not place in band 1, and that may be a conference, is matched to
+# ICORE by name. Only conferences of the ranks the tiers name (A* and A) are looked up. A
+# conference qualifies when the share of words the two names have in common reaches this, or
+# half of it when the venue gives the conference's acronym. A person confirms or rejects
+# each proposal before it counts.
+similarity = 0.5
+
+[outputs]
+bands = "datasets/venue-bands.csv"
+sheet = "results/core/venue-matches-sheet.csv"
+report = "results/core/venue-bands.md"

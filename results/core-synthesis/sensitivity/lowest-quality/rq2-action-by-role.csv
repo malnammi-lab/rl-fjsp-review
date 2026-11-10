@@ -1,0 +1,4 @@
+﻿field,code,operation,machine,operation-machine-pair,schedule-change,not-applicable,total
+policy_role,end-to-end,5,4,35,1,0,45
+policy_role,steering-rules,0,0,0,0,23,23
+policy_role,steering-heuristic,0,0,0,0,21,21

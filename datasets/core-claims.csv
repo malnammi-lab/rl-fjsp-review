@@ -1,0 +1,42 @@
+﻿number,title,claimed_level,confirmed,level,read_from,note,confirmed_by
+1,Research on flexible job shop scheduling problem with AGV using double DQN,real-data,yes,,,"claims ""real-world""",Moayad
+6,Digital-twin-based dynamic flexible job shop scheduling problem via multi-agent proximal policy optimisation,real-data,yes,,,"claims ""real-world""",Moayad
+18,A reptile-PPO-clip meta-learning framework for make-to-order-oriented flexible job shop scheduling,twin-or-hil,yes,,,"""semi-physical experimental""",Moayad
+27,Optimization of Shunting Operation Scheduling Based on A3C Framework,real-data,yes,,,"""case involving 9 trains at an actual station""",Moayad
+54,Deep Reinforcement Learning Based Genetic Framework for Flexible Job-Shop Scheduling Under Practical Constraints,real-data,yes,,,"""real-world""",Moayad
+122,Double deep Q-network based multi-objective optimization for flexible job shop scheduling problem with heterogeneous automatic guided vehicles,real-data,yes,,,"""a real world case""",Moayad
+173,Dynamic flexible job shop scheduling through multi-agent reinforcement learning: considering opportunistic maintenance and transportation time,real-data,yes,,,"""a real-world case study""",Moayad
+182,Multi-objective dynamic scheduling in flexible job shops via preference-driven reinforcement learning with meta-path-based transformer model,real-data,yes,,,"""real workshops""",Moayad
+186,A multi objective collaborative reinforcement learning algorithm for flexible job shop scheduling,real-data,yes,,,"""a real-world case study""",Moayad
+225,A Dual-System Reinforcement Learning Method for Flexible Job Shop Dynamic Scheduling,real-data,yes,,,"""aerospace shell processing of an aerospace institute""",Moayad
+254,Offline reinforcement learning with heterogeneous graph representation and attention mechanisms for human–machine collaborative flexible job shop scheduling,real-data,yes,,,"""industrial case study""",Moayad
+279,Dynamic scheduling for dual-resource constrained flexible job-shop via semantic-aware graph modelling and deep reinforcement learning,real-data,yes,,,"""aerospace structural component workshop""",Moayad
+283,A Competition-Aware Deep Reinforcement Learning Framework for Practical Flexible Job Shop Scheduling,real-data,yes,,,a real-world industrial,Moayad
+299,Dynamic Scheduling for Multi-Objective Flexible Job Shops with Machine Breakdown by Deep Reinforcement Learning,real-data,yes,,,using cases from real enterprises,Moayad
+300,A Two-Layer Multi-Agent Deep Reinforcement Learning Framework for Flexible Job-Shop Scheduling with Multiple Batch-Processing Machines,real-data,yes,,,using plant-derived production data,Moayad
+305,Flexible Job-shop Scheduling Problem with parallel operations using Reinforcement Learning: An approach based on Heterogeneous Graph Attention Networks,real-data,yes,,,authentic operational data from companies,Moayad
+308,Discrete particle swarm algorithm with Q-Learning for solving flexible job shop scheduling problem with parallel batch processing machine,real-data,yes,,,the production data of a transformer manufacturer,Moayad
+315,Document-driven masked scheduling for flexible job shops: From standardized semantics to twin-closed-loop deployment,twin-or-hil,yes,,,An OPC UA-enabled digital twin closes the loop by supporting rolling and event-triggered rescheduling,Moayad
+317,A Deep Reinforcement Advantage Actor-Critic-Based Co-Evolution Algorithm for Energy-Aware Distributed Heterogeneous Flexible Job Shop Scheduling,real-data,yes,,,on all 20 instances and a real-world case,Moayad
+336,A heterogeneous graph attention-enhanced deep reinforcement learning framework for flexible job shop scheduling problem with variable sublots,real-data,yes,,,four real-world instances,Moayad
+352,Production-Logistics Collaborative Scheduling in Dynamic Flexible Job Shops via Multi-Objective Deep Reinforcement Learning *,real-data,yes,,,aviation component production shop,Moayad
+366,A contextual snapshot learning-based deep reinforcement learning for reliability-aware flexible job shop scheduling in semiconductor manufacturing,real-data,yes,,,semiconductor production data demonstrate,Moayad
+376,A Q-learning improved differential evolution algorithm for human-centric dynamic distributed flexible job shop scheduling problem,real-data,yes,,,real case,Moayad
+399,Dynamic scheduling mechanism for intelligent workshop with deep reinforcement learning method based on multi-agent system architecture,testbed-or-shadow,no,,full-text,[withheld: it quotes the paper's full text; SHA-256 of the note as written e86cabd90085977477a1b89987f8daf4b0ae2b002c9d5ab8cc584f400036c8bc],Moayad
+407,A Knowledge-Guided Deep Reinforcement Learning Approach for Energy-Aware Distributed Flexible Job Shop Scheduling with Job Priority,real-data,yes,,,real-world,Moayad
+417,A Q-learning based multi-objective memetic algorithm for dual-resource-constrained energy-saving distributed flexible job shop scheduling with applications in aerospace manufacturing,real-data,yes,,,real-world,Moayad
+419,An Online Reinforcement Learning Approach for Solving the Dynamic Flexible Job-Shop Scheduling Problem for Multiple Products and Constraints,real-data,yes,,,real case,Moayad
+431,Multi-objective flexible job shop scheduling with worker-number decisions using preference-conditioned heterogeneous graph reinforcement learning,real-data,yes,,,industrial order case,Moayad
+433,Flexible Job Shop Scheduling Based on Energy Consumption of Method Research,real-data,yes,,,production data of hub bearings from a bearing company,Moayad
+436,Learning Flexible Job Shop Scheduling under Limited Buffers and Material Kitting Constraints,real-data,yes,,,real production line datasets,Moayad
+462,Relational Graph Attention-Based Deep Reinforcement Learning: An Application to Flexible Job Shop Scheduling with Sequence-Dependent Setup Times,real-data,yes,,,practical case study at the Dassault Systèmes company,Moayad
+470,Flexible Job Shop Scheduling Optimization for Air Conditioner Assembly Using DDQN with Prioritized Experience Replay,real-data,yes,,,on a 10 × 6 historical dataset,Moayad
+514,A knowledge region selection enhanced quality-diversity algorithm for real-world flexible job shop scheduling with Automated Guided Vehicles transportation,real-data,yes,,,two real-world cases,Moayad
+544,A two-stage learning hyper-heuristic for integrated open-field layout and fuzzy flexible job shop scheduling,real-data,yes,,,ndustrial case study,Moayad
+550,A Memetic Algorithm With Reinforcement Learning for Sociotechnical Production Scheduling,real-data,yes,,,real-world production data,Moayad
+554,Digital Twin Enabled Dual-System Reinforcement Learning Method,real-data,yes,,,sewing workshop of a garment factory,Moayad
+576,A Learning-Driven Dynamic Dual-Population Evolutionary Algorithm for Green Flexible Job Shop Scheduling with Preventive Maintenance,real-data,yes,,,real-world engineering case,Moayad
+583,Study on the application of single-agent and multi-agent reinforcement learning to dynamic scheduling in manufacturing environments with growing complexity: Case study on the synthesis of an industrial IoT Test Bed,twin-or-hil,yes,,,industrial IoT system at HTW Dresden,Moayad
+588,Digital twin-driven disturbance recognition and adaptive scheduling for discrete manufacturing workshops,real-data,yes,twin-or-hil,,real-world discrete manufacturing workshop,Moayad
+620,An integrated knowledge scheduling framework for energy-production synergy optimization in multi-process steel manufacturing,real-data,yes,,,real-world data,Moayad
+632,Energy-aware dynamic rescheduling of flexible manufacturing system using edge-cloud collaborative decision-making method,real-data,yes,,,extrusion workshop,Moayad

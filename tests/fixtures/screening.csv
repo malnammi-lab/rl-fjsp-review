@@ -1,0 +1,4 @@
+﻿number,decision,confidence,reason,evidence,title,venue,year,work_type
+1,include,high,RL applied to production scheduling with results,abstract,t,v,2024,article
+12,exclude,high,no learning component and no scheduling,abstract,t,v,2002,conference-paper
+10,uncertain,low,thin abstract,abstract,t,v,,conference-paper

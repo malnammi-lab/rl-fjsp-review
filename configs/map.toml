@@ -1,0 +1,123 @@
+# The map: the axes every included record is coded on, from its title and abstract, by the
+# three screening models in a second pass (protocol, Data extraction, Part A, and Two
+# tiers). Each [axes.<name>] table lists an axis's codes, in the order of the protocol's
+# Part A table (amendment of 14 October 2026):
+#
+#   codes       the codes
+#   multi       true: a list of one or more codes; otherwise exactly one code
+#   not_stated  whether `not-stated` is allowed: true unless set to false, as it is on the
+#               axes whose scheme gives a default code instead
+#   quote       whether the reply must quote the record for the axis
+#   no_quote    codes that need no quote
+#   alone       on a list axis, codes that may not be combined with another
+#   label       what the axis asks, shown in the prompt's answer block
+#
+# The decision rule of every code is in datasets/coding-scheme.md, Part A, which the models
+# receive; the acquisition tool's coding task reads this file as its schema, refuses a
+# reply off these lists, and refuses a scheme that does not name every axis and code
+# (tests/test_coding_scheme.py checks this file against the scheme and against the
+# protocol's table). Written on 13 and 14 October 2026, before any record was coded. The
+# changes from the protocol's table of 10 October 2026, decided by Moayad AlNammi (protocol
+# amendment of 14 October 2026):
+#   - a fifteenth axis, `state_content`, for what the state describes;
+#   - `model` renamed `deep_architecture` and limited to a deep learner's architectures,
+#     `table` replaced by `not-applicable`, and `convolutional-recurrent` split into
+#     `convolutional` and `recurrent`;
+#   - `algorithm_family` renamed `training_algorithm_family`, and made a list;
+#   - `hybridisation` renamed `hybridization`;
+#   - `whole-schedule`, `schedule-change` and `other` added on `scheduling_action`;
+#   - `state_encoding` made a list, `matrix-or-sequence` split into `matrix` and
+#     `sequence`, and `set`, `discrete-states` (alone), `other-graph` and `text` added;
+#   - `workload`, `cost` and `robustness` added on `objective`;
+#   - `none` added on `constraints`;
+#   - `domain` made a list;
+#   - `not-stated` not allowed on `hybridization`, `domain` and `readiness_claim`, whose
+#     defaults are `none`, `manufacturing` and `none`.
+# The rules of 14 October are the rules written into this file that day.
+
+[axes.policy_role]
+codes = ["end-to-end", "steering-rules", "steering-heuristic"]
+quote = true
+label = "what the learned policy decides"
+
+[axes.coordination]
+codes = ["single-agent", "multi-agent", "hierarchical"]
+multi = true
+alone = ["single-agent"]
+label = "how many agents decide, and how they are organized"
+
+[axes.scheduling_action]
+codes = ["operation", "machine", "operation-machine-pair", "whole-schedule", "schedule-change",
+         "other", "not-applicable"]
+label = "what one action of an end-to-end policy chooses"
+
+[axes.learner_depth]
+codes = ["deep", "non-neural", "tabular"]
+quote = true
+label = "the kind of learner that represents the policy or value function"
+
+[axes.deep_architecture]
+codes = ["fully-connected", "convolutional", "recurrent", "graph-neural-network",
+         "attention-transformer", "pointer-network", "other", "not-applicable"]
+multi = true
+alone = ["not-applicable"]
+label = "the network architectures named for a deep learner"
+
+[axes.training_algorithm_family]
+codes = ["value-based", "policy-gradient", "actor-critic", "other"]
+multi = true
+label = "the families of the updates the paper's own agents are trained with"
+
+[axes.hybridization]
+codes = ["none", "metaheuristic", "exact", "other-learner"]
+not_stated = false
+label = "a non-RL method sharing one procedure with the agent"
+
+[axes.state_content]
+codes = ["operations", "jobs", "machines", "shop-aggregate", "events", "other-resources",
+         "search-state", "other"]
+multi = true
+label = "what the agent's state describes"
+
+[axes.state_encoding]
+codes = ["discrete-states", "feature-vector", "sequence", "set", "matrix",
+         "disjunctive-graph", "heterogeneous-graph", "other-graph", "text", "other"]
+multi = true
+alone = ["discrete-states"]
+label = "the structures the agent's network reads the state as"
+
+[axes.dynamic_events]
+codes = ["none", "job-arrivals", "machine-breakdowns", "uncertain-processing-times", "other"]
+multi = true
+alone = ["none"]
+label = "the unplanned events the shop faces"
+
+[axes.objective]
+codes = ["makespan", "tardiness", "flow-time", "workload", "utilization", "energy", "cost",
+         "robustness", "other"]
+multi = true
+label = "what the schedule optimizes"
+
+[axes.constraints]
+codes = ["none", "transport", "setup-times", "workers", "energy", "distributed", "other"]
+multi = true
+alone = ["none"]
+label = "constraints beyond the flexible job shop's own"
+
+[axes.instances]
+codes = ["public-benchmark", "generated", "industrial"]
+multi = true
+label = "the instances the method is tested on"
+
+[axes.domain]
+codes = ["manufacturing", "computing-networks", "other"]
+multi = true
+not_stated = false
+label = "the application domains"
+
+[axes.readiness_claim]
+codes = ["none", "real-data", "twin-or-hil", "testbed-or-shadow", "live-system"]
+not_stated = false
+quote = true
+no_quote = ["none"]
+label = "the furthest use beyond simulation the paper claims"

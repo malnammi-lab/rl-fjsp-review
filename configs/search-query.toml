@@ -1,0 +1,133 @@
+# The search query: reinforcement learning for the flexible job shop. Read by
+# runners/build_query.py; other runners read its terms through their own configs.
+#
+# Run: python runners/run_all.py --only build-query
+
+# The query is (any [method] term) AND (any [problem] term), over OpenAlex titles and
+# abstracts, with the [limits] below. It implements the two naming rules of the protocol's
+# eligibility criteria (protocol, Search strategy). [method] holds the names of
+# reinforcement learning, its algorithms and the adjacent terms (inclusion 2). [problem]
+# holds the names of the flexible job shop (inclusion 1). The protocol's lists are closed
+# and equal these, so a change here is a change to the protocol's criteria.
+#
+# The listing rule: every name the criteria list, written as OpenAlex reads it, plus every
+# spelling or plural that no other term of the same group already matches. A probe of how
+# OpenAlex reads a quoted term found that a hyphen inside a quoted phrase is read as a space.
+#   - a hyphen inside a quoted phrase is read as a space, in the query and in the indexed
+#     text: "flexible job shop" and "flexible job-shop" match the same records, so a name
+#     is written with spaces ("actor critic" also matches "actor-critic", hyphen or dash);
+#   - a quoted single word with a hyphen is not read as a phrase: "actor-critic" matched its
+#     two words anywhere in the text, so no term here is one hyphenated word;
+#   - there is no stemming: a plural is a term of its own, and so is a standard spelling
+#     written as one word ("jobshop"). Words fused by an extraction error, a space lost
+#     ("qlearning"), are not listed, since they cannot be enumerated.
+# Each group is complete on its own, so `runners/build_query.py --without-cluster` measures
+# what a group adds. Terms are in lower case.
+#
+# Markers, one per term:
+#   prot   a name the protocol's criteria list, as OpenAlex reads it
+#   var    a spelling or plural of a name in the same group
+
+# --------------------------------------------------------------------------------
+# Method facet: reinforcement learning (protocol, inclusion 2)
+# --------------------------------------------------------------------------------
+
+[method]
+rl_names = [
+    "reinforcement learning",             # prot (deep, multi-agent, hierarchical, inverse and offline forms contain it)
+]
+
+algorithms = [
+    "q learning",                         # prot (Q-learning)
+    "q network",                          # prot (Q-network)
+    "q networks",                         # var
+    "deep q network",                     # prot (deep Q-network)
+    "deep q networks",                    # var
+    "dqn",                                # prot
+    "dqns",                               # var
+    "sarsa",                              # prot
+    "reinforce",                          # prot (also an English verb)
+    "policy gradient",                    # prot
+    "policy gradients",                   # var
+    "actor critic",                       # prot (actor-critic)
+    "a2c",                                # prot
+    "a3c",                                # prot
+    "proximal policy optimization",       # prot
+    "proximal policy optimisation",       # var
+    "ppo",                                # prot
+    "trust region policy optimization",   # prot
+    "trust region policy optimisation",   # var
+    "trpo",                               # prot
+    "deep deterministic policy gradient", # prot
+    "ddpg",                               # prot
+    "twin delayed ddpg",                  # prot
+    "td3",                                # prot
+    "soft actor critic",                  # prot (soft actor-critic)
+    "sac",                                # prot (also other acronyms)
+    "temporal difference learning",       # prot
+]
+
+adjacent = [
+    "policy",                             # prot (dispatching and maintenance policies too)
+    "policies",                           # var
+    "markov decision process",            # prot
+    "mdp",                                # prot (also other acronyms)
+    "mdps",                               # var
+    "markov",                             # prot (semi-Markov too)
+    "markovian",                          # prot
+    "decision process",                   # prot
+    "decision processes",                 # var
+]
+
+# --------------------------------------------------------------------------------
+# Problem facet: the flexible job shop (protocol, inclusion 1)
+# --------------------------------------------------------------------------------
+
+[problem]
+fjsp_names = [
+    "flexible job shop",                  # prot (fully, partially, dynamic, distributed and multi-objective forms contain it)
+    "flexible jobshop",                   # var
+    "flexible job shops",                 # var
+    "flexible jobshops",                  # var
+    "flexible assembly job shop",         # prot
+    "flexible assembly jobshop",          # var
+    "flexible assembly job shops",        # var
+    "flexible assembly jobshops",         # var
+    "flexible workshop",                  # prot
+    "flexible workshops",                 # var
+]
+
+abbreviations = [
+    "fjs",                                # prot
+    "fjsp",                               # prot
+    "fjsps",                              # var
+    "fjssp",                              # prot
+    "fjssps",                             # var
+    "dfjsp",                              # prot
+    "dfjsps",                             # var
+    "dfjssp",                             # prot
+    "dfjssps",                            # var
+    "mofjsp",                             # prot
+    "mofjsps",                            # var
+    "fjspt",                              # prot
+    "fjspts",                             # var
+    "fajsp",                              # prot
+    "fajsps",                             # var
+]
+
+# --------------------------------------------------------------------------------
+# Limits (protocol, Search strategy)
+# --------------------------------------------------------------------------------
+
+[limits]
+# No publication-year floor: the snapshot date is the only upper bound.
+year_from = 0
+year_to = 0
+
+# No language clause: language is decided at screening (exclusion 4). A language clause
+# removes English records the source has not yet tagged, most of them recent.
+languages = []
+
+# Journal articles and conference papers only. Preprints, reviews, theses, books and book
+# chapters are left out by type (protocol, exclusions 3 and 5).
+document_types = ["article", "conference-paper"]

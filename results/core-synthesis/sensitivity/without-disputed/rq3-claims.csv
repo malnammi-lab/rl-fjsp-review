@@ -1,0 +1,37 @@
+﻿field,code,n_all,pct_all,n_end-to-end,pct_end-to-end,n_steering,pct_steering
+beats-dispatching-rules,makes the claim,67,67.7,42,79.2,25,54.3
+beats-dispatching-rules,shares a named benchmark set with another study making it,28,41.8,23,54.8,5,20.0
+beats-dispatching-rules,shares an objective and a headline statistic with another study making it,48,71.6,32,76.2,16,64.0
+beats-dispatching-rules,"reruns every baseline, no time limit left unstated",31,46.3,23,54.8,8,32.0
+beats-dispatching-rules,"comparable with another study making it on instances, metrics, baselines and time limits",6,9.0,6,14.3,0,0.0
+beats-dispatching-rules,several training runs with their spread,5,7.5,3,7.1,2,8.0
+beats-metaheuristics,makes the claim,61,61.6,31,58.5,30,65.2
+beats-metaheuristics,shares a named benchmark set with another study making it,29,47.5,18,58.1,11,36.7
+beats-metaheuristics,shares an objective and a headline statistic with another study making it,42,68.9,22,71.0,20,66.7
+beats-metaheuristics,"reruns every baseline, no time limit left unstated",32,52.5,16,51.6,16,53.3
+beats-metaheuristics,"comparable with another study making it on instances, metrics, baselines and time limits",7,11.5,3,9.7,4,13.3
+beats-metaheuristics,several training runs with their spread,8,13.1,1,3.2,7,23.3
+beats-exact-solver,makes the claim,17,17.2,11,20.8,6,13.0
+beats-exact-solver,shares a named benchmark set with another study making it,8,47.1,6,54.5,2,33.3
+beats-exact-solver,shares an objective and a headline statistic with another study making it,15,88.2,11,100.0,4,66.7
+beats-exact-solver,"reruns every baseline, no time limit left unstated",9,52.9,5,45.5,4,66.7
+beats-exact-solver,"comparable with another study making it on instances, metrics, baselines and time limits",2,11.8,1,9.1,1,16.7
+beats-exact-solver,several training runs with their spread,1,5.9,0,0.0,1,16.7
+beats-learned-policies,makes the claim,66,66.7,36,67.9,30,65.2
+beats-learned-policies,shares a named benchmark set with another study making it,29,43.9,21,58.3,8,26.7
+beats-learned-policies,shares an objective and a headline statistic with another study making it,45,68.2,27,75.0,18,60.0
+beats-learned-policies,"reruns every baseline, no time limit left unstated",36,54.5,23,63.9,13,43.3
+beats-learned-policies,"comparable with another study making it on instances, metrics, baselines and time limits",7,10.6,6,16.7,1,3.3
+beats-learned-policies,several training runs with their spread,3,4.5,2,5.6,1,3.3
+generalizes-across-sizes,makes the claim,48,48.5,40,75.5,8,17.4
+generalizes-across-sizes,shares a named benchmark set with another study making it,22,45.8,20,50.0,2,25.0
+generalizes-across-sizes,shares an objective and a headline statistic with another study making it,36,75.0,30,75.0,6,75.0
+generalizes-across-sizes,"reruns every baseline, no time limit left unstated",25,52.1,23,57.5,2,25.0
+generalizes-across-sizes,"comparable with another study making it on instances, metrics, baselines and time limits",6,12.5,5,12.5,1,12.5
+generalizes-across-sizes,several training runs with their spread,1,2.1,1,2.5,0,0.0
+trains-stably,makes the claim,20,20.2,14,26.4,6,13.0
+trains-stably,shares a named benchmark set with another study making it,9,45.0,6,42.9,3,50.0
+trains-stably,shares an objective and a headline statistic with another study making it,13,65.0,10,71.4,3,50.0
+trains-stably,"reruns every baseline, no time limit left unstated",11,55.0,9,64.3,2,33.3
+trains-stably,"comparable with another study making it on instances, metrics, baselines and time limits",0,0.0,0,0.0,0,0.0
+trains-stably,several training runs with their spread,3,15.0,2,14.3,1,16.7

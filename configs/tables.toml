@@ -1,0 +1,18 @@
+# The paper's PRISMA flow counts, computed by runners/make_tables.py from the files below and
+# written to results/tables/. The core's rows take the counts that core-selection and
+# core-texts write, so run those first.
+#
+# Run: python runners/run_all.py --only make-tables
+
+[inputs]
+references = "datasets/references.json"   # the searched corpus, after acquisition
+duplicates = "datasets/duplicates.csv"    # records removed by the duplicate rule (runners/deduplicate.py)
+dropped = "datasets/dropped.csv"          # records removed before screening for another reason (protocol, Search strategy)
+screening = "datasets/screening.csv"      # one decision per record screened
+core_flow = "results/core/core-flow.csv"        # the core after each step of its rule (runners/core_selection.py)
+texts_flow = "results/core/core-texts-flow.csv" # the full texts sought, not retrieved and read (runners/core_texts.py)
+out_dir = "results/tables"
+
+[outputs]
+csv = "flow-counts.csv"
+tex = "flow-counts.tex"

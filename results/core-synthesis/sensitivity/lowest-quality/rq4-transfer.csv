@@ -1,0 +1,14 @@
+﻿field,code,n_all,pct_all,n_end-to-end,pct_end-to-end,n_steering,pct_steering
+transfer_tests,none,27,30.3,4,8.9,23,52.3
+transfer_tests,1,20,22.5,10,22.2,10,22.7
+transfer_tests,2,13,14.6,8,17.8,5,11.4
+transfer_tests,3 or more,25,28.1,22,48.9,3,6.8
+transfer_tests,not-stated,4,4.5,1,2.2,3,6.8
+train_test_overlap,disjoint,52,58.4,39,86.7,13,29.5
+train_test_overlap,overlap,30,33.7,4,8.9,26,59.1
+train_test_overlap,not-stated,5,5.6,2,4.4,3,6.8
+train_test_overlap,not-applicable,2,2.2,0,0.0,2,4.5
+training_instances,generated,71,79.8,41,91.1,30,68.2
+training_instances,public-benchmark,30,33.7,9,20.0,21,47.7
+training_instances,industrial,7,7.9,1,2.2,6,13.6
+training_instances,not-stated,3,3.4,1,2.2,2,4.5

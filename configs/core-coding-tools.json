@@ -1,0 +1,139 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "outline",
+      "description": "The paper's headings, each with its page and line number.",
+      "parameters": {"type": "object", "properties": {}, "required": [], "additionalProperties": false}
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "search",
+      "description": "Every line of the paper that matches a regular expression, ignoring case, with its page and line number; at most 40 lines, the first 300 characters of each.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pattern": {"type": "string", "description": "A regular expression, such as 'proximal policy|PPO' or 'Brandimarte|mk0'."}
+        },
+        "required": ["pattern"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read",
+      "description": "The text of one page, or of a range of at most 200 lines, each line with its number. Give a page, or a first and a last line.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {"type": "integer", "description": "A page number, as in the page markers {N}."},
+          "start_line": {"type": "integer", "description": "The first line of a range."},
+          "end_line": {"type": "integer", "description": "The last line of a range."}
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_quote",
+      "description": "Whether a quote appears word for word on a page (differences of spacing and line breaks, typographic quotation marks and dashes, and markdown or HTML formatting aside), how many words it has, and, when it is not found, the closest passage on that page and any other page where it appears.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "page": {"type": "integer", "description": "The page the quote is from, as in the page markers {N}."},
+          "quote": {"type": "string", "description": "The quote, without the surrounding quotation marks."}
+        },
+        "required": ["page", "quote"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "write_block",
+      "description": "Checks one answer block (its form, its codes, its quotes) and keeps it if it passes; otherwise names every problem. A problem between questions (a condition or a rule between two answers) is a warning: the block is kept, and whichever answer is wrong must be fixed before finishing. A block written again replaces the earlier one.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "block": {"type": "string", "description": "One block, one item per line: the heading '## <ID> <name>', then 'answer: ...', any item fields such as 'kind: ...', zero to three lines 'evidence: {N} \"quote\"', and 'note: ...'."}
+        },
+        "required": ["block"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_block",
+      "description": "A block already kept, as written.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string", "description": "A question ID such as 'C08', or an item such as 'D07.2'."}
+        },
+        "required": ["id"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_response",
+      "description": "Every problem left in the questions you answer: questions with no block, item blocks that do not match their count, and the rules between questions.",
+      "parameters": {"type": "object", "properties": {}, "required": [], "additionalProperties": false}
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "delegate",
+      "description": "For the lead only: hands questions to section agents, each a fresh agent that reads the same paper and scheme and writes its own blocks. Tasks given in one call run at the same time; the call returns when all have finished, with each agent's summary.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tasks": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "properties": {
+                "questions": {"type": "string", "description": "The question IDs, such as 'C01 to C14' or 'D11, D12, D14'."},
+                "instructions": {"type": "string", "description": "Where to read: the pages of the method, the experiments and the discussion, numbered as the page markers number them. Never proposed answers."}
+              },
+              "required": ["questions"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["tasks"],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "finish",
+      "description": "Ends your work. Refused while check_response finds problems that are yours to fix: for the lead, any problem; for a section agent, a problem of one of its own questions (a warning between questions does not stop it).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "summary": {"type": "string", "description": "One or two sentences: anything the reader should know, such as a contradiction in the paper."}
+        },
+        "required": ["summary"],
+        "additionalProperties": false
+      }
+    }
+  }
+]

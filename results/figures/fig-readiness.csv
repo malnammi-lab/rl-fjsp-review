@@ -1,0 +1,19 @@
+panel,measure,role,value
+level,L1,end-to-end,46
+level,L1,steering,36
+level,L2,end-to-end,5
+level,L2,steering,9
+level,L3,end-to-end,1
+level,L3,steering,1
+level,L4,end-to-end,1
+level,L4,steering,0
+level,L5,end-to-end,0
+level,L5,steering,0
+operational,Deadline tested,end-to-end,7.5
+operational,Deadline tested,steering,2.2
+operational,Interpretability shown,end-to-end,5.7
+operational,Interpretability shown,steering,6.5
+operational,Imperfect data tested,end-to-end,1.9
+operational,Imperfect data tested,steering,0.0
+operational,Disruption tested,end-to-end,60.4
+operational,Disruption tested,steering,58.7

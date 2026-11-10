@@ -1,0 +1,11 @@
+number,qid,name,value,pages,decided,reason
+191,A01,policy_role,end-to-end,5|6|7,"Moayad Alnammi, 2026-10-22","One action of the DDQN gives the machine of an operation in the sequence its chromosome fixes (Algorithm 3); by Part A's rule on mixed roles a policy that chooses machines itself is end to end, though it acts inside NSGA-III on some chromosomes"
+191,A03,scheduling_action,machine,7,"Moayad Alnammi, 2026-10-22","Each action is a machine for the operation at hand; the action set is the machines"
+191,B03,sub_decision,assignment,5,"Moayad Alnammi, 2026-10-22","NSGA-III's operators set the operation sequence and the DDQN assigns the machines"
+191,B04,steering_action,not-applicable,,"Moayad Alnammi, 2026-10-22","Follows from the role: the question applies to a steering policy only"
+191,B05,steered_method,not-applicable,,"Moayad Alnammi, 2026-10-22","Follows from the role: the question applies to a steering policy only; NSGA-III stays recorded as the study's hybridization (A07)"
+530,A01,policy_role,end-to-end,4|5,"Moayad Alnammi, 2026-10-22","The neural scheduler takes a complete candidate schedule and picks which operation to move and the feasible position to move it to (Algorithm 2), which Part A's rule lists under end to end; the population search around it stays recorded as the study's hybridization (A07)"
+530,A03,scheduling_action,schedule-change,4|5,"Moayad Alnammi, 2026-10-22","Each action moves one operation of a complete schedule to a feasible position, a change to the schedule"
+530,B03,sub_decision,both,4|5,"Moayad Alnammi, 2026-10-22","A move can place the operation on another eligible machine: positions are screened against the precedence and outsourcing constraints with Mastrolilli and Gambardella's insertion lemmas, and each operation's features hold its machine assignment"
+530,B04,steering_action,not-applicable,,"Moayad Alnammi, 2026-10-22","Follows from the role: the question applies to a steering policy only"
+530,B05,steered_method,not-applicable,,"Moayad Alnammi, 2026-10-22","Follows from the role: the question applies to a steering policy only; the population search stays recorded as the study's hybridization (A07)"

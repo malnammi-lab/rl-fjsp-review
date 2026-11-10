@@ -1,0 +1,30 @@
+{
+  "adjudication": {
+    "decisions_sha256": "1b1d1a2822288d10e9df0e5fcf4da58bfff3d23a223167fc105320be1af3909f",
+    "records": 18
+  },
+  "validation": {
+    "decisions_sha256": "6bad34b7a577af802d5fd88fc91998b9fc522a57cfca79915ec797b4cfecd27b",
+    "records": 100,
+    "triggered": true,
+    "wrong_exclusions": [
+      34,
+      74,
+      152,
+      330,
+      402,
+      445,
+      457,
+      493,
+      520,
+      538,
+      541,
+      603,
+      618,
+      619,
+      622,
+      650,
+      658
+    ]
+  }
+}

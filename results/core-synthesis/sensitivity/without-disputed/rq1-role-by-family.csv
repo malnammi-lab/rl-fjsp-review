@@ -1,0 +1,4 @@
+﻿field,code,value-based,policy-gradient,actor-critic,other,total
+policy_role,end-to-end,5,41,2,1,49
+policy_role,steering-rules,13,7,2,0,22
+policy_role,steering-heuristic,18,2,0,0,20

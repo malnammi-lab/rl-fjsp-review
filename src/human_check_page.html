@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Six questions on the fifth</title>
+<!-- Written by runners/core_human_check.py from src/human_check_page.html; the data block is
+     filled by the runner. Self-contained: no network access is needed or made. -->
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #1f2933; --muted: #5f6b7a; --line: #d9dee5;
+    --accent: #1d4ed8; --accent-soft: #eff6ff; --done: #047857; --done-soft: #ecfdf5;
+    --warn: #b45309;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  header { position: sticky; top: 0; z-index: 5; background: var(--card);
+           border-bottom: 1px solid var(--line); padding: 12px 16px; }
+  .bar { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px;
+         align-items: center; }
+  h1 { font-size: 18px; margin: 0 12px 0 0; }
+  .bar label { font-size: 14px; color: var(--muted); }
+  input[type=text], input[type=number], select, textarea {
+    font: inherit; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px;
+    background: #fff; color: var(--ink); }
+  button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent);
+           background: var(--accent); color: #fff; cursor: pointer; }
+  button.ghost { background: #fff; color: var(--accent); }
+  .progress { font-weight: 600; margin-left: auto; }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  .intro { color: var(--muted); margin: 0 0 14px; }
+  #guide { display: none; background: var(--card); border: 1px solid var(--line);
+           border-radius: 10px; padding: 8px 18px 14px; margin-bottom: 18px; }
+  #guide.open { display: block; }
+  #guide h2 { font-size: 16px; margin: 14px 0 2px; }
+  #guide .scheme { color: var(--muted); font-size: 13px; font-weight: 400; }
+  #guide .ask { font-style: italic; margin: 2px 0 6px; }
+  #guide ul { margin: 4px 0 6px 18px; padding: 0; }
+  #guide li { margin: 3px 0; }
+  .codes { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+  .code { font: 13px/1.4 Consolas, monospace; background: var(--accent-soft);
+          border: 1px solid #bfdbfe; border-radius: 4px; padding: 1px 6px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--line);
+          border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; }
+  .card.done { border-left-color: var(--done); }
+  .card h3 { font-size: 15px; margin: 0 0 2px; }
+  .meta { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+  .meta a { color: var(--accent); }
+  .pdf { display: inline-block; margin-right: 10px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 16px; }
+  .q label { display: block; font-weight: 600; font-size: 14px; }
+  .q .hint { display: block; color: var(--muted); font-size: 12.5px; margin-bottom: 3px; }
+  .q select, .q input[type=number] { width: 100%; }
+  .q.missing select, .q.missing input[type=number] { border-color: var(--warn); }
+  .runs { display: flex; gap: 8px; align-items: center; }
+  .runs input[type=number] { width: 7em; }
+  .note { margin-top: 10px; }
+  .note textarea { width: 100%; min-height: 34px; }
+  .status { font-size: 13px; color: var(--done); font-weight: 600; float: right; }
+  #msg { color: var(--warn); font-size: 14px; }
+  @media (max-width: 600px) { .progress { margin-left: 0; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Six questions on the fifth</h1>
+    <label>Your name <input type="text" id="coder" size="22"></label>
+    <button class="ghost" id="toggle">Show guide</button>
+    <button class="ghost" id="importBtn">Import CSV</button>
+    <input type="file" id="importFile" accept=".csv" hidden>
+    <button id="export">Export CSV</button>
+    <span class="progress" id="progress"></span>
+  </div>
+</header>
+<main>
+  <p class="intro" id="intro"></p>
+  <p id="msg"></p>
+  <section id="guide" aria-label="Guide to the six questions"></section>
+  <section id="studies"></section>
+</main>
+<script id="data" type="application/json">__PAGE_DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("data").textContent);
+  var KEY = "human-check:" + DATA.sheet_id;
+  var QS = DATA.questions;
+  var state = { coder: "", answers: {} };
+  if (DATA.title) {
+    document.title = DATA.title;
+    document.querySelector("h1").textContent = DATA.title;
+  }
+
+  function load() {
+    try { var s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) state = s; } catch (e) {}
+    if (!state.answers) state.answers = {};
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    for (var k in (attrs || {})) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function answersOf(n) { return state.answers[n] || (state.answers[n] = {}); }
+  function complete(n) {
+    var a = state.answers[n] || {};
+    return QS.every(function (q) { return (a[q.id] || "") !== ""; });
+  }
+
+  // The guide: every question's definition and the answers it offers.
+  function buildGuide() {
+    var g = document.getElementById("guide");
+    g.appendChild(el("p", {}, "Apply each definition as written. These are the definitions the review's coding used, from Part B of its coding scheme."));
+    QS.forEach(function (q, i) {
+      var h = el("h2", {}, (i + 1) + ". " + q.label + " ");
+      h.appendChild(el("span", { "class": "scheme" }, "(" + q.scheme + ")"));
+      g.appendChild(h);
+      g.appendChild(el("p", { "class": "ask" }, q.ask));
+      var codes = el("div", { "class": "codes" });
+      if (q.number) codes.appendChild(el("span", { "class": "code" }, "a whole number, 1 or more"));
+      q.codes.forEach(function (c) { codes.appendChild(el("span", { "class": "code" }, c)); });
+      g.appendChild(codes);
+      var ul = el("ul");
+      q.definition.forEach(function (d) { ul.appendChild(el("li", {}, d)); });
+      g.appendChild(ul);
+    });
+  }
+
+  function questionField(s, q) {
+    var a = answersOf(s.number);
+    var box = el("div", { "class": "q" });
+    var id = "q-" + s.number + "-" + q.id;
+    box.appendChild(el("label", { "for": id }, q.label));
+    box.appendChild(el("span", { "class": "hint" }, q.ask));
+    function changed() { save(); refresh(s.number); }
+    if (q.number) {
+      var row = el("div", { "class": "runs" });
+      var num = el("input", { type: "number", min: "1", step: "1", id: id });
+      var nr = el("input", { type: "checkbox", id: id + "-nr" });
+      var nrLabel = el("label", { "for": id + "-nr" }, q.codes[0]);
+      nrLabel.style.fontWeight = "400";
+      var v = a[q.id] || "";
+      if (q.codes.indexOf(v) >= 0) { nr.checked = true; num.disabled = true; } else { num.value = v; }
+      num.addEventListener("input", function () {
+        var t = num.value.trim();
+        a[q.id] = /^[1-9][0-9]*$/.test(t) ? t : "";
+        changed();
+      });
+      nr.addEventListener("change", function () {
+        num.disabled = nr.checked;
+        if (nr.checked) { num.value = ""; a[q.id] = q.codes[0]; } else { a[q.id] = ""; }
+        changed();
+      });
+      row.appendChild(num); row.appendChild(nr); row.appendChild(nrLabel);
+      box.appendChild(row);
+    } else {
+      var sel = el("select", { id: id });
+      sel.appendChild(el("option", { value: "" }, "choose"));
+      q.codes.forEach(function (c) { sel.appendChild(el("option", { value: c }, c)); });
+      sel.value = a[q.id] || "";
+      sel.addEventListener("change", function () { a[q.id] = sel.value; changed(); });
+      box.appendChild(sel);
+    }
+    return box;
+  }
+
+  function buildStudies() {
+    var root = document.getElementById("studies");
+    DATA.studies.forEach(function (s) {
+      var card = el("article", { "class": "card", id: "card-" + s.number });
+      var status = el("span", { "class": "status", id: "status-" + s.number });
+      card.appendChild(status);
+      card.appendChild(el("h3", {}, "Record " + s.number + ": " + s.title));
+      var meta = el("div", { "class": "meta" });
+      var pdf = el("a", { "class": "pdf", href: s.pdf, target: "_blank", rel: "noopener" }, "Open PDF");
+      meta.appendChild(pdf);
+      meta.appendChild(document.createTextNode([s.first_author, s.year, s.venue].filter(Boolean).join(", ")));
+      if (s.link) {
+        meta.appendChild(document.createTextNode(" | "));
+        meta.appendChild(el("a", { href: s.link, target: "_blank", rel: "noopener" }, "DOI " + s.doi));
+      }
+      card.appendChild(meta);
+      var grid = el("div", { "class": "grid" });
+      QS.forEach(function (q) { grid.appendChild(questionField(s, q)); });
+      card.appendChild(grid);
+      var note = el("div", { "class": "note" });
+      var ta = el("textarea", { placeholder: "Note (optional), for example the page an answer rests on" });
+      ta.value = answersOf(s.number).note || "";
+      ta.addEventListener("input", function () { answersOf(s.number).note = ta.value; save(); });
+      note.appendChild(ta);
+      card.appendChild(note);
+      root.appendChild(card);
+      refresh(s.number);
+    });
+  }
+
+  function refresh(n) {
+    var done = complete(n);
+    var card = document.getElementById("card-" + n);
+    if (card) card.className = "card" + (done ? " done" : "");
+    var st = document.getElementById("status-" + n);
+    if (st) st.textContent = done ? "Done" : "";
+    var total = DATA.studies.length * QS.length, given = 0, papers = 0;
+    DATA.studies.forEach(function (s) {
+      var a = state.answers[s.number] || {};
+      QS.forEach(function (q) { if ((a[q.id] || "") !== "") given++; });
+      if (complete(s.number)) papers++;
+    });
+    document.getElementById("progress").textContent =
+      papers + " of " + DATA.studies.length + " papers done (" + given + " of " + total + " answers)";
+  }
+
+  function csvCell(v) {
+    v = v == null ? "" : String(v);
+    return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  function exportCsv() {
+    var msg = document.getElementById("msg");
+    if (!state.coder.trim()) { msg.textContent = "Type your name at the top before exporting."; return; }
+    var missing = DATA.studies.filter(function (s) { return !complete(s.number); }).map(function (s) { return s.number; });
+    msg.textContent = missing.length ? "Exported, but not finished: records " + missing.join(", ") + " still have unanswered questions." : "";
+    var lines = [DATA.columns.join(",")];
+    DATA.studies.forEach(function (s) {
+      var a = state.answers[s.number] || {};
+      lines.push(DATA.columns.map(function (c) {
+        if (c === "number") return s.number;
+        if (c === "title") return csvCell(s.title);
+        if (c === "coder") return csvCell(state.coder.trim());
+        return csvCell(a[c] || "");
+      }).join(","));
+    });
+    var blob = new Blob([String.fromCharCode(0xFEFF) + lines.join("\r\n") + "\r\n"], { type: "text/csv;charset=utf-8" });
+    var link = el("a", { href: URL.createObjectURL(blob), download: DATA.save_as });
+    document.body.appendChild(link); link.click(); link.remove();
+  }
+
+  function parseCsv(text) {
+    var rows = [], row = [], cell = "", q = false;
+    text = text.replace(new RegExp("^" + String.fromCharCode(0xFEFF)), "");
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      if (q) {
+        if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
+        else cell += ch;
+      } else if (ch === '"') q = true;
+      else if (ch === ",") { row.push(cell); cell = ""; }
+      else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell); rows.push(row); row = []; cell = "";
+      } else cell += ch;
+    }
+    if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(function (r) { return r.some(function (c) { return c.trim() !== ""; }); });
+  }
+  function importCsv(file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var rows = parseCsv(reader.result), head = rows.shift() || [];
+      var ix = {}; head.forEach(function (h, i) { ix[h.trim()] = i; });
+      if (ix.number == null) { document.getElementById("msg").textContent = "That file has no number column."; return; }
+      rows.forEach(function (r) {
+        var n = r[ix.number].trim();
+        if (!DATA.studies.some(function (s) { return String(s.number) === n; })) return;
+        var a = answersOf(n);
+        QS.forEach(function (q) { if (ix[q.id] != null) a[q.id] = (r[ix[q.id]] || "").trim(); });
+        if (ix.note != null) a.note = r[ix.note] || "";
+        if (ix.coder != null && r[ix.coder] && !state.coder) state.coder = r[ix.coder].trim();
+      });
+      save();
+      document.getElementById("studies").innerHTML = "";
+      document.getElementById("coder").value = state.coder;
+      buildStudies();
+      document.getElementById("msg").textContent = "Imported.";
+    };
+    reader.readAsText(file);
+  }
+
+  load();
+  document.getElementById("intro").textContent = DATA.intro ||
+    (DATA.studies.length + " papers, six questions each. Open each paper's PDF, answer the six questions from the paper, and export your answers when you finish. " +
+    "The guide gives every question's definition and its answers. Your answers are kept in this browser as you go.");
+  var coder = document.getElementById("coder");
+  coder.value = state.coder || "";
+  coder.addEventListener("input", function () { state.coder = coder.value; save(); });
+  var toggle = document.getElementById("toggle"), guide = document.getElementById("guide");
+  toggle.addEventListener("click", function () {
+    var open = guide.classList.toggle("open");
+    toggle.textContent = open ? "Hide guide" : "Show guide";
+  });
+  document.getElementById("export").addEventListener("click", exportCsv);
+  document.getElementById("importBtn").addEventListener("click", function () { document.getElementById("importFile").click(); });
+  document.getElementById("importFile").addEventListener("change", function (e) { if (e.target.files[0]) importCsv(e.target.files[0]); });
+  buildGuide();
+  buildStudies();
+})();
+</script>
+</body>
+</html>

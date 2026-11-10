@@ -1,0 +1,39 @@
+# The gather of the core's answers (protocol, Data extraction), read by
+# runners/core_gather.py. Each response of the coding agent is checked again against its
+# paper and joined to the judge's verdicts. The published dataset holds codes, numbers, page
+# numbers and a SHA-256 of each quote, never a quote's text or a note. The published dataset
+# holds no quote text.
+#
+# Run: python runners/run_all.py --only core-gather
+
+[inputs]
+spec = "configs/core-coding.toml"
+map = "configs/map.toml"
+# The locked core: each study's step, stratum and year.
+core = "datasets/core.csv"
+core_lock = "results/core/core-lock.json"
+# A study is read in full when its markdown is listed in datasets/full-texts-md-sha256.csv;
+# the markdown itself is not released.
+texts = "../data/full-texts-md"
+md_checksums = "datasets/full-texts-md-sha256.csv"
+# The coding agent's responses and the judge's verdicts quote the papers and are not
+# released. The verdicts and the runs are used when they exist.
+responses = "../data/core-coding/responses"
+verdicts = "../data/core-coding/verdicts.csv"
+runs = "../data/core-coding/coding-runs.csv"
+# The authors' corrections (protocol, Amendments: answers corrected by the authors): answers
+# read against the paper and corrected, with the answers that follow by Part B's rules. They
+# are laid over the coder's answers, whose values the answers' file keeps. Pages are the
+# paper's page markers. Published with no quote; the reasons are in the authors' words.
+corrections = "datasets/core-corrections.csv"
+
+[outputs]
+coded = "datasets/coded-studies.csv"
+answers = "datasets/core-answers.csv"
+baselines = "datasets/core-baselines.csv"
+claims = "datasets/core-study-claims.csv"
+transfer_tests = "datasets/core-transfer-tests.csv"
+runs = "datasets/core-coding-runs.csv"
+report = "results/core-coding/gather.md"
+# Private: each quote with its SHA-256, so that a published hash can be traced to its words.
+quotes = "../data/core-coding/quotes.csv"

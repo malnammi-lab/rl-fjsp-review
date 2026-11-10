@@ -1,0 +1,31 @@
+# The draws of the core's coding (datasets/coding-scheme.md, Part B): the smoke study, the
+# pilot, and the fifth drawn for a person's check. Read by runners/core_draws.py. Once the
+# draws are locked (results/core-coding/draws-lock.json), the runner refuses different draws.
+#
+# Run: python runners/run_all.py --only core-draws
+
+[inputs]
+# The locked core and its lock (runners/core_selection.py): a core other than the locked
+# one is refused.
+core = "datasets/core.csv"
+core_lock = "results/core/core-lock.json"
+# The full texts saved (pdf_saved) and converted to markdown: only these can be drawn.
+texts = "datasets/core-texts.csv"
+md_checksums = "datasets/full-texts-md-sha256.csv"
+
+[draws]
+seed = 20261020
+# The smoke study, on which the coding agent is first tried.
+smoke = 184
+# The pilot: one study for each role the map gave, then the largest full text left.
+pilot_roles = ["end-to-end", "steering-rules", "steering-heuristic", "not-stated"]
+pilot_largest = true
+# The fifth, for a person's check: a seeded random fifth of the core, drawn in proportion to
+# its strata from the studies left after the smoke study and the pilot
+# (protocol, Data extraction).
+fifth = 20
+
+[outputs]
+table = "results/core-coding/draws.csv"
+report = "results/core-coding/draws.md"
+lock = "results/core-coding/draws-lock.json"

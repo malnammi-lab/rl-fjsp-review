@@ -1,0 +1,55 @@
+# The map's vote and the models' agreement per axis, read by runners/map_vote.py. [check]
+# sets a person's blind check of the map, read by runners/map_check.py. The scheme's rules are
+# in src/mapcodes.py, the axes and codes in configs/map.toml (protocol, Two tiers).
+#
+# Run: python runners/run_all.py --only map-vote map-check
+
+[inputs]
+schema = "configs/map.toml"
+# The screening's decisions: the map codes every record they include, and no other.
+screening = "datasets/screening.csv"
+
+# The codes a person gave included records that no model coded, in a model's coding file's
+# columns. These records take the person's codes after the scheme's rules, without a vote,
+# and stay out of the models' agreement.
+[map]
+by_person = "datasets/map-person.csv"
+
+# One coding file per model. Exactly three, the screening panel; their order is the order of
+# columns.
+[coders]
+qwen38 = "datasets/map-qwen38.csv"
+gemma26 = "datasets/map-gemma26.csv"
+glimmer30 = "datasets/map-glimmer30.csv"
+
+[agreement]
+# The bar for an axis's agreement: the mean kappa of its categories at step 2 that the map
+# holds. An axis counts toward the core's coverage minimum only if it reaches the bar
+# (protocol, Two tiers). The axes listed in not_coverage never count, and are reported by
+# their multiclass kappa instead.
+kappa_bar = 0.6
+not_coverage = ["readiness_claim"]
+
+[outputs]
+map = "datasets/map.csv"
+votes = "results/map/map-votes.csv"
+implications = "results/map/map-implications.csv"
+agreement = "results/map/map-agreement.csv"
+report = "results/map/map-vote.md"
+
+# A person's blind check of the map, read by runners/map_check.py: a person codes these axes
+# on a random sample of the map's records. The sample is drawn under the seed from the records
+# included without a person, outside the calibration batch that the screening config defines.
+[check]
+axes = ["policy_role", "learner_depth", "readiness_claim"]
+size = 25
+seed = 20261015
+screening_config = "configs/screening.toml"
+scheme = "datasets/coding-scheme.md"
+template = "src/coding_page.html"
+answers = "datasets/map-check.csv"
+# With .md and .html beside it. The sheet shows the abstracts, which this repository
+# withholds, and the sheet is not released. The published answers are datasets/map-check.csv.
+sheet = "../data/map/map-check-sheet.csv"
+report = "results/map/map-check.md"
+lock = "results/map/map-check-lock.json"

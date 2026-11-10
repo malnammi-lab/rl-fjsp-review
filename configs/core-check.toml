@@ -1,0 +1,21 @@
+# The checks of the core's answers (datasets/coding-scheme.md, Part B), read by
+# runners/core_check.py. Each response is checked against its paper, after the paper is
+# checked against its checksum. The report gives the problems by study and question, never
+# a word of the papers. The same checks run for the coding agent while it works
+# (runners/core_check.py --tool).
+#
+# Run: python runners/run_all.py --only core-check
+
+[inputs]
+spec = "configs/core-coding.toml"
+map = "configs/map.toml"
+# The checksums of the converted texts are datasets/full-texts-md-sha256.csv; the markdown
+# itself is not released.
+texts = "../data/full-texts-md"
+md_checksums = "datasets/full-texts-md-sha256.csv"
+# The coding agent's responses quote the papers and are not released.
+responses = "../data/core-coding/responses"
+
+[outputs]
+report = "results/core-coding/check.md"
+problems = "results/core-coding/check-problems.csv"

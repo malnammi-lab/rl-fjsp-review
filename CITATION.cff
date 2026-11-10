@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "rl-fjsp-review"
+authors:
+  - family-names: Alnammi
+    given-names: Moayad
+  - family-names: Hussein
+    given-names: "Osamah H."
+  - family-names: Azab
+    given-names: Ahmed
+  - family-names: Almoghathawi
+    given-names: Yasser
+license: MIT
+repository-code: "https://github.com/malnammi-lab/rl-fjsp-review"
+version: "1.0-rl-scheduling-review"
+date-released: 2026-11-07

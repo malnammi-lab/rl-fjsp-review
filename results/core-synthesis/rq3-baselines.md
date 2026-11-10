@@ -1,0 +1,19 @@
+# Baselines: the studies that compare with each kind
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+RQ 3.2. Studies with at least one item of each code, as a share of the column's studies.
+
+| Field | Code | All | End to end | Steering |
+| --- | --- | ---: | ---: | ---: |
+| kind | dispatching-rule | 73 (73.7%) | 46 (86.8%) | 27 (58.7%) |
+| kind | metaheuristic | 77 (77.8%) | 41 (77.4%) | 36 (78.3%) |
+| kind | exact-solver | 38 (38.4%) | 27 (50.9%) | 11 (23.9%) |
+| kind | learned-policy | 74 (74.7%) | 44 (83.0%) | 30 (65.2%) |
+| kind | other | 12 (12.1%) | 5 (9.4%) | 7 (15.2%) |
+| run | rerun | 97 (98.0%) | 51 (96.2%) | 46 (100.0%) |
+| run | copied | 19 (19.2%) | 16 (30.2%) | 3 (6.5%) |
+| run | not-stated | 7 (7.1%) | 3 (5.7%) | 4 (8.7%) |
+| time_limit | stated | 61 (61.6%) | 34 (64.2%) | 27 (58.7%) |
+| time_limit | not-stated | 48 (48.5%) | 27 (50.9%) | 21 (45.7%) |
+| time_limit | not-applicable | 77 (77.8%) | 47 (88.7%) | 30 (65.2%) |

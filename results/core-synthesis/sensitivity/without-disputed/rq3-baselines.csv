@@ -1,0 +1,12 @@
+﻿field,code,n_all,pct_all,n_end-to-end,pct_end-to-end,n_steering,pct_steering
+kind,dispatching-rule,54,54.5,34,64.2,20,43.5
+kind,metaheuristic,57,57.6,30,56.6,27,58.7
+kind,exact-solver,29,29.3,19,35.8,10,21.7
+kind,learned-policy,52,52.5,30,56.6,22,47.8
+kind,other,7,7.1,4,7.5,3,6.5
+run,rerun,85,85.9,46,86.8,39,84.8
+run,copied,10,10.1,8,15.1,2,4.3
+run,not-stated,4,4.0,1,1.9,3,6.5
+time_limit,stated,48,48.5,28,52.8,20,43.5
+time_limit,not-stated,34,34.3,18,34.0,16,34.8
+time_limit,not-applicable,63,63.6,41,77.4,22,47.8

@@ -1,0 +1,839 @@
+# The core: the questions every core study is coded on, from its full text (protocol, Data
+# extraction, Part B). The decision rule of every code is in datasets/coding-scheme.md,
+# Part B, which the coding agent receives; this file is its machine-readable mirror, read by
+# the checker (runners/core_check.py), the person's check (runners/core_verify.py) and the
+# gather (runners/core_gather.py). tests/test_core_scheme.py keeps the two in step. Written
+# on 20 October 2026, before any full text was coded.
+#
+# [questions.<ID>], in Part B's order. Section A's questions name a Part A axis (`axis`) and
+# take its codes, kind and `not-stated` rule from configs/map.toml; the others give:
+#
+#   name          the question's name, the column it fills in datasets/coded-studies.csv
+#   section       A to F, or Q
+#   rq            the research question it serves ("quality" for section Q)
+#   type          code (one code), codes (a list), number, text, level, score or count
+#   codes         the codes of a code, codes or level question
+#   alone         on a list, codes that may not be combined with another
+#   default       the code given when the paper is silent; such a question allows no
+#                 `not-stated`
+#   special       the special answers allowed: not-stated, not-applicable, not-reported
+#   applies_when  conditions, all of which must hold for the question to apply; where they
+#                 do not, the answer is `not-applicable`, and where they do, it is not. Each
+#                 names a question and gives `codes` (its answer holds one of them),
+#                 `min_codes` (its list holds at least that many codes) or `above` (its number
+#                 is above the value). A condition on a question answered with a special
+#                 answer is not decided, and constrains nothing.
+#   no_quote      answers that need no evidence (special answers and `none` on a count never
+#                 do)
+#   words         the word limit of a text answer
+#   group         a count's item blocks (see [groups])
+#   label         what the question asks, in one line
+#
+# [groups.<name>]: the item blocks of a count (`## D07.1 baseline`): its parent question,
+# the most items it may hold, the kind of the item's answer, and the fields each item gives,
+# one code each. `unique`: no two items give the same answer.
+#
+# [[rule]]: a check between two questions, reported by the checker and never applied:
+# when question `if` holds one of `if_codes`, question `then` must hold one of `then_codes`,
+# or none of `then_not`. Part A's five implications (src/mapcodes.py IMPLICATIONS) are
+# checked on section A as well.
+#
+# [derived.<name>]: a column the gather computes from an answer, never asked: `map` gives
+# the value of each code of `from`; `min_codes` gives "yes" when `from` holds at least that
+# many codes, else "no". A special answer is carried over unchanged.
+
+[questions.A01]
+axis = "policy_role"
+section = "A"
+rq = "1.1"
+
+[questions.A02]
+axis = "coordination"
+section = "A"
+rq = "1.1"
+
+[questions.A03]
+axis = "scheduling_action"
+section = "A"
+rq = "2.1"
+no_quote = ["not-applicable"]
+
+[questions.A04]
+axis = "learner_depth"
+section = "A"
+rq = "1.2"
+
+[questions.A05]
+axis = "deep_architecture"
+section = "A"
+rq = "2.2"
+no_quote = ["not-applicable"]
+
+[questions.A06]
+axis = "training_algorithm_family"
+section = "A"
+rq = "1.2"
+
+[questions.A07]
+axis = "hybridization"
+section = "A"
+rq = "1.2"
+no_quote = ["none"]
+
+[questions.A08]
+axis = "state_content"
+section = "A"
+rq = "2.1"
+
+[questions.A09]
+axis = "state_encoding"
+section = "A"
+rq = "2.2"
+
+[questions.A10]
+axis = "dynamic_events"
+section = "A"
+rq = "1.3"
+no_quote = ["none"]
+
+[questions.A11]
+axis = "objective"
+section = "A"
+rq = "1.3"
+
+[questions.A12]
+axis = "constraints"
+section = "A"
+rq = "1.3"
+no_quote = ["none"]
+
+[questions.A13]
+axis = "instances"
+section = "A"
+rq = "3.1"
+
+[questions.A14]
+axis = "domain"
+section = "A"
+rq = "1.3"
+no_quote = ["manufacturing"]
+
+[questions.A15]
+axis = "readiness_claim"
+section = "A"
+rq = "5"
+no_quote = ["none"]
+
+# ------------------------------------------------------------ B: problem and approach (1)
+
+[questions.B01]
+name = "study_type"
+section = "B"
+rq = "1"
+type = "code"
+codes = ["new-method", "application", "comparison", "other"]
+special = ["not-stated"]
+label = "what the paper contributes"
+
+[questions.B02]
+name = "flexibility"
+section = "B"
+rq = "1.3"
+type = "code"
+codes = ["partial", "total", "none-tested"]
+special = ["not-stated"]
+label = "how flexible the shops of the experiments are"
+
+[questions.B03]
+name = "sub_decision"
+section = "B"
+rq = "1.1"
+type = "code"
+codes = ["sequencing", "assignment", "both", "other", "not-applicable"]
+special = ["not-stated"]
+label = "which of sequencing and machine assignment the policy decides"
+
+[questions.B04]
+name = "steering_action"
+section = "B"
+rq = "1.1"
+type = "codes"
+codes = ["dispatching-rule", "rule-weights", "parameter", "operator", "neighborhood",
+         "acceptance", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "policy_role", codes = ["steering-rules", "steering-heuristic"]}]
+label = "what one action of a steering policy chooses or sets"
+
+[questions.B05]
+name = "steered_method"
+section = "B"
+rq = "1.1"
+type = "codes"
+codes = ["dispatching-rules", "genetic-algorithm", "simulated-annealing", "tabu-search",
+         "variable-neighborhood-search", "swarm", "local-search", "constructive-heuristic",
+         "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "policy_role", codes = ["steering-rules", "steering-heuristic"]}]
+label = "the methods a steering policy chooses among or controls"
+
+[questions.B06]
+name = "paradigm"
+section = "B"
+rq = "1.2"
+type = "codes"
+codes = ["online", "offline", "imitation", "model-based", "meta-learning", "safe", "other"]
+default = "online"
+special = []
+label = "the learning paradigms of the method"
+
+[questions.B07]
+name = "algorithm"
+section = "B"
+rq = "1.2"
+type = "code"
+codes = ["monte-carlo", "sarsa", "q-learning", "reinforce", "ppo", "trpo", "a2c-a3c",
+         "ddpg-td3", "sac", "other"]
+special = ["not-stated"]
+label = "the algorithm that trains the learned policy"
+
+[questions.B08]
+name = "algorithm_name"
+section = "B"
+rq = "1.2"
+type = "text"
+words = 8
+special = ["not-stated"]
+label = "the algorithm as the paper names it"
+
+[questions.B09]
+name = "agent_unit"
+section = "B"
+rq = "1.1"
+type = "codes"
+codes = ["machine", "job", "operation", "sub-decision", "objective", "level", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "coordination", codes = ["multi-agent", "hierarchical"]}]
+label = "what each of several agents stands for"
+
+[questions.B10]
+name = "multi_agent_training"
+section = "B"
+rq = "1.1"
+type = "codes"
+codes = ["independent", "shared-parameters", "centralized-critic", "value-factorization",
+         "communication", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "coordination", codes = ["multi-agent"]}]
+label = "how several agents are trained"
+
+[questions.B11]
+name = "objective_combination"
+section = "B"
+rq = "1.3"
+type = "codes"
+codes = ["weighted-sum", "one-model-per-weight", "preference-conditioned", "pareto",
+         "lexicographic", "goal-setting", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "objective", min_codes = 2}]
+label = "how two or more objectives are combined"
+
+# ------------------------------------------------------ C: formulation and model (2)
+
+[questions.C01]
+name = "action_space"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["discrete", "continuous", "hybrid"]
+special = ["not-stated"]
+label = "the kind of action the policy takes"
+
+[questions.C02]
+name = "action_set"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["fixed-list", "per-candidate"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "action_space", codes = ["discrete", "hybrid"]}]
+label = "how the set of discrete actions is made"
+
+[questions.C03]
+name = "action_count"
+section = "C"
+rq = "2.1"
+type = "number"
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "action_set", codes = ["fixed-list"]}]
+label = "the number of actions in the fixed list"
+
+[questions.C04]
+name = "wait_action"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["yes", "no"]
+special = ["not-stated"]
+label = "whether the policy may choose to wait"
+
+[questions.C05]
+name = "invalid_actions"
+section = "C"
+rq = "2.1"
+type = "codes"
+codes = ["masked", "penalized", "repaired", "by-construction"]
+special = ["not-stated"]
+label = "how invalid actions are handled"
+
+[questions.C06]
+name = "mask_enforces"
+section = "C"
+rq = "2.1"
+type = "codes"
+codes = ["precedence", "capacity", "eligibility", "priority-filter", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "invalid_actions", codes = ["masked"]}]
+label = "the constraints the mask enforces"
+
+[questions.C07]
+name = "reward_measure"
+section = "C"
+rq = "2.1"
+type = "codes"
+codes = ["makespan", "idle-time", "utilization", "tardiness", "flow-time", "workload",
+         "energy", "cost", "other"]
+special = ["not-stated"]
+label = "what the reward measures"
+
+[questions.C08]
+name = "reward_timing"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["per-step", "terminal", "mixed"]
+special = ["not-stated"]
+label = "when the reward is given"
+
+[questions.C09]
+name = "reward_source"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["hand-designed", "learned"]
+default = "hand-designed"
+special = []
+label = "how the reward is made"
+
+[questions.C10]
+name = "decision_points"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["event-driven", "fixed-interval", "per-operation", "per-iteration", "other"]
+special = ["not-stated"]
+label = "when the policy decides"
+
+[questions.C11]
+name = "observability"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["full", "partial"]
+default = "full"
+special = []
+label = "whether the shop is treated as fully or partially observed"
+
+[questions.C12]
+name = "input_size"
+section = "C"
+rq = "2.2"
+type = "code"
+codes = ["fixed", "padded", "size-agnostic"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "learner_depth", codes = ["deep", "non-neural"]}]
+label = "whether the network's input depends on the instance's size"
+
+[questions.C13]
+name = "model_summary"
+section = "C"
+rq = "2.2"
+type = "text"
+words = 15
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "learner_depth", codes = ["deep", "non-neural"]}]
+label = "the policy's network, in a few words"
+
+[questions.C14]
+name = "training_regime"
+section = "C"
+rq = "2.1"
+type = "code"
+codes = ["distribution", "per-instance", "online"]
+special = ["not-stated"]
+label = "how the policy is trained before it is evaluated"
+
+# --------------------------------------------------------------------- D: evidence (3)
+
+[questions.D01]
+name = "benchmark_sets"
+section = "D"
+rq = "3.1"
+type = "codes"
+codes = ["brandimarte", "hurink", "dauzere-peres-paulli", "kacem", "barnes", "fattahi",
+         "behnke-geiger", "taillard", "lawrence", "other-benchmark", "none"]
+alone = ["none"]
+no_quote = ["none"]
+special = ["not-stated"]
+label = "the named benchmark sets the experiments use"
+
+[questions.D02]
+name = "largest_jobs"
+section = "D"
+rq = "3.1"
+type = "number"
+special = ["not-stated"]
+label = "the jobs of the largest test instance"
+
+[questions.D03]
+name = "largest_machines"
+section = "D"
+rq = "3.1"
+type = "number"
+special = ["not-stated"]
+label = "the machines of the largest test instance"
+
+[questions.D04]
+name = "event_processes"
+section = "D"
+rq = "3.1"
+type = "codes"
+codes = ["poisson", "uniform", "fixed-times", "real-trace", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "dynamic_events", codes = ["job-arrivals", "machine-breakdowns", "uncertain-processing-times", "other"]}]
+label = "how the dynamic events are generated"
+
+[questions.D05]
+name = "events_in"
+section = "D"
+rq = "3.1"
+type = "code"
+codes = ["training-and-testing", "testing-only", "training-only", "robustness-only"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "dynamic_events", codes = ["job-arrivals", "machine-breakdowns", "uncertain-processing-times", "other"]}]
+label = "the runs in which the events occur"
+
+[questions.D06]
+name = "reschedule_trigger"
+section = "D"
+rq = "3.1"
+type = "code"
+codes = ["each-decision", "event", "periodic", "batch", "other"]
+special = ["not-applicable", "not-stated"]
+applies_when = [{question = "dynamic_events", codes = ["job-arrivals", "machine-breakdowns", "uncertain-processing-times", "other"]}]
+label = "when the method reacts to an event"
+
+[questions.D07]
+name = "baselines"
+section = "D"
+rq = "3.2"
+type = "count"
+group = "baseline"
+special = ["not-stated"]
+label = "the groups of baselines the method is compared with"
+
+[questions.D08]
+name = "metrics"
+section = "D"
+rq = "3.2"
+type = "codes"
+codes = ["gap", "win-count", "statistical-test", "robustness", "other"]
+special = ["not-reported"]
+label = "the measures reported beside the objectives and times"
+
+[questions.D09]
+name = "decision_time"
+section = "D"
+rq = "3.2"
+type = "code"
+codes = ["per-schedule", "per-decision", "both"]
+special = ["not-reported"]
+label = "the trained policy's decision time"
+
+[questions.D10]
+name = "training_cost"
+section = "D"
+rq = "3.2"
+type = "code"
+codes = ["time-and-hardware", "time", "hardware"]
+special = ["not-reported"]
+label = "the cost of training"
+
+[questions.D11]
+name = "size_scaling"
+section = "D"
+rq = "3.2"
+type = "code"
+codes = ["beyond-training", "within-training"]
+special = ["not-reported"]
+label = "performance as instances grow"
+
+[questions.D12]
+name = "inference_mode"
+section = "D"
+rq = "3.2"
+type = "code"
+codes = ["greedy", "sampling", "search", "heuristic-run", "other"]
+special = ["not-stated"]
+label = "how the trained policy produces the schedules it reports"
+
+[questions.D13]
+name = "headline_statistic"
+section = "D"
+rq = "3.2"
+type = "code"
+codes = ["mean", "best", "median", "single-run", "other"]
+special = ["not-stated"]
+label = "the statistic of the main result tables"
+
+[questions.D14]
+name = "seeds"
+section = "D"
+rq = "3.3"
+type = "number"
+special = ["not-reported"]
+label = "the independent training runs the results come from"
+
+[questions.D15]
+name = "seed_spread"
+section = "D"
+rq = "3.3"
+type = "code"
+codes = ["reported"]
+special = ["not-applicable", "not-reported"]
+applies_when = [{question = "seeds", above = 1}]
+label = "the spread across training runs"
+
+[questions.D16]
+name = "ablation"
+section = "D"
+rq = "3.3"
+type = "code"
+codes = ["reported"]
+special = ["not-reported"]
+label = "an ablation of the method's components"
+
+[questions.D17]
+name = "code_release"
+section = "D"
+rq = "3.3"
+type = "code"
+codes = ["released", "on-request", "promised"]
+special = ["not-reported"]
+label = "whether the method's code is available"
+
+[questions.D18]
+name = "data_release"
+section = "D"
+rq = "3.3"
+type = "code"
+codes = ["released", "on-request", "promised", "public-only"]
+special = ["not-reported"]
+label = "whether the paper's own instances or data are available"
+
+[questions.D19]
+name = "claims"
+section = "D"
+rq = "3.4"
+type = "count"
+group = "claim"
+special = []
+label = "the field's recurring claims the paper makes"
+
+[questions.D20]
+name = "training_stability"
+section = "D"
+rq = "3.4"
+type = "code"
+codes = ["reported"]
+special = ["not-reported"]
+label = "evidence on training stability"
+
+# --------------------------------------------------------------------- E: transfer (4)
+
+[questions.E01]
+name = "transfer_tests"
+section = "E"
+rq = "4"
+type = "count"
+group = "transfer_test"
+special = ["not-stated"]
+label = "tests on instances unlike the training instances"
+
+[questions.E02]
+name = "train_test_overlap"
+section = "E"
+rq = "4"
+type = "code"
+codes = ["disjoint", "overlap"]
+special = ["not-applicable", "not-stated"]
+label = "whether test instances differ from training instances"
+
+[questions.E03]
+name = "training_instances"
+section = "E"
+rq = "4"
+type = "codes"
+codes = ["generated", "public-benchmark", "industrial"]
+special = ["not-stated"]
+label = "the instances the policy is trained on"
+
+# ------------------------------------------------------- F: readiness and practice (5)
+
+[questions.F01]
+name = "readiness_level"
+section = "F"
+rq = "5"
+type = "level"
+codes = ["L1", "L2", "L3", "L4", "L5"]
+no_quote = ["L1"]
+special = []
+label = "the highest level the paper's own runs reach"
+
+[questions.F02]
+name = "decision_deadlines"
+section = "F"
+rq = "5"
+type = "code"
+codes = ["tested", "discussed"]
+special = ["not-reported"]
+label = "decision deadlines"
+
+[questions.F03]
+name = "imperfect_data"
+section = "F"
+rq = "5"
+type = "code"
+codes = ["tested", "discussed"]
+special = ["not-reported"]
+label = "tests with imperfect data"
+
+[questions.F04]
+name = "interpretability"
+section = "F"
+rq = "5"
+type = "code"
+codes = ["shown", "discussed"]
+special = ["not-reported"]
+label = "explanations of the policy's decisions"
+
+[questions.F05]
+name = "robustness"
+section = "F"
+rq = "5"
+type = "code"
+codes = ["tested", "discussed"]
+special = ["not-reported"]
+label = "tests of robustness"
+
+[questions.F06]
+name = "limitations"
+section = "F"
+rq = "5"
+type = "codes"
+codes = ["scalability", "generalization", "training-cost", "real-world-validation",
+         "assumptions", "other"]
+special = ["not-reported"]
+label = "the limitations the paper states"
+
+# ---------------------------------------------------------------------- Q: quality
+
+[questions.Q01]
+name = "q_shop"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "the shop is specified"
+
+[questions.Q02]
+name = "q_mdp"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "the decision process is specified"
+
+[questions.Q03]
+name = "q_algorithm"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "the algorithm and its settings are specified"
+
+[questions.Q04]
+name = "q_instances"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "the instances are repeatable"
+
+[questions.Q05]
+name = "q_baselines"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "the baselines run on the same instances with stated time limits"
+
+[questions.Q06]
+name = "q_runs"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "results over several training runs with their spread"
+
+[questions.Q07]
+name = "q_claims"
+section = "Q"
+rq = "quality"
+type = "score"
+no_quote = ["0", "not-assessable"]
+special = []
+label = "every transfer or deployment claim tied to a test"
+
+# ------------------------------------------------------------------------- item groups
+
+[groups.baseline]
+parent = "D07"
+max_items = 8
+answer = "text"
+words = 12
+label = "a group of baselines, named as the paper prints them"
+
+[groups.baseline.fields.kind]
+codes = ["dispatching-rule", "metaheuristic", "exact-solver", "learned-policy", "other"]
+
+[groups.baseline.fields.run]
+codes = ["rerun", "copied", "not-stated"]
+
+[groups.baseline.fields.time_limit]
+codes = ["stated", "not-stated", "not-applicable"]
+
+[groups.claim]
+parent = "D19"
+max_items = 6
+answer = "code"
+codes = ["beats-dispatching-rules", "beats-metaheuristics", "beats-exact-solver",
+         "beats-learned-policies", "generalizes-across-sizes", "trains-stably"]
+unique = true
+label = "a recurring claim the paper makes"
+
+[groups.transfer_test]
+parent = "E01"
+max_items = 6
+answer = "codes"
+codes = ["size", "flexibility", "layout", "processing-times", "events",
+         "objective-or-constraints", "other-factory", "public-benchmark", "real-data", "other"]
+label = "how a transfer test's instances differ from the training instances"
+
+[groups.transfer_test.fields.provenance]
+codes = ["generated", "public-benchmark", "industrial", "other"]
+
+[groups.transfer_test.fields.mode]
+codes = ["unchanged", "fine-tuned", "retrained", "not-stated"]
+
+[groups.transfer_test.fields.outcome]
+codes = ["holds", "degrades", "mixed", "not-stated"]
+
+# ------------------------------------------------------------- checks between questions
+
+[[rule]]
+name = "a named benchmark set means public-benchmark instances"
+if = "benchmark_sets"
+if_codes = ["brandimarte", "hurink", "dauzere-peres-paulli", "kacem", "barnes", "fattahi",
+            "behnke-geiger", "taillard", "lawrence", "other-benchmark"]
+then = "instances"
+then_codes = ["public-benchmark"]
+
+[[rule]]
+name = "REINFORCE, PPO and TRPO are policy gradient"
+if = "algorithm"
+if_codes = ["reinforce", "ppo", "trpo"]
+then = "training_algorithm_family"
+then_codes = ["policy-gradient"]
+
+[[rule]]
+name = "Monte Carlo, SARSA and Q-learning are value-based"
+if = "algorithm"
+if_codes = ["monte-carlo", "sarsa", "q-learning"]
+then = "training_algorithm_family"
+then_codes = ["value-based"]
+
+[[rule]]
+name = "A2C, A3C, DDPG, TD3 and SAC are actor-critic"
+if = "algorithm"
+if_codes = ["a2c-a3c", "ddpg-td3", "sac"]
+then = "training_algorithm_family"
+then_codes = ["actor-critic"]
+
+[[rule]]
+name = "an end-to-end policy takes a scheduling decision itself"
+if = "policy_role"
+if_codes = ["end-to-end"]
+then = "sub_decision"
+then_not = ["not-applicable"]
+
+[[rule]]
+name = "a run beyond simulation is also a claim beyond simulation"
+if = "readiness_level"
+if_codes = ["L2", "L3", "L4", "L5"]
+then = "readiness_claim"
+then_not = ["none"]
+
+# ------------------------------------------------------------------- derived columns
+
+# The survey's families (planning, the survey's structure): PPO and TRPO are filed under
+# policy gradient although they train a critic. Monte Carlo control is taken as on-policy,
+# its usual form; a paper with an off-policy form says so in its note.
+[derived.algorithm_family]
+from = "algorithm"
+
+[derived.algorithm_family.map]
+monte-carlo = "value-based"
+sarsa = "value-based"
+q-learning = "value-based"
+reinforce = "policy-gradient"
+ppo = "policy-gradient"
+trpo = "policy-gradient"
+a2c-a3c = "actor-critic"
+ddpg-td3 = "actor-critic"
+sac = "actor-critic"
+other = "other"
+
+[derived.policy_update]
+from = "algorithm"
+
+[derived.policy_update.map]
+monte-carlo = "on-policy"
+sarsa = "on-policy"
+q-learning = "off-policy"
+reinforce = "on-policy"
+ppo = "on-policy"
+trpo = "on-policy"
+a2c-a3c = "on-policy"
+ddpg-td3 = "off-policy"
+sac = "off-policy"
+other = "other"
+
+[derived.multi_objective]
+from = "objective"
+min_codes = 2

@@ -1,0 +1,26 @@
+﻿number,title,policy_role,learner_depth,readiness_claim,note,coded_by
+287,A Reinforcement Learning and The Northern Goshawk Optimization Algorithm for Flexible Job Shop Scheduling Problem,steering-rules,tabular,none,I'm unsure if it is streeing-rules or steering-heuristic. They mention 6 rules; so it may be steering-rules.,Moayad Alnammi
+411,Dynamic Integrated Scheduling of Production Equipment and Automated Guided Vehicles in a Flexible Job Shop Based on Deep Reinforcement Learning,steering-rules,deep,none,,Moayad Alnammi
+246,Applying Multi-agent Reinforcement Learning and Graph Neural Networks to Flexible Job Shop Scheduling Problem,not-stated,deep,none,,Moayad Alnammi
+237,Cross-attention multi-scale graph reinforcement learning for dynamic flexible job-shop scheduling under hybrid uncertainty,not-stated,deep,none,,Moayad Alnammi
+423,A self-learning Variable Neighborhood Search algorithm based on reinforcement learning for Green flexible job-shop scheduling problem,steering-heuristic,tabular,none,,Moayad Alnammi
+72,A Double Deep Q-Network framework for a flexible job shop scheduling problem with dynamic job arrivals and urgent job insertions,steering-rules,deep,none,,Moayad Alnammi
+329,A Learning-Based Memetic Algorithm for Energy-Efficient Flexible Job-Shop Scheduling With Type-2 Fuzzy Processing Time,steering-heuristic,not-stated,none,,Moayad Alnammi
+83,A Multi-Objective Flexible Job Shop Intelligent Scheduling System Based on Soft Dueling Double Deep Q-Networks,not-stated,deep,none,,Moayad Alnammi
+205,A Multi-objective Flexible Job Shop Scheduling Approach Based on Preference-Driven and Two-Stage Graph Reinforcement Learning,not-stated,deep,none,,Moayad Alnammi
+530,Self-Organizing Neural Scheduler for the Flexible Job Shop Problem With Periodic Maintenance and Mandatory Outsourcing Constraints,not-stated,deep,none,"Says that it ""selects policies to imrpov",Moayad Alnammi
+121,Real-Time Scheduling for Dynamic Partial-No-Wait Multiobjective Flexible Job Shop by Deep Reinforcement Learning,steering-rules,deep,none,,Moayad Alnammi
+469,Multi-agent cooperative multi-network group framework for energy-efficient distributed fuzzy flexible job shop scheduling problem,not-stated,deep,none,,Moayad Alnammi
+440,Novel CP model and CP-assisted meta-heuristic algorithm for flexible job shop scheduling with preventive maintenance,steering-heuristic,tabular,none,,Moayad Alnammi
+450,A multi-objective dual hyper-heuristic approach for rescheduling in dynamic flexible job shop,steering-heuristic,deep,none,,Moayad Alnammi
+509,Energy savings in flexible job shop scheduling problems based on speed selection considering uncertain processing time,not-stated,not-stated,none,,Moayad Alnammi
+302,An inverse reinforcement learning algorithm with population evolution mechanism for the multi-objective flexible job-shop scheduling problem under time-of-use electricity tariffs,not-stated,tabular,none,,Moayad Alnammi
+199,DIGA: a reinforcement learning-driven hybrid metaheuristic for flexible job-shop scheduling,steering-heuristic,tabular,none,,Moayad Alnammi
+490,Hybrid reinforcement learning assisted memetic algorithm for energy-efficient dynamic flexible job shop scheduling with limited transportation resources under new job arrivals,steering-heuristic,not-stated,none,,Moayad Alnammi
+543,Dynamic Scheduling Method for Multi Task Virtual Simulation Experiments Based on Deep Reinforcement Learning,end-to-end,deep,none,,Moayad Alnammi
+263,Multi-faceted dynamic flexible job shop scheduling via heterogeneous graph transformer and deep reinforcement learning,not-stated,deep,none,,Moayad Alnammi
+406,Learning-Based Grey Wolf Optimizer for Stochastic Flexible Job Shop Scheduling,steering-heuristic,not-stated,none,,Moayad Alnammi
+477,A dual-population memetic algorithm based on a producer-consumer paradigm for energy-aware dynamic flexible job shop scheduling with AGVs,steering-heuristic,deep,none,,Moayad Alnammi
+432,A DQL-NSGA-III algorithm for solving the flexible job shop dynamic scheduling problem,steering-heuristic,tabular,none,,Moayad Alnammi
+316,A three-stage adaptive memetic algorithm for multi-objective optimization of flexible assembly job-shop scheduling problem,not-stated,not-stated,none,,Moayad Alnammi
+166,Deep Reinforcement Learning for Flexible Job Shop Scheduling with Random Job Arrivals,steering-rules,deep,none,,Moayad Alnammi

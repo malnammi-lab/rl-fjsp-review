@@ -1,0 +1,14 @@
+﻿field,code,n_steering,pct_steering
+steering_action,dispatching-rule,23,52.3
+steering_action,rule-weights,1,2.3
+steering_action,parameter,5,11.4
+steering_action,operator,14,31.8
+steering_action,neighborhood,1,2.3
+steering_action,other,4,9.1
+steered_method,dispatching-rules,24,54.5
+steered_method,genetic-algorithm,10,22.7
+steered_method,tabu-search,1,2.3
+steered_method,variable-neighborhood-search,4,9.1
+steered_method,swarm,2,4.5
+steered_method,local-search,7,15.9
+steered_method,constructive-heuristic,2,4.5

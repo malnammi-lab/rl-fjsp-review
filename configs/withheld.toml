@@ -1,0 +1,49 @@
+# The abstracts this repository withholds (datasets/MANIFEST.md, Files the authors keep), read
+# by src/withheld.py, and the quotes it releases cut. Paths are relative to the repository root.
+#
+# The record file of the search is released with every abstract replaced by its SHA-256 (the
+# field abstract_sha256). The authors keep the file as it was written, with its abstracts,
+# and the copy is the path named below. A step that needs the
+# abstracts reads the released file and takes them from the authors' copy, once the copy is
+# checked against it record by record. Point no other config at this copy: the runners read
+# the released file and take the abstracts themselves.
+
+[abstracts]
+"datasets/references.json" = "../data/search/references.json"
+
+# The SHA-256 of the record file as written and as released. A record of the file as written,
+# such as the core's lock (results/core/core-lock.json, its inputs), names the released file
+# through this pair; tests/test_release.py checks the released one.
+[sha256]
+"datasets/references.json" = { written = "469aac2f3fcfc04de8d7e60b04d48b325f7a4981d19673841f9adc58acf737f8", released = "e2385555e645e4b508402d81b62d50972b6471a5cdf2cd437bcff8d13ff4ca81" }
+
+# The quotes and reasons of the screeners, of the people who screened and of the map's coders
+# are released with every stretch that repeats more than 40 consecutive words of the record's
+# abstract (in `records`) cut after its 40th word and marked " [cut]", and a stretch that
+# repeats the whole of an abstract of 40 words or fewer cut after half its words; a stretch
+# that runs on from one of a row's cells into the next is cut in the earlier cell. The writer's
+# own words stay whole. A word is a run of letters or digits in any script, and each Chinese,
+# Japanese or Korean character is a word.
+# The authors keep each file as written, at the path named beside it below.
+# tests/test_release.py checks that no cell is a whole abstract.
+[quotes]
+words = 40
+records = "datasets/references.json"
+columns = ["reason", "evidence", "policy_role_evidence", "learner_depth_evidence",
+           "readiness_claim_evidence"]
+
+[quotes.files]
+"datasets/calibration/round-1/osamah.csv" = "../data/screening/calibration/round-1/osamah.csv"
+"datasets/calibration/round-1/qwen38.csv" = "../data/screening/calibration/round-1/qwen38.csv"
+"datasets/calibration/round-1/gemma26.csv" = "../data/screening/calibration/round-1/gemma26.csv"
+"datasets/calibration/round-1/glimmer30.csv" = "../data/screening/calibration/round-1/glimmer30.csv"
+"datasets/screening-qwen38.csv" = "../data/screening/screening-qwen38.csv"
+"datasets/screening-gemma26.csv" = "../data/screening/screening-gemma26.csv"
+"datasets/screening-glimmer30.csv" = "../data/screening/screening-glimmer30.csv"
+"datasets/screening-validation.csv" = "../data/screening/screening-validation.csv"
+"datasets/screening-adjudication.csv" = "../data/screening/screening-adjudication.csv"
+"datasets/screening.csv" = "../data/screening/screening.csv"
+"datasets/map-qwen38.csv" = "../data/map/map-qwen38.csv"
+"datasets/map-gemma26.csv" = "../data/map/map-gemma26.csv"
+"datasets/map-glimmer30.csv" = "../data/map/map-glimmer30.csv"
+"datasets/map-person.csv" = "../data/map/map-person.csv"

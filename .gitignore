@@ -1,0 +1,29 @@
+# Operating-system and editor files.
+desktop.ini
+Thumbs.db
+.DS_Store
+~$*
+
+# Model checkpoints and large arrays.
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.npz
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+
+# API response cache.
+.cache/
+
+# Console logs of local runs. The results files are the record.
+*.log
+
+# Outputs of a step only the authors run, which are not committed (results/README.md).
+results/core-coding/check.md
+results/core-coding/check-problems.csv

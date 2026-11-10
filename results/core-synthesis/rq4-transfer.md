@@ -1,0 +1,21 @@
+# Transfer: whether studies test it, on what, and how
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+RQ 4. Studies, as a share of the column's studies with an answer to the question; a study with several codes counts under each.
+
+| Field | Code | All | End to end | Steering |
+| --- | --- | ---: | ---: | ---: |
+| transfer_tests | none | 28 (28.3%) | 4 (7.5%) | 24 (52.2%) |
+| transfer_tests | 1 | 21 (21.2%) | 11 (20.8%) | 10 (21.7%) |
+| transfer_tests | 2 | 17 (17.2%) | 12 (22.6%) | 5 (10.9%) |
+| transfer_tests | 3 or more | 28 (28.3%) | 25 (47.2%) | 3 (6.5%) |
+| transfer_tests | not-stated | 5 (5.1%) | 1 (1.9%) | 4 (8.7%) |
+| train_test_overlap | disjoint | 59 (59.6%) | 46 (86.8%) | 13 (28.3%) |
+| train_test_overlap | overlap | 31 (31.3%) | 5 (9.4%) | 26 (56.5%) |
+| train_test_overlap | not-stated | 7 (7.1%) | 2 (3.8%) | 5 (10.9%) |
+| train_test_overlap | not-applicable | 2 (2.0%) | 0 (0.0%) | 2 (4.3%) |
+| training_instances | generated | 81 (81.8%) | 49 (92.5%) | 32 (69.6%) |
+| training_instances | public-benchmark | 31 (31.3%) | 10 (18.9%) | 21 (45.7%) |
+| training_instances | industrial | 7 (7.1%) | 1 (1.9%) | 6 (13.0%) |
+| training_instances | not-stated | 3 (3.0%) | 1 (1.9%) | 2 (4.3%) |

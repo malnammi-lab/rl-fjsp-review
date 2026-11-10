@@ -1,0 +1,18 @@
+﻿key,label,count
+map,Records in the map,533
+not-candidates,Learner not stated: not candidates,50
+candidates,Candidates,483
+duplicates,Counted once with another record,0
+candidates-once,"Candidates, each study once",483
+step1,Step 1: use beyond simulation,4
+step1-cap,Step 1: left out by the cap on non-deep studies,0
+step2,Step 2: coverage (minimum 3),36
+step3-end-to-end-band1,"Step 3: end-to-end, band 1",21
+step3-end-to-end-band2,"Step 3: end-to-end, band 2",0
+step3-steering-band1,"Step 3: steering, band 1",22
+step3-steering-band2,"Step 3: steering, band 2",0
+step3-role-not-stated-band1,"Step 3: role-not-stated, band 1",17
+step3-role-not-stated-band2,"Step 3: role-not-stated, band 2",0
+step3-cap,Step 3: non-deep studies left out by the cap,4
+core,The core,100
+core-non-deep,Non-deep studies in the core,10

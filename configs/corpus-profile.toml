@@ -1,0 +1,30 @@
+# Profile of the searched corpus: the descriptive numbers the method section quotes.
+# Read by runners/corpus_profile.py.
+#
+# Run: python runners/run_all.py --only corpus-profile
+
+[inputs]
+corpus = "datasets/references.json"
+facets = "configs/search-query.toml"   # for the facet check on unserved abstracts
+
+[report]
+top_publishers = 10    # publishers listed in the table of abstracts missing at the source
+
+# Publisher groups for the same table, summed so that no total is added up by hand. A
+# publisher joins a group when its name starts with the prefix (case ignored): OpenAlex
+# lists Springer's imprints under separate names. A name that does not start with the
+# prefix (Birkhäuser, a Springer imprint) is not counted, and the rendered table names
+# every publisher each group contains.
+[publisher_groups]
+Elsevier = "Elsevier"
+Springer = "Springer"
+
+# Records sharing a title are classified here, never removed (configs/deduplicate.toml holds
+# the rule that decides which are removed). A record counts as a repository deposit or
+# preprint when OpenAlex types its source as a repository or the work as a preprint, or when
+# its DOI has one of these prefixes: Zenodo, figshare, arXiv, SSRN.
+[duplicates]
+repository_doi_prefixes = ["10.5281", "10.6084", "10.48550", "10.2139"]
+
+[outputs]
+report = "results/corpus/corpus-profile.md"

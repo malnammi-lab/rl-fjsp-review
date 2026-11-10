@@ -1,0 +1,62 @@
+# The approach: study type, coordination, learner, algorithm, paradigm, hybridization
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+RQ 1.1, 1.2. Studies, as a share of the column's studies with an answer to the question; a study with several codes counts under each.
+
+| Field | Code | All | End to end | Steering |
+| --- | --- | ---: | ---: | ---: |
+| study_type | new-method | 99 (100.0%) | 53 (100.0%) | 46 (100.0%) |
+| coordination | single-agent | 70 (70.7%) | 33 (62.3%) | 37 (80.4%) |
+| coordination | multi-agent | 29 (29.3%) | 20 (37.7%) | 9 (19.6%) |
+| coordination | hierarchical | 8 (8.1%) | 3 (5.7%) | 5 (10.9%) |
+| agent_unit | machine | 6 (6.1%) | 4 (7.5%) | 2 (4.3%) |
+| agent_unit | job | 4 (4.0%) | 3 (5.7%) | 1 (2.2%) |
+| agent_unit | operation | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| agent_unit | sub-decision | 17 (17.2%) | 14 (26.4%) | 3 (6.5%) |
+| agent_unit | level | 7 (7.1%) | 3 (5.7%) | 4 (8.7%) |
+| agent_unit | other | 2 (2.0%) | 1 (1.9%) | 1 (2.2%) |
+| agent_unit | not-applicable | 70 (70.7%) | 33 (62.3%) | 37 (80.4%) |
+| multi_agent_training | independent | 16 (16.2%) | 11 (20.8%) | 5 (10.9%) |
+| multi_agent_training | shared-parameters | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |
+| multi_agent_training | centralized-critic | 11 (11.1%) | 9 (17.0%) | 2 (4.3%) |
+| multi_agent_training | value-factorization | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| multi_agent_training | communication | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| multi_agent_training | other | 3 (3.0%) | 1 (1.9%) | 2 (4.3%) |
+| multi_agent_training | not-applicable | 70 (70.7%) | 33 (62.3%) | 37 (80.4%) |
+| sub_decision | sequencing | 10 (10.1%) | 6 (11.3%) | 4 (8.7%) |
+| sub_decision | assignment | 3 (3.0%) | 3 (5.7%) | 0 (0.0%) |
+| sub_decision | both | 65 (65.7%) | 44 (83.0%) | 21 (45.7%) |
+| sub_decision | other | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| sub_decision | not-applicable | 20 (20.2%) | 0 (0.0%) | 20 (43.5%) |
+| learner_depth | deep | 89 (89.9%) | 53 (100.0%) | 36 (78.3%) |
+| learner_depth | tabular | 10 (10.1%) | 0 (0.0%) | 10 (21.7%) |
+| training_algorithm_family | value-based | 44 (44.4%) | 9 (17.0%) | 35 (76.1%) |
+| training_algorithm_family | policy-gradient | 53 (53.5%) | 44 (83.0%) | 9 (19.6%) |
+| training_algorithm_family | actor-critic | 8 (8.1%) | 4 (7.5%) | 4 (8.7%) |
+| training_algorithm_family | other | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| algorithm_family | value-based | 39 (39.4%) | 5 (9.4%) | 34 (73.9%) |
+| algorithm_family | policy-gradient | 52 (52.5%) | 43 (81.1%) | 9 (19.6%) |
+| algorithm_family | actor-critic | 6 (6.1%) | 3 (5.7%) | 3 (6.5%) |
+| algorithm_family | other | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| algorithm_family | not-stated | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| algorithm | q-learning | 39 (39.4%) | 5 (9.4%) | 34 (73.9%) |
+| algorithm | reinforce | 3 (3.0%) | 2 (3.8%) | 1 (2.2%) |
+| algorithm | ppo | 49 (49.5%) | 41 (77.4%) | 8 (17.4%) |
+| algorithm | a2c-a3c | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| algorithm | ddpg-td3 | 3 (3.0%) | 1 (1.9%) | 2 (4.3%) |
+| algorithm | sac | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |
+| algorithm | other | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| algorithm | not-stated | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| policy_update | on-policy | 53 (53.5%) | 43 (81.1%) | 10 (21.7%) |
+| policy_update | off-policy | 44 (44.4%) | 8 (15.1%) | 36 (78.3%) |
+| policy_update | other | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| policy_update | not-stated | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| paradigm | online | 99 (100.0%) | 53 (100.0%) | 46 (100.0%) |
+| paradigm | imitation | 3 (3.0%) | 3 (5.7%) | 0 (0.0%) |
+| paradigm | model-based | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| paradigm | other | 2 (2.0%) | 1 (1.9%) | 1 (2.2%) |
+| hybridization | none | 65 (65.7%) | 43 (81.1%) | 22 (47.8%) |
+| hybridization | metaheuristic | 30 (30.3%) | 6 (11.3%) | 24 (52.2%) |
+| hybridization | exact | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |
+| hybridization | other-learner | 2 (2.0%) | 2 (3.8%) | 0 (0.0%) |

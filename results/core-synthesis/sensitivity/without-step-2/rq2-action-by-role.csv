@@ -1,0 +1,4 @@
+﻿field,code,operation,machine,operation-machine-pair,not-applicable,total
+policy_role,end-to-end,2,3,28,0,33
+policy_role,steering-rules,0,0,0,17,17
+policy_role,steering-heuristic,0,0,0,13,13

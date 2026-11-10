@@ -1,0 +1,9 @@
+﻿question,studies,agree,share,kappa
+role,20,20,100.0,1.00
+algorithm,20,19,95.0,0.92
+algorithm family,20,19,95.0,0.92
+readiness,20,9,45.0,0.16
+runs,20,12,60.0,0.43
+"training runs, by bin",20,12,60.0,0.40
+baselines,20,17,85.0,0.58
+transfer,20,16,80.0,0.53

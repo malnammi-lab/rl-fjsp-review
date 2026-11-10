@@ -1,0 +1,4 @@
+# Every file is stored and checked out byte for byte, with no line-ending conversion: the
+# checksums in datasets/MANIFEST.md and configs/withheld.toml, and the checker's fingerprint,
+# are taken over the files' bytes.
+* -text

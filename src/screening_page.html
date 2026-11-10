@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The screening page. This file is the template,
+     src/screening_page.html; src/screening.write_page fills the sheet-data block below.
+     A generated page is rewritten on every run: do not edit one by hand. -->
+<title>Screening sheet</title>
+<style>
+:root {
+  --bg: #f4f5f7; --card: #ffffff; --ink: #1c2230; --muted: #5d6676; --line: #dde1e8;
+  --accent: #2f5bd3; --accent-ink: #ffffff;
+  --inc: #1d7f46; --unc: #a8670c; --exc: #b8352a;
+  --inc-bg: #e3f3ea; --unc-bg: #fbefd9; --exc-bg: #f8e1de;
+  --warn: #8a5a00; --warn-bg: #fff4d6; --ok: #1d7f46;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #13161b; --card: #1c2027; --ink: #e6e9ef; --muted: #9aa3b2; --line: #2f3542;
+    --accent: #7ea4ff; --accent-ink: #0d1220;
+    --inc: #5ccb93; --unc: #e3aa52; --exc: #f07466;
+    --inc-bg: #173527; --unc-bg: #3b2e17; --exc-bg: #41201c;
+    --warn: #f0c060; --warn-bg: #3a3014; --ok: #5ccb93;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button, select, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.muted { color: var(--muted); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* top bar */
+.top { position: sticky; top: 0; z-index: 5; background: var(--card); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-top: 10px; padding-bottom: 10px; }
+.top h1 { font-size: 17px; margin: 0; }
+.top .title { flex: 1 1 320px; min-width: 0; }
+.top .actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn { border: 1px solid var(--line); background: var(--card); border-radius: 7px; padding: 6px 12px; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.small { padding: 2px 9px; font-size: 13px; }
+.bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-top: 6px; max-width: 360px; }
+.bar > div { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+
+/* panels */
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin: 14px 0; }
+.panel > summary { padding: 10px 14px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 10px; list-style: none; }
+.panel > summary::-webkit-details-marker { display: none; }
+.panel > summary::before { content: "\25B8"; color: var(--muted); }
+.panel[open] > summary::before { content: "\25BE"; }
+.panel > summary .spacer { flex: 1; }
+.panel .body { padding: 0 16px 12px; }
+.banner { margin: 12px 0 0; padding: 10px 14px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.banner[hidden] { display: none; }
+
+/* rendered markdown */
+.md { font-size: 14px; }
+.md h3, .md h4, .md h5, .md h6 { font-size: 14px; margin: 12px 0 4px; }
+.md p { margin: 6px 0; }
+.md ul, .md ol { margin: 4px 0 8px; padding-left: 22px; }
+.md li { margin: 2px 0; }
+.md code { background: var(--bg); padding: 0 4px; border-radius: 4px; }
+.md table { border-collapse: collapse; margin: 6px 0; font-size: 13px; }
+.md th, .md td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+.brief { max-height: 38vh; overflow: auto; }
+
+/* record and arrows */
+.stage { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 12px; align-items: stretch; margin: 14px 0; }
+.arrow { border: 1px solid var(--line); background: var(--card); border-radius: 10px; font-size: 34px; line-height: 1; color: var(--muted); }
+.arrow:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+.arrow:disabled { opacity: .35; cursor: default; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; min-height: 260px; }
+.card .num { color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; gap: 8px; }
+.card h2 { font-size: 20px; line-height: 1.35; margin: 4px 0 6px; }
+.card .meta { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+.card .abstract { font-size: 16px; line-height: 1.65; white-space: pre-wrap; }
+.card .abstract.none { color: var(--muted); font-style: italic; }
+.card a.link { display: inline-block; margin-top: 10px; color: var(--accent); font-size: 14px; }
+.models { margin-top: 16px; display: grid; gap: 10px; }
+.model { border: 1px solid var(--line); border-radius: 9px; padding: 9px 12px; font-size: 14px; }
+.model .head { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+.model .name { font-weight: 600; }
+.model blockquote { margin: 6px 0 0; padding-left: 10px; border-left: 3px solid var(--line); color: var(--muted); }
+
+/* decision badges */
+.badge { display: inline-block; border-radius: 99px; padding: 0 9px; font-size: 12px; font-weight: 600; }
+.b-include { background: var(--inc-bg); color: var(--inc); }
+.b-uncertain { background: var(--unc-bg); color: var(--unc); }
+.b-exclude { background: var(--exc-bg); color: var(--exc); }
+
+/* form */
+.form .body { padding-top: 14px; display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 10px 14px; align-items: start; }
+.form label.lab { padding-top: 6px; font-weight: 600; font-size: 14px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex-wrap: wrap; }
+.seg button { border: 0; border-right: 1px solid var(--line); background: var(--card); padding: 6px 14px; }
+.seg button:last-child { border-right: 0; }
+.seg button kbd { margin-left: 6px; }
+.seg button.on.v-include { background: var(--inc); color: #fff; }
+.seg button.on.v-uncertain { background: var(--unc); color: #fff; }
+.seg button.on.v-exclude { background: var(--exc); color: #fff; }
+.seg button.on.v-conf { background: var(--accent); color: var(--accent-ink); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+select, input[type=text], textarea { border: 1px solid var(--line); background: var(--bg); border-radius: 7px; padding: 6px 9px; }
+select:focus, input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+#f-rule { min-width: 0; max-width: 100%; }
+#f-reason, #f-evidence { width: 100%; resize: vertical; }
+.hint { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.hint.warn { color: var(--warn); }
+.hint.ok { color: var(--ok); }
+kbd { font: 11px/1.6 ui-monospace, Consolas, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; color: var(--muted); background: var(--bg); }
+.seg button.on kbd { color: inherit; background: transparent; border-color: currentColor; }
+
+/* strip */
+.strip { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 14px 0 8px; }
+.strip .tools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-bottom: 8px; font-size: 14px; }
+.strip .cells { display: flex; flex-wrap: wrap; gap: 3px; }
+.cell { width: 15px; height: 15px; border-radius: 3px; border: 1px solid var(--line); background: var(--bg); padding: 0; }
+.cell.d-include { background: var(--inc); border-color: var(--inc); }
+.cell.d-uncertain { background: var(--unc); border-color: var(--unc); }
+.cell.d-exclude { background: var(--exc); border-color: var(--exc); }
+.cell.cur { outline: 2px solid var(--ink); outline-offset: 1px; }
+.legend { display: inline-flex; gap: 10px; color: var(--muted); font-size: 13px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+#goto { width: 90px; }
+footer { font-size: 12px; color: var(--muted); padding: 6px 0 40px; }
+
+/* modal */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 10; display: flex; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow: auto; }
+.modal[hidden] { display: none; }
+.modal .box { background: var(--card); border-radius: 12px; max-width: 860px; width: 100%; padding: 18px 22px; }
+.modal .box h2 { margin: 0 0 10px; font-size: 18px; }
+.modal .foot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.issues { margin: 6px 0; padding-left: 20px; max-height: 50vh; overflow: auto; }
+.toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 8px; font-size: 14px; z-index: 20; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.show { opacity: .95; }
+
+@media (max-width: 760px) {
+  .stage { grid-template-columns: 1fr 1fr; }
+  .stage .card { grid-column: 1 / -1; grid-row: 1; }
+  .stage .arrow { grid-row: 2; height: 48px; }
+  .form .body { grid-template-columns: 1fr; }
+  .form label.lab { padding-top: 0; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="title">
+      <h1 id="sheet-title">Screening sheet</h1>
+      <div class="muted" id="progress-text"></div>
+      <div class="bar"><div id="progress-bar"></div></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="btn-export" type="button">Export CSV</button>
+      <button class="btn" id="btn-import" type="button">Import CSV</button>
+      <input type="file" id="file-import" accept=".csv,text/csv" hidden>
+      <button class="btn" id="btn-savepage" type="button" title="Download a copy of this page with your answers inside it">Save page with answers</button>
+      <button class="btn" id="btn-help" type="button" title="Keyboard shortcuts">?</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="banner" id="banner" hidden></div>
+
+  <details class="panel" id="criteria" open>
+    <summary>Criteria, short version <span class="spacer"></span><button class="btn small" id="btn-full" type="button">Full criteria</button></summary>
+    <div class="body md brief" id="criteria-brief"></div>
+  </details>
+
+  <details class="panel" id="howto">
+    <summary>How to use this sheet</summary>
+    <div class="body" id="intro"></div>
+  </details>
+
+  <section class="stage">
+    <button class="arrow" id="prev" type="button" aria-label="Previous record" title="Previous (left arrow)">&#8249;</button>
+    <article class="card" id="record" aria-live="polite"></article>
+    <button class="arrow" id="next" type="button" aria-label="Next record" title="Next (right arrow)">&#8250;</button>
+  </section>
+
+  <section class="panel form" id="form" aria-label="Your decision">
+    <div class="body">
+      <label class="lab">Decision</label>
+      <div>
+        <div class="seg" id="f-decision">
+          <button type="button" data-v="include" class="v-include">Include<kbd>I</kbd></button>
+          <button type="button" data-v="uncertain" class="v-uncertain">Uncertain<kbd>U</kbd></button>
+          <button type="button" data-v="exclude" class="v-exclude">Exclude<kbd>E</kbd></button>
+        </div>
+      </div>
+      <label class="lab">Confidence</label>
+      <div>
+        <div class="seg" id="f-confidence">
+          <button type="button" data-v="low" class="v-conf">Low<kbd>1</kbd></button>
+          <button type="button" data-v="medium" class="v-conf">Medium<kbd>2</kbd></button>
+          <button type="button" data-v="high" class="v-conf">High<kbd>3</kbd></button>
+        </div>
+      </div>
+      <label class="lab" for="f-rule">Rule</label>
+      <div>
+        <select id="f-rule"></select>
+        <div class="hint">The reason is saved starting with the rule, for example "Exclusion 2: ...".</div>
+      </div>
+      <label class="lab" for="f-reason">Reason</label>
+      <div><textarea id="f-reason" rows="2" placeholder="Why, in a sentence (key R)"></textarea></div>
+      <label class="lab" for="f-evidence">Evidence</label>
+      <div>
+        <textarea id="f-evidence" rows="2" placeholder="The sentence of the title or abstract that decides it"></textarea>
+        <div class="row">
+          <button class="btn small" id="btn-quote" type="button">Use selected text <kbd>Q</kbd></button>
+          <span class="hint" id="evidence-check"></span>
+        </div>
+      </div>
+      <label class="lab" for="f-by" id="lab-by" hidden>Decided by</label>
+      <div id="row-by" hidden>
+        <input type="text" id="f-by" placeholder="Your name">
+        <div class="hint">Required for each decided disagreement; remembered in this browser.</div>
+      </div>
+      <span></span>
+      <div class="row">
+        <button class="btn small" id="btn-next-undecided" type="button">Next undecided <kbd>N</kbd></button>
+        <button class="btn small" id="btn-clear" type="button">Clear this record</button>
+      </div>
+    </div>
+  </section>
+
+  <nav class="strip" aria-label="All records">
+    <div class="tools">
+      <span id="strip-count"></span>
+      <span class="legend">
+        <span><i style="background:var(--inc)"></i>include</span>
+        <span><i style="background:var(--unc)"></i>uncertain</span>
+        <span><i style="background:var(--exc)"></i>exclude</span>
+        <span><i style="background:var(--bg);border:1px solid var(--line)"></i>not decided</span>
+      </span>
+      <label>Go to record <input type="text" id="goto" inputmode="numeric" placeholder="number"></label>
+    </div>
+    <div class="cells" id="cells"></div>
+  </nav>
+
+  <footer id="footer"></footer>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true">
+  <div class="box">
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+    <div class="foot" id="modal-foot"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script type="application/json" id="sheet-data">__SHEET_DATA__</script>
+<script>
+(function () {
+  'use strict';
+
+  // The page as generated, before anything is drawn: "Save page with answers" writes a
+  // copy of it with the answers put into the data block.
+  var ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var DATA;
+  try {
+    DATA = JSON.parse($('sheet-data').textContent);
+  } catch (e) {
+    document.body.innerHTML = '<p style="padding:24px;font:16px system-ui">This file is the ' +
+      'template, with no records in it. Open a generated sheet instead.</p>';
+    return;
+  }
+
+  var RECS = DATA.records || [];
+  var KIND = DATA.kind || 'screening';
+  var COLUMNS = DATA.columns || ['number', 'title', 'decision', 'confidence', 'reason', 'evidence'];
+  var FIELDS = ['decision', 'confidence', 'reason', 'evidence', 'decided_by'];
+  var DECISIONS = ['include', 'uncertain', 'exclude'];
+  var CONFIDENCES = ['low', 'medium', 'high'];
+  var NEEDS_BY = COLUMNS.indexOf('decided_by') >= 0;
+  var RULES = (DATA.rules || []).slice();
+  var BY_NUMBER = {};
+  RECS.forEach(function (r, i) { BY_NUMBER[String(r.number)] = i; });
+
+  // ------------------------------------------------------------------ answers and storage
+
+  function clean(a) {
+    a = a || {};
+    var o = {};
+    FIELDS.forEach(function (f) { o[f] = a[f] == null ? '' : String(a[f]); });
+    o.decision = o.decision.trim().toLowerCase();
+    o.confidence = o.confidence.trim().toLowerCase();
+    return o;
+  }
+  function same(a, b) {
+    return FIELDS.every(function (f) { return (a[f] || '') === (b[f] || ''); });
+  }
+  function hash(s) {
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+
+  var embedded = {};
+  RECS.forEach(function (r) { embedded[r.number] = clean(r.answer); });
+  var answers = {};
+  RECS.forEach(function (r) { answers[r.number] = clean(embedded[r.number]); });
+  var idx = 0;
+
+  var KEY = 'screening-page:' + (DATA.sheet_id || DATA.sheet || 'sheet') + ':' +
+    hash(RECS.map(function (r) { return r.number; }).join(','));
+  var NAME_KEY = 'screening-page:name';
+  var storageOk = true;
+
+  function readStore(key) {
+    try { var s = window.localStorage.getItem(key); return s ? JSON.parse(s) : null; }
+    catch (e) { storageOk = false; return null; }
+  }
+  function writeStore(key, value) {
+    try { window.localStorage.setItem(key, JSON.stringify(value)); return true; }
+    catch (e) { storageOk = false; return false; }
+  }
+  var saveTimer = null;
+  function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var ok = writeStore(KEY, { answers: answers, idx: idx, at: new Date().toISOString() });
+      footerNote(ok ? 'Autosaved in this browser at ' + new Date().toLocaleTimeString() + '.' :
+        'This browser does not allow the page to keep your answers: export CSV before closing.');
+    }, 300);
+  }
+
+  // ------------------------------------------------------------------- small helpers
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text != null) { e.textContent = text; }
+    return e;
+  }
+  var toastTimer = null;
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+  function footerNote(msg) {
+    $('footer').textContent = msg + ' ' + (DATA.generated ? 'Page generated ' + DATA.generated +
+      (DATA.source ? ' from ' + DATA.source : '') + '.' : '');
+  }
+  function squash(s) {
+    return String(s || '').toLowerCase()
+      .replace(/[‘’‚‛]/g, "'").replace(/[“”„‟]/g, '"')
+      .replace(/[‐-―−]/g, '-').replace(/\s+/g, ' ').trim();
+  }
+
+  // ------------------------------------------------------- markdown (escaped, minimal)
+
+  function md(src) {
+    var esc = function (s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+    var inline = function (s) {
+      return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, '<code>$1</code>');
+    };
+    var lines = String(src || '').replace(/\r/g, '').split('\n');
+    var out = [], para = [], list = null, table = null;
+    function flushPara() { if (para.length) { out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; } }
+    function closeList() { if (list) { out.push('</' + list + '>'); list = null; } }
+    function closeTable() {
+      if (!table) { return; }
+      var html = '<table>';
+      table.forEach(function (cells, i) {
+        var tag = i === 0 ? 'th' : 'td';
+        html += '<tr>' + cells.map(function (c) { return '<' + tag + '>' + inline(c) + '</' + tag + '>'; }).join('') + '</tr>';
+      });
+      out.push(html + '</table>');
+      table = null;
+    }
+    lines.forEach(function (line) {
+      var m;
+      if (/^\s*\|/.test(line)) {
+        flushPara(); closeList();
+        var cells = line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(function (c) { return c.trim(); });
+        if (cells.every(function (c) { return /^:?-{2,}:?$/.test(c); })) { return; }
+        (table = table || []).push(cells);
+        return;
+      }
+      closeTable();
+      if (/^\s*$/.test(line)) { flushPara(); closeList(); return; }
+      if ((m = line.match(/^(#{1,6})\s+(.*)$/))) {
+        flushPara(); closeList();
+        var lv = Math.min(m[1].length + 2, 6);
+        out.push('<h' + lv + '>' + inline(m[2]) + '</h' + lv + '>');
+        return;
+      }
+      if ((m = line.match(/^\s*[-*]\s+(.*)$/))) {
+        flushPara();
+        if (list !== 'ul') { closeList(); out.push('<ul>'); list = 'ul'; }
+        out.push('<li>' + inline(m[1]) + '</li>');
+        return;
+      }
+      if ((m = line.match(/^\s*(\d+)\.\s+(.*)$/))) {
+        flushPara();
+        if (list !== 'ol') { closeList(); out.push('<ol start="' + m[1] + '">'); list = 'ol'; }
+        out.push('<li>' + inline(m[2]) + '</li>');
+        return;
+      }
+      if (list && /^\s+\S/.test(line)) {
+        out[out.length - 1] = out[out.length - 1].replace(/<\/li>$/, ' ' + inline(line.trim()) + '</li>');
+        return;
+      }
+      para.push(line.trim());
+    });
+    flushPara(); closeList(); closeTable();
+    return out.join('\n');
+  }
+
+  // -------------------------------------------------------------------- the reason
+
+  // Longest labels first, so that "Inclusion 1 to 3" is found before "Inclusion 1".
+  var RULE_LABELS = RULES.map(function (r) { return r.label; })
+    .sort(function (a, b) { return b.length - a.length; });
+  function splitReason(reason) {
+    var s = String(reason || '');
+    for (var i = 0; i < RULE_LABELS.length; i++) {
+      var lab = RULE_LABELS[i];
+      if (s.slice(0, lab.length).toLowerCase() === lab.toLowerCase()) {
+        var rest = s.slice(lab.length);
+        var m = rest.match(/^\s*:\s*/);
+        if (m) { return { rule: lab, text: rest.slice(m[0].length) }; }
+      }
+    }
+    return { rule: '', text: s };
+  }
+  function joinReason(rule, text) {
+    text = String(text || '').trim();
+    if (!rule) { return text; }
+    return text ? rule + ': ' + text : rule + ':';
+  }
+
+  // -------------------------------------------------------------------- drawing
+
+  function current() { return RECS[idx]; }
+
+  function drawRecord() {
+    var r = current();
+    var card = $('record');
+    card.textContent = '';
+    var top = el('div', 'num');
+    top.appendChild(el('span', null, 'Record ' + r.number));
+    top.appendChild(el('span', null, (idx + 1) + ' of ' + RECS.length));
+    card.appendChild(top);
+    card.appendChild(el('h2', null, r.title || '(no title)'));
+    var meta = [];
+    if (r.venue) { meta.push('Venue: ' + r.venue); }
+    if (r.year) { meta.push('Year: ' + r.year); }
+    if (r.type) { meta.push('Type: ' + r.type); }
+    if (meta.length) { card.appendChild(el('div', 'meta', meta.join(' · '))); }
+    card.appendChild(el('div', 'abstract' + (r.abstract ? '' : ' none'), r.abstract || '(no abstract available)'));
+    if (r.link && /^https:\/\//.test(r.link)) {
+      var lk = el('a', 'link', r.abstract ? 'Open the paper (DOI)' :
+        'Open the paper (DOI) to read its abstract at the publisher');
+      lk.href = r.link;
+      lk.target = '_blank';
+      lk.rel = 'noopener noreferrer';
+      card.appendChild(lk);
+    }
+    if (r.models && r.models.length) {
+      var box = el('div', 'models');
+      box.appendChild(el('div', 'muted', 'The model screeners’ answers:'));
+      r.models.forEach(function (m) {
+        var d = el('div', 'model');
+        var head = el('div', 'head');
+        head.appendChild(el('span', 'name', m.name));
+        head.appendChild(el('span', 'badge b-' + (m.decision || ''), m.decision || 'no decision'));
+        if (m.confidence) { head.appendChild(el('span', 'muted', m.confidence + ' confidence')); }
+        d.appendChild(head);
+        if (m.reason) { d.appendChild(el('div', null, m.reason)); }
+        if (m.evidence) { d.appendChild(el('blockquote', null, m.evidence)); }
+        box.appendChild(d);
+      });
+      card.appendChild(box);
+    }
+    $('prev').disabled = idx === 0;
+    $('next').disabled = idx === RECS.length - 1;
+  }
+
+  function drawForm() {
+    var a = answers[current().number];
+    Array.prototype.forEach.call($('f-decision').children, function (b) {
+      b.classList.toggle('on', b.getAttribute('data-v') === a.decision);
+      b.setAttribute('aria-pressed', b.getAttribute('data-v') === a.decision ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call($('f-confidence').children, function (b) {
+      b.classList.toggle('on', b.getAttribute('data-v') === a.confidence);
+      b.setAttribute('aria-pressed', b.getAttribute('data-v') === a.confidence ? 'true' : 'false');
+    });
+    var parts = splitReason(a.reason);
+    $('f-rule').value = parts.rule;
+    $('f-reason').value = parts.text;
+    $('f-evidence').value = a.evidence;
+    $('f-by').value = a.decided_by;
+    drawEvidenceCheck();
+  }
+
+  function evidenceFound(r, ev) {
+    if (!ev.trim()) { return null; }
+    var hay = squash((r.title || '') + ' ' + (r.abstract || ''));
+    return hay.indexOf(squash(ev)) >= 0;
+  }
+  function drawEvidenceCheck() {
+    var r = current();
+    var f = evidenceFound(r, answers[r.number].evidence);
+    var h = $('evidence-check');
+    h.className = 'hint' + (f === false ? ' warn' : f ? ' ok' : '');
+    h.textContent = f === null ? 'Select the deciding sentence in the record, then press the button.' :
+      f ? 'Found word for word in the record.' : 'Not found word for word in the title or abstract.';
+  }
+
+  function drawCells() {
+    var box = $('cells');
+    if (!box.children.length) {
+      RECS.forEach(function (r, i) {
+        var b = el('button', 'cell');
+        b.type = 'button';
+        b.addEventListener('click', function () { go(i); });
+        box.appendChild(b);
+      });
+    }
+    RECS.forEach(function (r, i) { drawCell(i); });
+  }
+  function drawCell(i) {
+    var r = RECS[i], a = answers[r.number], b = $('cells').children[i];
+    b.className = 'cell' + (a.decision ? ' d-' + a.decision : '') + (i === idx ? ' cur' : '');
+    b.title = 'Record ' + r.number + (a.decision ? ': ' + a.decision : ': not decided');
+    b.setAttribute('aria-label', b.title);
+  }
+
+  function drawProgress() {
+    var n = RECS.filter(function (r) { return answers[r.number].decision; }).length;
+    $('progress-text').textContent = n + ' of ' + RECS.length + ' decided';
+    $('progress-bar').style.width = (RECS.length ? 100 * n / RECS.length : 0) + '%';
+    $('strip-count').textContent = n + ' of ' + RECS.length + ' decided';
+    document.title = (DATA.sheet || 'Screening sheet') + ' · ' + n + '/' + RECS.length;
+  }
+
+  function drawAll() { drawRecord(); drawForm(); drawCells(); drawProgress(); }
+
+  // -------------------------------------------------------------------- editing
+
+  function update(patch) {
+    var r = current();
+    var a = answers[r.number];
+    Object.keys(patch).forEach(function (k) { a[k] = patch[k]; });
+    if (NEEDS_BY && patch.decision && !a.decided_by) {
+      var name = (readStore(NAME_KEY) || '');
+      if (name) { a.decided_by = name; $('f-by').value = name; }
+    }
+    drawCell(idx);
+    drawProgress();
+    autosave();
+  }
+  function setDecision(v) { update({ decision: answers[current().number].decision === v ? '' : v }); drawForm(); }
+  function setConfidence(v) { update({ confidence: answers[current().number].confidence === v ? '' : v }); drawForm(); }
+
+  function go(i) {
+    if (i < 0 || i >= RECS.length) { return; }
+    var prev = idx;
+    idx = i;
+    drawRecord(); drawForm(); drawCell(prev); drawCell(idx);
+    autosave();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function nextUndecided() {
+    for (var k = 1; k <= RECS.length; k++) {
+      var i = (idx + k) % RECS.length;
+      if (!answers[RECS[i].number].decision) { go(i); return; }
+    }
+    toast('Every record has a decision.');
+  }
+  function useSelection() {
+    var sel = window.getSelection();
+    var text = sel ? sel.toString().replace(/\s+/g, ' ').trim() : '';
+    if (!text || !sel.anchorNode || !$('record').contains(sel.anchorNode)) {
+      toast('First select the deciding sentence in the title or abstract.');
+      return;
+    }
+    $('f-evidence').value = text;
+    update({ evidence: text });
+    drawEvidenceCheck();
+    if (sel.removeAllRanges) { sel.removeAllRanges(); }
+  }
+
+  // -------------------------------------------------------------------- checks
+
+  function issues() {
+    var out = [];
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      if (!a.decision) { return; }
+      var p = splitReason(a.reason);
+      var tag = 'Record ' + r.number + ': ';
+      if (NEEDS_BY && !a.reason.trim()) { out.push(tag + 'no reason (required)'); }
+      else if (!p.text.trim() && !p.rule) { out.push(tag + 'no reason'); }
+      if (NEEDS_BY && !a.decided_by.trim()) { out.push(tag + 'no "decided by" (required)'); }
+      if (!a.confidence) { out.push(tag + 'no confidence'); }
+      if (a.decision === 'exclude' && !p.rule) { out.push(tag + 'an exclusion with no rule'); }
+      if (a.decision === 'exclude' && !a.evidence.trim()) { out.push(tag + 'an exclusion with no quoted sentence'); }
+      if (evidenceFound(r, a.evidence) === false) { out.push(tag + 'the evidence is not found word for word in the record'); }
+    });
+    return out;
+  }
+
+  // ------------------------------------------------------------------ files out and in
+
+  function download(text, name, type) {
+    var blob = new Blob([text], { type: type });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  function basename(p) { return String(p || '').split(/[\\/]/).pop(); }
+  function csvCell(v) {
+    v = v == null ? '' : String(v);
+    return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  function buildCsv() {
+    var lines = [COLUMNS.map(csvCell).join(',')];
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      lines.push(COLUMNS.map(function (c) {
+        if (c === 'number') { return csvCell(r.number); }
+        if (c === 'title') { return csvCell(r.title); }
+        if (FIELDS.indexOf(c) >= 0) { return csvCell(a[c]); }
+        return csvCell(r.cells ? r.cells[c] : '');
+      }).join(','));
+    });
+    // UTF-8 with a byte-order mark and CRLF line ends, as the screening runners and Excel expect.
+    return '\ufeff' + lines.join('\r\n') + '\r\n';
+  }
+  function exportName() { return basename(DATA.save_as) || ((DATA.sheet_id || 'screening') + '.csv'); }
+  function doExport() {
+    download(buildCsv(), exportName(), 'text/csv;charset=utf-8');
+    toast('Exported ' + exportName() + ' to your downloads folder.');
+  }
+  function exportClicked() {
+    var list = issues();
+    var undecided = RECS.filter(function (r) { return !answers[r.number].decision; }).length;
+    if (!list.length && !undecided) { doExport(); return; }
+    var body = el('div');
+    if (undecided) { body.appendChild(el('p', null, undecided + ' records have no decision yet; they are exported blank, and you can carry on later.')); }
+    if (list.length) {
+      body.appendChild(el('p', null, 'Worth fixing before the file is used:'));
+      var ul = el('ul', 'issues');
+      list.forEach(function (s) { ul.appendChild(el('li', null, s)); });
+      body.appendChild(ul);
+    }
+    openModal('Before you export', body, [
+      ['Go back', closeModal],
+      ['Export anyway', function () { closeModal(); doExport(); }, true]
+    ]);
+  }
+
+  function parseCsv(text) {
+    text = String(text).replace(/^\ufeff/, '');
+    var rows = [], row = [], field = '', q = false, i = 0, c;
+    while (i < text.length) {
+      c = text[i];
+      if (q) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+          q = false; i++; continue;
+        }
+        field += c; i++; continue;
+      }
+      if (c === '"') { q = true; i++; continue; }
+      if (c === ',') { row.push(field); field = ''; i++; continue; }
+      if (c === '\r') { i++; continue; }
+      if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
+      field += c; i++;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+  function importText(text) {
+    var rows = parseCsv(text);
+    if (!rows.length) { toast('The file is empty.'); return; }
+    var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+    if (head.indexOf('number') < 0 || head.indexOf('decision') < 0) {
+      var semi = rows[0].join(',').indexOf(';') >= 0;
+      openModal('Cannot read this file', el('p', null, 'It has no "number" and "decision" columns' +
+        (semi ? '; it looks separated by semicolons. In Excel, save as "CSV UTF-8 (Comma delimited)".' : '.')),
+        [['Close', closeModal, true]]);
+      return;
+    }
+    var col = {};
+    head.forEach(function (h, i) { col[h] = i; });
+    var found = {}, unknown = [], bad = [];
+    rows.slice(1).forEach(function (cells) {
+      if (cells.length === 1 && !cells[0].trim()) { return; }
+      var n = (cells[col.number] || '').trim();
+      if (!n) { return; }
+      if (!(n in BY_NUMBER)) { unknown.push(n); return; }
+      var a = {};
+      FIELDS.forEach(function (f) { a[f] = f in col ? (cells[col[f]] || '') : answers[RECS[BY_NUMBER[n]].number][f]; });
+      a = clean(a);
+      if (a.decision && DECISIONS.indexOf(a.decision) < 0) { bad.push(n + ' (decision "' + a.decision + '")'); return; }
+      if (a.confidence && CONFIDENCES.indexOf(a.confidence) < 0) { bad.push(n + ' (confidence "' + a.confidence + '")'); return; }
+      found[n] = a;
+    });
+    var nums = Object.keys(found);
+    var changed = nums.filter(function (n) { return !same(found[n], answers[RECS[BY_NUMBER[n]].number]); });
+    var body = el('div');
+    body.appendChild(el('p', null, nums.length + ' records read from the file; ' + changed.length +
+      ' differ from the answers on this page and will be replaced.'));
+    if (unknown.length) { body.appendChild(el('p', null, 'Not on this sheet, ignored: ' + unknown.slice(0, 20).join(', ') + (unknown.length > 20 ? ' …' : ''))); }
+    if (bad.length) { body.appendChild(el('p', null, 'Unreadable, ignored: ' + bad.slice(0, 20).join(', '))); }
+    openModal('Import answers', body, [
+      ['Cancel', closeModal],
+      ['Import', function () {
+        nums.forEach(function (n) { answers[RECS[BY_NUMBER[n]].number] = found[n]; });
+        closeModal(); drawAll(); autosave();
+        toast(changed.length + ' records updated from the file.');
+      }, true]
+    ]);
+  }
+
+  function pageName() {
+    var n = '';
+    try { n = decodeURIComponent(location.pathname.split('/').pop()); } catch (e) { n = ''; }
+    return n || ((DATA.sheet_id || 'screening') + '.html');
+  }
+  function savePage() {
+    var copy = {};
+    Object.keys(DATA).forEach(function (k) { copy[k] = DATA[k]; });
+    copy.records = RECS.map(function (r) {
+      var o = {};
+      Object.keys(r).forEach(function (k) { o[k] = r[k]; });
+      o.answer = answers[r.number];
+      return o;
+    });
+    copy.answers_saved = new Date().toISOString();
+    var json = JSON.stringify(copy).replace(/</g, '\\u003c');
+    var html = ORIGINAL_HTML.replace(/(<script[^>]*id="sheet-data"[^>]*>)[\s\S]*?(<\/script>)/,
+      function (m, open, close) { return open + json + close; });
+    download(html, pageName(), 'text/html;charset=utf-8');
+    toast('Saved a copy of this page, with your answers, to your downloads folder.');
+  }
+
+  // -------------------------------------------------------------------- modal
+
+  var modalKeys = null;
+  function openModal(title, body, buttons) {
+    $('modal-title').textContent = title;
+    var b = $('modal-body');
+    b.textContent = '';
+    if (typeof body === 'string') { b.innerHTML = body; } else { b.appendChild(body); }
+    var foot = $('modal-foot');
+    foot.textContent = '';
+    (buttons || [['Close', closeModal, true]]).forEach(function (spec) {
+      var btn = el('button', 'btn' + (spec[2] ? ' primary' : ''), spec[0]);
+      btn.type = 'button';
+      btn.addEventListener('click', spec[1]);
+      foot.appendChild(btn);
+    });
+    $('modal').hidden = false;
+    var last = foot.lastChild;
+    if (last) { last.focus(); }
+    modalKeys = true;
+  }
+  function closeModal() { $('modal').hidden = true; modalKeys = null; }
+
+  function showHelp() {
+    var rows = [
+      ['← / →', 'previous / next record'],
+      ['I, U, E', 'include, uncertain, exclude (again to clear)'],
+      ['1, 2, 3', 'confidence low, medium, high'],
+      ['Q', 'use the selected text as the evidence'],
+      ['R', 'type the reason'],
+      ['N', 'next record without a decision'],
+      ['Esc', 'leave a text box, close a window']
+    ];
+    var t = el('table');
+    rows.forEach(function (r) {
+      var tr = el('tr');
+      var k = el('td'); k.appendChild(el('kbd', null, r[0]));
+      tr.appendChild(k); tr.appendChild(el('td', null, r[1]));
+      t.appendChild(tr);
+    });
+    var box = el('div', 'md');
+    box.appendChild(t);
+    box.appendChild(el('p', 'muted', 'Shortcuts work when no text box has the cursor.'));
+    openModal('Keyboard shortcuts', box);
+  }
+
+  // -------------------------------------------------------------------- wiring
+
+  function init() {
+    $('sheet-title').textContent = DATA.sheet || 'Screening sheet';
+    $('criteria-brief').innerHTML = md(DATA.criteria_brief || '');
+    if (!DATA.criteria_full) { $('btn-full').hidden = true; }
+    var OPEN_KEY = 'screening-page:criteria-open';
+    if (readStore(OPEN_KEY) === false) { $('criteria').removeAttribute('open'); }
+    $('criteria').addEventListener('toggle', function () { writeStore(OPEN_KEY, $('criteria').open); });
+
+    var intro = $('intro');
+    (DATA.intro || []).forEach(function (p) { intro.appendChild(el('p', null, p)); });
+    intro.appendChild(el('p', null, 'This page takes the place of filling the CSV by hand. Your answers ' +
+      'are kept in this browser as you go. When you finish, or to hand your work on, press Export CSV: ' +
+      'the file is named ' + exportName() + (DATA.save_as ? ' and belongs at ' + DATA.save_as +
+      ' (a path from the codebase folder)' : '') + '. "Save page with answers" downloads a copy of this page ' +
+      'with your answers inside it, which opens anywhere.'));
+
+    var sel = $('f-rule');
+    sel.appendChild(new Option('Rule (choose)', ''));
+    RULES.forEach(function (r) { sel.appendChild(new Option(r.label + (r.hint ? ' · ' + r.hint : ''), r.label)); });
+
+    if (NEEDS_BY) { $('lab-by').hidden = false; $('row-by').hidden = false; }
+
+    var stored = readStore(KEY);
+    if (stored && stored.answers) {
+      var restored = 0;
+      RECS.forEach(function (r) {
+        var s = stored.answers[r.number];
+        if (s) {
+          s = clean(s);
+          if (!same(s, embedded[r.number])) { restored++; }
+          answers[r.number] = s;
+        }
+      });
+      if (typeof stored.idx === 'number' && stored.idx >= 0 && stored.idx < RECS.length) { idx = stored.idx; }
+      if (restored) {
+        var bn = $('banner');
+        bn.textContent = '';
+        bn.appendChild(el('span', null, 'Restored answers on ' + restored + ' records typed earlier in this browser.'));
+        var undo = el('button', 'btn small', 'Use the answers saved in the page instead');
+        undo.type = 'button';
+        undo.addEventListener('click', function () {
+          RECS.forEach(function (r) { answers[r.number] = clean(embedded[r.number]); });
+          bn.hidden = true; drawAll(); autosave();
+        });
+        bn.appendChild(undo);
+        bn.hidden = false;
+      }
+    }
+    if (!storageOk) {
+      var b2 = $('banner');
+      b2.textContent = 'This browser does not let the page keep your answers. Export CSV before you close it.';
+      b2.hidden = false;
+    }
+
+    $('prev').addEventListener('click', function () { go(idx - 1); });
+    $('next').addEventListener('click', function () { go(idx + 1); });
+    Array.prototype.forEach.call($('f-decision').children, function (b) {
+      b.addEventListener('click', function () { setDecision(b.getAttribute('data-v')); });
+    });
+    Array.prototype.forEach.call($('f-confidence').children, function (b) {
+      b.addEventListener('click', function () { setConfidence(b.getAttribute('data-v')); });
+    });
+    $('f-rule').addEventListener('change', function () {
+      update({ reason: joinReason($('f-rule').value, $('f-reason').value) });
+    });
+    $('f-reason').addEventListener('input', function () {
+      update({ reason: joinReason($('f-rule').value, $('f-reason').value) });
+    });
+    $('f-evidence').addEventListener('input', function () {
+      update({ evidence: $('f-evidence').value });
+      drawEvidenceCheck();
+    });
+    $('f-by').addEventListener('input', function () {
+      update({ decided_by: $('f-by').value });
+      writeStore(NAME_KEY, $('f-by').value.trim());
+    });
+    $('btn-quote').addEventListener('mousedown', function (e) { e.preventDefault(); });
+    $('btn-quote').addEventListener('click', useSelection);
+    $('btn-next-undecided').addEventListener('click', nextUndecided);
+    $('btn-clear').addEventListener('click', function () {
+      openModal('Clear record ' + current().number + '?', el('p', null, 'Its decision, confidence, reason and evidence are removed.'), [
+        ['Cancel', closeModal],
+        ['Clear', function () {
+          var keep = answers[current().number].decided_by;
+          update({ decision: '', confidence: '', reason: '', evidence: '', decided_by: NEEDS_BY ? keep : '' });
+          closeModal(); drawForm();
+        }, true]
+      ]);
+    });
+    $('btn-export').addEventListener('click', exportClicked);
+    $('btn-import').addEventListener('click', function () { $('file-import').click(); });
+    $('file-import').addEventListener('change', function () {
+      var f = this.files && this.files[0];
+      if (!f) { return; }
+      var reader = new FileReader();
+      reader.onload = function () { importText(reader.result); };
+      reader.readAsText(f, 'utf-8');
+      this.value = '';
+    });
+    $('btn-savepage').addEventListener('click', savePage);
+    $('btn-help').addEventListener('click', showHelp);
+    $('btn-full').addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var box = el('div', 'md');
+      box.innerHTML = md(DATA.criteria_full);
+      openModal('Screening criteria', box);
+    });
+    $('goto').addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') { return; }
+      var n = this.value.trim();
+      if (n in BY_NUMBER) { go(BY_NUMBER[n]); this.value = ''; this.blur(); }
+      else { toast('Record ' + n + ' is not on this sheet.'); }
+    });
+    $('modal').addEventListener('click', function (e) { if (e.target === $('modal')) { closeModal(); } });
+
+    document.addEventListener('keydown', function (e) {
+      if (modalKeys) { if (e.key === 'Escape') { closeModal(); } return; }
+      var t = e.target;
+      var typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable);
+      if (e.key === 'Escape' && typing) { t.blur(); return; }
+      if (typing || e.ctrlKey || e.metaKey || e.altKey) { return; }
+      var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      var handled = true;
+      if (k === 'ArrowLeft') { go(idx - 1); }
+      else if (k === 'ArrowRight') { go(idx + 1); }
+      else if (k === 'i') { setDecision('include'); }
+      else if (k === 'u') { setDecision('uncertain'); }
+      else if (k === 'e') { setDecision('exclude'); }
+      else if (k === '1') { setConfidence('low'); }
+      else if (k === '2') { setConfidence('medium'); }
+      else if (k === '3') { setConfidence('high'); }
+      else if (k === 'q') { useSelection(); }
+      else if (k === 'r') { $('f-reason').focus(); }
+      else if (k === 'n') { nextUndecided(); }
+      else if (k === '?') { showHelp(); }
+      else { handled = false; }
+      if (handled) { e.preventDefault(); }
+    });
+
+    footerNote(storageOk ? 'Your answers are autosaved in this browser as you work.' : '');
+    if (!RECS.length) { $('record').textContent = 'This sheet has no records.'; return; }
+    drawAll();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+# The agreement of the coding agent and the judge
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+Per question: the judge's verdicts on the studies' answers, the share it supported, and kappa of the agent's value against the judge's (the agent's where supported, the judge's proposal where disputed). The agent's value is its own where the authors corrected an answer (10 answers).
+
+| qid | name | section | rq | supported | partly | not_supported | cannot_judge | none | judged | supported_pct | pairs | kappa |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| A01 | policy_role | A | 1.1 | 94 | 2 | 3 | 0 | 0 | 99 | 94.9 | 99 | 0.934 |
+| A02 | coordination | A | 1.1 | 90 | 5 | 4 | 0 | 0 | 99 | 90.9 | 99 | 0.873 |
+| A03 | scheduling_action | A | 2.1 | 93 | 3 | 3 | 0 | 0 | 99 | 93.9 | 99 | 0.897 |
+| A04 | learner_depth | A | 1.2 | 89 | 9 | 1 | 0 | 0 | 99 | 89.9 | 99 | 0.947 |
+| A05 | deep_architecture | A | 2.2 | 75 | 18 | 6 | 0 | 0 | 99 | 75.8 | 99 | 0.741 |
+| A06 | training_algorithm_family | A | 1.2 | 93 | 5 | 1 | 0 | 0 | 99 | 93.9 | 99 | 0.983 |
+| A07 | hybridization | A | 1.2 | 83 | 4 | 12 | 0 | 0 | 99 | 83.8 | 99 | 0.720 |
+| A08 | state_content | A | 2.1 | 57 | 38 | 2 | 0 | 2 | 97 | 58.8 | 97 | 0.592 |
+| A09 | state_encoding | A | 2.2 | 73 | 24 | 2 | 0 | 0 | 99 | 73.7 | 99 | 0.710 |
+| A10 | dynamic_events | A | 1.3 | 89 | 7 | 3 | 0 | 0 | 99 | 89.9 | 99 | 0.889 |
+| A11 | objective | A | 1.3 | 89 | 10 | 0 | 0 | 0 | 99 | 89.9 | 99 | 0.879 |
+| A12 | constraints | A | 1.3 | 79 | 13 | 7 | 0 | 0 | 99 | 79.8 | 99 | 0.791 |
+| A13 | instances | A | 3.1 | 79 | 20 | 0 | 0 | 0 | 99 | 79.8 | 99 | 0.766 |
+| A14 | domain | A | 1.3 | 99 | 0 | 0 | 0 | 0 | 99 | 100.0 | 99 | 1.000 |
+| A15 | readiness_claim | A | 5 | 91 | 4 | 4 | 0 | 0 | 99 | 91.9 | 99 | 0.847 |
+| B01 | study_type | B | 1 | 92 | 1 | 6 | 0 | 0 | 99 | 92.9 | 98 | 0.000 |
+| B02 | flexibility | B | 1.3 | 94 | 2 | 3 | 0 | 0 | 99 | 94.9 | 99 | 0.238 |
+| B03 | sub_decision | B | 1.1 | 91 | 5 | 2 | 0 | 1 | 98 | 92.9 | 98 | 0.885 |
+| B04 | steering_action | B | 1.1 | 82 | 7 | 10 | 0 | 0 | 99 | 82.8 | 99 | 0.744 |
+| B05 | steered_method | B | 1.1 | 83 | 5 | 11 | 0 | 0 | 99 | 83.8 | 99 | 0.761 |
+| B06 | paradigm | B | 1.2 | 85 | 11 | 2 | 0 | 1 | 98 | 86.7 | 97 | 0.323 |
+| B07 | algorithm | B | 1.2 | 91 | 2 | 3 | 2 | 1 | 96 | 94.8 | 95 | 0.965 |
+| B08 | algorithm_name | B | 1.2 | 51 | 10 | 38 | 0 | 0 | 99 | 51.5 | 0 |  |
+| B09 | agent_unit | B | 1.1 | 88 | 6 | 5 | 0 | 0 | 99 | 88.9 | 99 | 0.775 |
+| B10 | multi_agent_training | B | 1.1 | 85 | 6 | 8 | 0 | 0 | 99 | 85.9 | 99 | 0.686 |
+| B11 | objective_combination | B | 1.3 | 82 | 11 | 6 | 0 | 0 | 99 | 82.8 | 99 | 0.811 |
+| C01 | action_space | C | 2.1 | 97 | 1 | 1 | 0 | 0 | 99 | 98.0 | 99 | 0.905 |
+| C02 | action_set | C | 2.1 | 92 | 5 | 2 | 0 | 0 | 99 | 92.9 | 99 | 0.943 |
+| C03 | action_count | C | 2.1 | 94 | 2 | 3 | 0 | 0 | 99 | 94.9 | 99 | 0.927 |
+| C04 | wait_action | C | 2.1 | 84 | 7 | 8 | 0 | 0 | 99 | 84.8 | 99 | 0.743 |
+| C05 | invalid_actions | C | 2.1 | 59 | 10 | 30 | 0 | 0 | 99 | 59.6 | 99 | 0.489 |
+| C06 | mask_enforces | C | 2.1 | 86 | 8 | 4 | 0 | 1 | 98 | 87.8 | 98 | 0.763 |
+| C07 | reward_measure | C | 2.1 | 78 | 18 | 3 | 0 | 0 | 99 | 78.8 | 99 | 0.775 |
+| C08 | reward_timing | C | 2.1 | 90 | 5 | 4 | 0 | 0 | 99 | 90.9 | 99 | 0.781 |
+| C09 | reward_source | C | 2.1 | 95 | 4 | 0 | 0 | 0 | 99 | 96.0 | 99 | 1.000 |
+| C10 | decision_points | C | 2.1 | 65 | 8 | 26 | 0 | 0 | 99 | 65.7 | 99 | 0.574 |
+| C11 | observability | C | 2.1 | 74 | 4 | 9 | 12 | 0 | 87 | 85.1 | 87 | 0.482 |
+| C12 | input_size | C | 2.2 | 84 | 9 | 6 | 0 | 0 | 99 | 84.8 | 99 | 0.778 |
+| C13 | model_summary | C | 2.2 | 41 | 54 | 4 | 0 | 0 | 99 | 41.4 | 0 |  |
+| C14 | training_regime | C | 2.1 | 73 | 9 | 17 | 0 | 0 | 99 | 73.7 | 98 | 0.507 |
+| D01 | benchmark_sets | D | 3.1 | 79 | 11 | 9 | 0 | 0 | 99 | 79.8 | 99 | 0.778 |
+| D02 | largest_jobs | D | 3.1 | 80 | 4 | 13 | 2 | 0 | 97 | 82.5 | 97 | 0.808 |
+| D03 | largest_machines | D | 3.1 | 76 | 10 | 13 | 0 | 0 | 99 | 76.8 | 99 | 0.818 |
+| D04 | event_processes | D | 3.1 | 83 | 12 | 4 | 0 | 0 | 99 | 83.8 | 99 | 0.776 |
+| D05 | events_in | D | 3.1 | 93 | 4 | 2 | 0 | 0 | 99 | 93.9 | 99 | 0.925 |
+| D06 | reschedule_trigger | D | 3.1 | 76 | 2 | 21 | 0 | 0 | 99 | 76.8 | 99 | 0.600 |
+| D07 | baselines | D | 3.2 | 82 | 17 | 0 | 0 | 0 | 99 | 82.8 | 99 | 0.849 |
+| D08 | metrics | D | 3.2 | 62 | 36 | 0 | 0 | 1 | 98 | 63.3 | 98 | 0.640 |
+| D09 | decision_time | D | 3.2 | 81 | 5 | 11 | 2 | 0 | 97 | 83.5 | 97 | 0.753 |
+| D10 | training_cost | D | 3.2 | 92 | 2 | 5 | 0 | 0 | 99 | 92.9 | 99 | 0.879 |
+| D11 | size_scaling | D | 3.2 | 75 | 13 | 11 | 0 | 0 | 99 | 75.8 | 99 | 0.758 |
+| D12 | inference_mode | D | 3.2 | 56 | 18 | 24 | 0 | 1 | 98 | 57.1 | 98 | 0.583 |
+| D13 | headline_statistic | D | 3.2 | 76 | 14 | 9 | 0 | 0 | 99 | 76.8 | 99 | 0.700 |
+| D14 | seeds | D | 3.3 | 47 | 7 | 45 | 0 | 0 | 99 | 47.5 | 99 | 0.381 |
+| D15 | seed_spread | D | 3.3 | 70 | 3 | 17 | 9 | 0 | 90 | 77.8 | 88 | 0.708 |
+| D16 | ablation | D | 3.3 | 93 | 2 | 4 | 0 | 0 | 99 | 93.9 | 99 | 0.901 |
+| D17 | code_release | D | 3.3 | 93 | 0 | 6 | 0 | 0 | 99 | 93.9 | 99 | 0.762 |
+| D18 | data_release | D | 3.3 | 82 | 8 | 9 | 0 | 0 | 99 | 82.8 | 99 | 0.802 |
+| D19 | claims | D | 3.4 | 77 | 22 | 0 | 0 | 0 | 99 | 77.8 | 99 | 0.738 |
+| D20 | training_stability | D | 3.4 | 93 | 2 | 4 | 0 | 0 | 99 | 93.9 | 99 | 0.883 |
+| E01 | transfer_tests | E | 4 | 87 | 8 | 4 | 0 | 0 | 99 | 87.9 | 99 | 0.862 |
+| E02 | train_test_overlap | E | 4 | 63 | 8 | 28 | 0 | 0 | 99 | 63.6 | 99 | 0.524 |
+| E03 | training_instances | E | 4 | 73 | 18 | 8 | 0 | 0 | 99 | 73.7 | 99 | 0.546 |
+| F01 | readiness_level | F | 5 | 96 | 2 | 1 | 0 | 0 | 99 | 97.0 | 99 | 0.965 |
+| F02 | decision_deadlines | F | 5 | 84 | 6 | 9 | 0 | 0 | 99 | 84.8 | 99 | 0.810 |
+| F03 | imperfect_data | F | 5 | 97 | 1 | 1 | 0 | 0 | 99 | 98.0 | 99 | 0.796 |
+| F04 | interpretability | F | 5 | 90 | 1 | 8 | 0 | 0 | 99 | 90.9 | 99 | 0.686 |
+| F05 | robustness | F | 5 | 80 | 8 | 11 | 0 | 0 | 99 | 80.8 | 99 | 0.750 |
+| F06 | limitations | F | 5 | 26 | 53 | 19 | 0 | 1 | 98 | 26.5 | 97 | 0.258 |
+| Q01 | q_shop | Q | quality | 72 | 26 | 1 | 0 | 0 | 99 | 72.7 | 99 | 0.433 |
+| Q02 | q_mdp | Q | quality | 92 | 6 | 0 | 1 | 0 | 98 | 93.9 | 98 | 0.790 |
+| Q03 | q_algorithm | Q | quality | 75 | 22 | 2 | 0 | 0 | 99 | 75.8 | 99 | 0.289 |
+| Q04 | q_instances | Q | quality | 66 | 26 | 7 | 0 | 0 | 99 | 66.7 | 99 | 0.376 |
+| Q05 | q_baselines | Q | quality | 83 | 16 | 0 | 0 | 0 | 99 | 83.8 | 99 | 0.778 |
+| Q06 | q_runs | Q | quality | 76 | 11 | 9 | 3 | 0 | 96 | 79.2 | 96 | 0.674 |
+| Q07 | q_claims | Q | quality | 68 | 17 | 14 | 0 | 0 | 99 | 68.7 | 99 | 0.433 |

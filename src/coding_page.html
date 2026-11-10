@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codes to give</title>
+<!--
+  The coding page: one self-contained file, opened from the computer in any browser.
+  runners/map_check.py fills the sheet-data block below (src/screening.write_page); the page
+  shows each record's title and abstract and asks one question per axis, the scheme's codes
+  as buttons. It shows no model's code. "Export CSV" downloads the file the runner reads back.
+-->
+<style>
+:root {
+  --bg: #fafaf7; --fg: #1d1d1b; --muted: #6b6b66; --line: #dcdbd3; --card: #ffffff;
+  --accent: #2b5d8a; --done: #2f7d4f;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615; --fg: #ecebe6; --muted: #a3a29b; --line: #3a3935; --card: #1f1f1d;
+    --accent: #7fb0dc; --done: #5fb784;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header, main { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 24px; }
+h1 { font-size: 22px; margin: 0 0 10px; }
+.intro p { margin: 6px 0; }
+details.rules { background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+                padding: 10px 14px; margin: 14px 0; }
+details.rules summary { cursor: pointer; font-weight: 600; }
+details.rules pre { white-space: pre-wrap; font: inherit; margin: 10px 0 0; }
+.who { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0 4px; }
+.who input { flex: 0 1 280px; min-width: 0; }
+input[type=text] { padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+                   background: var(--card); color: inherit; font: inherit; }
+.card { background: var(--card); border: 1px solid var(--line); border-left-width: 4px;
+        border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+.card.done { border-left-color: var(--done); }
+.meta { color: var(--muted); font-size: 13px; }
+.meta a { color: var(--accent); }
+.title { font-weight: 600; margin: 4px 0 6px; }
+.abstract { margin: 8px 0 12px; }
+.muted { color: var(--muted); }
+.answer { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.answer .q { flex: 0 0 100%; font-weight: 600; font-size: 14px; }
+.answer button { border: 1px solid var(--line); background: transparent; color: inherit;
+                 border-radius: 6px; padding: 5px 12px; font: inherit; font-size: 14px;
+                 cursor: pointer; }
+.answer button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.note { display: flex; margin-top: 10px; }
+.note input { flex: 1 1 auto; min-width: 0; }
+.bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line);
+       margin-top: 20px; }
+.bar .inner { max-width: 920px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px;
+              align-items: center; flex-wrap: wrap; }
+.bar .grow { flex: 1 1 200px; color: var(--muted); font-size: 13px; }
+.bar button, .bar label.btn { border: 1px solid var(--line); background: var(--card);
+       color: inherit; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+.bar button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+#progress { font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="heading">Codes to give</h1>
+  <div class="intro" id="intro"></div>
+  <details class="rules" id="rules-box">
+    <summary>The coding scheme's rules for these axes</summary>
+    <pre id="rules"></pre>
+  </details>
+  <div class="who">
+    <label for="who">Your name</label>
+    <input id="who" type="text" autocomplete="name">
+  </div>
+</header>
+<main id="list"></main>
+<div class="bar">
+  <div class="inner">
+    <span id="progress"></span>
+    <span id="status" class="grow"></span>
+    <label class="btn" for="import-file">Import CSV</label>
+    <input id="import-file" type="file" accept=".csv,text/csv" hidden>
+    <button type="button" id="btn-save">Save page with answers</button>
+    <button type="button" id="btn-export" class="primary">Export CSV</button>
+  </div>
+</div>
+
+<script type="application/json" id="sheet-data">__SHEET_DATA__</script>
+<script>
+(function () {
+  'use strict';
+
+  // The page as generated, before anything is drawn: "Save page with answers" writes a
+  // copy of it with the answers put into the data block.
+  var ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var DATA;
+  try {
+    DATA = JSON.parse($('sheet-data').textContent);
+  } catch (e) {
+    document.body.innerHTML = '<p style="padding:24px;font:16px system-ui">This file is the ' +
+      'template, with no records in it. Open a generated sheet instead.</p>';
+    return;
+  }
+
+  var RECS = DATA.records || [];
+  var QUESTIONS = DATA.questions || [];
+  var NAMES = QUESTIONS.map(function (q) { return q.name; });
+  var FIELDS = NAMES.concat(['note', 'coded_by']);
+  var COLUMNS = DATA.columns || ['number', 'title'].concat(FIELDS);
+  var BY_NUMBER = {};
+  RECS.forEach(function (r) { BY_NUMBER[String(r.number)] = r; });
+  var OPTIONS = {};
+  QUESTIONS.forEach(function (q) { OPTIONS[q.name] = q.options || []; });
+  // Characters written by code so that this file stays plain ASCII: the byte-order mark the
+  // CSV opens with, and the dot between a record's details.
+  var BOM = String.fromCharCode(0xFEFF);
+  var DOT = ' ' + String.fromCharCode(0xB7) + ' ';
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text != null) { e.textContent = text; }
+    return e;
+  }
+  function clean(a) {
+    a = a || {};
+    var o = {};
+    FIELDS.forEach(function (f) { o[f] = a[f] == null ? '' : String(a[f]); });
+    NAMES.forEach(function (n) { o[n] = o[n].trim().toLowerCase(); });
+    return o;
+  }
+  function started(a) { return NAMES.some(function (n) { return a[n]; }) || a.note.trim() !== ''; }
+  function complete(a) { return NAMES.every(function (n) { return a[n]; }); }
+  function hash(s) {
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+
+  // ------------------------------------------------------------------ answers and storage
+
+  var answers = {};
+  RECS.forEach(function (r) { answers[r.number] = clean(r.answer); });
+
+  var KEY = 'coding-page:' + (DATA.sheet_id || 'sheet') + ':' +
+    hash(RECS.map(function (r) { return r.number; }).join(','));
+  var NAME_KEY = 'coding-page:name';
+
+  function readStore(key) {
+    try { var s = window.localStorage.getItem(key); return s ? JSON.parse(s) : null; }
+    catch (e) { return null; }
+  }
+  function writeStore(key, value) {
+    try { window.localStorage.setItem(key, JSON.stringify(value)); return true; }
+    catch (e) { return false; }
+  }
+
+  // Answers kept in this browser fill the records the page itself holds no answer for.
+  var restored = 0;
+  var stored = readStore(KEY);
+  if (stored && stored.answers) {
+    Object.keys(stored.answers).forEach(function (n) {
+      if (!(n in BY_NUMBER)) { return; }
+      var number = BY_NUMBER[n].number;
+      var a = clean(stored.answers[n]);
+      if (started(a) && !started(answers[number])) {
+        answers[number] = a;
+        restored++;
+      }
+    });
+  }
+
+  var saveTimer = null;
+  function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var ok = writeStore(KEY, { answers: answers, at: new Date().toISOString() });
+      status(ok ? 'Kept in this browser at ' + new Date().toLocaleTimeString() + '.' :
+        'This browser does not let the page keep your answers: export the CSV before you close it.');
+    }, 300);
+  }
+  function status(text) { $('status').textContent = text; }
+
+  // ------------------------------------------------------------------ the records
+
+  function norm(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
+
+  function card(r) {
+    var c = el('article', 'card');
+    c.id = 'r' + r.number;
+    var meta = el('div', 'meta', 'Record ' + r.number +
+      [r.venue, r.year, r.type].filter(function (x) { return x; })
+        .map(function (x) { return DOT + x; }).join(''));
+    if (r.link) {
+      meta.appendChild(document.createTextNode(DOT));
+      var a = el('a', null, 'the paper');
+      a.href = r.link; a.target = '_blank'; a.rel = 'noopener';
+      meta.appendChild(a);
+    }
+    c.appendChild(meta);
+    c.appendChild(el('div', 'title', r.title || '(no title)'));
+    var text = norm(r.abstract);
+    if (text) { c.appendChild(el('p', 'abstract', text)); }
+    else { c.appendChild(el('p', 'abstract muted', 'The record has no abstract.')); }
+
+    QUESTIONS.forEach(function (q) {
+      var row = el('div', 'answer');
+      row.appendChild(el('span', 'q', q.label || q.name));
+      (q.options || []).forEach(function (v) {
+        var b = el('button', null, v);
+        b.type = 'button';
+        b.setAttribute('data-q', q.name);
+        b.setAttribute('data-v', v);
+        b.addEventListener('click', function () { setAnswer(r, q.name, v); });
+        row.appendChild(b);
+      });
+      c.appendChild(row);
+    });
+    var noteRow = el('div', 'note');
+    var note = el('input');
+    note.type = 'text';
+    note.placeholder = 'Note (optional), for example the sentence that decides a code';
+    note.value = answers[r.number].note;
+    note.addEventListener('input', function () { answers[r.number].note = note.value; touched(r); });
+    noteRow.appendChild(note);
+    c.appendChild(noteRow);
+    return c;
+  }
+
+  function paint(r) {
+    var c = $('r' + r.number), a = answers[r.number];
+    c.classList.toggle('done', complete(a));
+    Array.prototype.forEach.call(c.querySelectorAll('.answer button'), function (b) {
+      var on = a[b.getAttribute('data-q')] === b.getAttribute('data-v');
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  function progress() {
+    var n = RECS.filter(function (r) { return complete(answers[r.number]); }).length;
+    $('progress').textContent = n + ' of ' + RECS.length + ' coded';
+  }
+  function who() { return $('who').value.trim(); }
+  function touched(r) {
+    var a = answers[r.number];
+    if (!started(a)) { a.coded_by = ''; }
+    else if (who()) { a.coded_by = who(); }
+    autosave();
+    progress();
+  }
+  function setAnswer(r, q, v) {
+    var a = answers[r.number];
+    a[q] = a[q] === v ? '' : v;
+    touched(r);
+    paint(r);
+  }
+  function drawAll() {
+    var list = $('list');
+    list.textContent = '';
+    RECS.forEach(function (r) { list.appendChild(card(r)); paint(r); });
+    progress();
+  }
+
+  // ------------------------------------------------------------------ files out and in
+
+  function download(text, name, type) {
+    var blob = new Blob([text], { type: type });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  function basename(p) { return String(p || '').split(/[\\/]/).pop(); }
+  function csvCell(v) {
+    v = v == null ? '' : String(v);
+    return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  function buildCsv() {
+    var lines = [COLUMNS.map(csvCell).join(',')];
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      lines.push(COLUMNS.map(function (c) {
+        if (c === 'number') { return csvCell(r.number); }
+        if (c === 'title') { return csvCell(r.title); }
+        if (FIELDS.indexOf(c) >= 0) { return csvCell(a[c]); }
+        return '';
+      }).join(','));
+    });
+    // UTF-8 with a byte-order mark and CRLF line ends, as the runners and Excel expect.
+    return BOM + lines.join('\r\n') + '\r\n';
+  }
+  function exportName() { return basename(DATA.save_as) || ((DATA.sheet_id || 'codes') + '.csv'); }
+  function doExport() {
+    var name = who();
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      if (started(a) && !a.coded_by && name) { a.coded_by = name; }
+    });
+    var open = RECS.filter(function (r) { return !complete(answers[r.number]); }).length;
+    var unnamed = RECS.filter(function (r) {
+      return started(answers[r.number]) && !answers[r.number].coded_by;
+    }).length;
+    var notes = [];
+    if (unnamed) { notes.push('Type your name at the top: ' + unnamed + ' records have codes and no name, and the runner refuses codes without one.'); }
+    if (open) { notes.push(open + ' records are not coded on every axis yet; they are exported as they are, and you can carry on later.'); }
+    if (notes.length && !window.confirm(notes.join('\n\n') + '\n\nExport anyway?')) { return; }
+    download(buildCsv(), exportName(), 'text/csv;charset=utf-8');
+    autosave();
+    status('Exported ' + exportName() + ' to your downloads folder.');
+  }
+
+  function parseCsv(text) {
+    text = String(text);
+    if (text.charAt(0) === BOM) { text = text.slice(1); }
+    var rows = [], row = [], field = '', q = false, i = 0, c;
+    while (i < text.length) {
+      c = text[i];
+      if (q) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+          q = false; i++; continue;
+        }
+        field += c; i++; continue;
+      }
+      if (c === '"') { q = true; i++; continue; }
+      if (c === ',') { row.push(field); field = ''; i++; continue; }
+      if (c === '\r') { i++; continue; }
+      if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
+      field += c; i++;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+  function importText(text) {
+    var rows = parseCsv(text);
+    if (!rows.length) { window.alert('The file is empty.'); return; }
+    var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+    var col = {};
+    head.forEach(function (h, i) { col[h] = i; });
+    var missing = ['number'].concat(NAMES).filter(function (n) { return !(n in col); });
+    if (missing.length) {
+      window.alert('The file has no column for: ' + missing.join(', ') + '.' +
+        (rows[0].join(',').indexOf(';') >= 0 ? ' It looks separated by semicolons: in Excel, save it as "CSV UTF-8 (Comma delimited)".' : ''));
+      return;
+    }
+    var read = 0, unknown = [], bad = [];
+    rows.slice(1).forEach(function (cells) {
+      var n = (cells[col.number] || '').trim();
+      if (!n) { return; }
+      if (!(n in BY_NUMBER)) { unknown.push(n); return; }
+      var given = {};
+      FIELDS.forEach(function (f) { given[f] = f in col ? cells[col[f]] : ''; });
+      var a = clean(given);
+      var wrong = NAMES.filter(function (q) { return a[q] && OPTIONS[q].indexOf(a[q]) < 0; });
+      if (wrong.length) { bad.push(n); return; }
+      answers[BY_NUMBER[n].number] = a;
+      read++;
+    });
+    drawAll();
+    autosave();
+    status(read + ' records read from the file.' +
+      (unknown.length ? ' Not on this sheet, ignored: ' + unknown.join(', ') + '.' : '') +
+      (bad.length ? ' A code not on the page, ignored: ' + bad.join(', ') + '.' : ''));
+  }
+
+  function pageName() {
+    var n = '';
+    try { n = decodeURIComponent(location.pathname.split('/').pop()); } catch (e) { n = ''; }
+    return n || ((DATA.sheet_id || 'codes') + '.html');
+  }
+  function savePage() {
+    var copy = {};
+    Object.keys(DATA).forEach(function (k) { copy[k] = DATA[k]; });
+    copy.records = RECS.map(function (r) {
+      var o = {};
+      Object.keys(r).forEach(function (k) { o[k] = r[k]; });
+      o.answer = answers[r.number];
+      return o;
+    });
+    copy.answers_saved = new Date().toISOString();
+    var json = JSON.stringify(copy).replace(/</g, '\\u003c');
+    var html = ORIGINAL_HTML.replace(/(<script[^>]*id="sheet-data"[^>]*>)[\s\S]*?(<\/script>)/,
+      function (m, open, close) { return open + json + close; });
+    download(html, pageName(), 'text/html;charset=utf-8');
+    status('Saved a copy of this page, with your answers, to your downloads folder.');
+  }
+
+  // ------------------------------------------------------------------ start
+
+  $('heading').textContent = DATA.sheet || 'Codes to give';
+  document.title = DATA.sheet || document.title;
+  (DATA.intro || []).forEach(function (t) { $('intro').appendChild(el('p', null, t)); });
+  if (DATA.criteria_brief) { $('rules').textContent = DATA.criteria_brief; }
+  else { $('rules-box').hidden = true; }
+  $('who').value = readStore(NAME_KEY) || '';
+  $('who').addEventListener('input', function () { writeStore(NAME_KEY, who()); });
+  $('btn-export').addEventListener('click', doExport);
+  $('btn-save').addEventListener('click', savePage);
+  $('import-file').addEventListener('change', function (ev) {
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) { return; }
+    var reader = new FileReader();
+    reader.onload = function () { importText(reader.result); ev.target.value = ''; };
+    reader.readAsText(f, 'utf-8');
+  });
+  drawAll();
+  if (restored) { status(restored + ' records restored from this browser.'); }
+  else if (!writeStore(KEY + ':probe', 1)) {
+    status('This browser does not let the page keep your answers: export the CSV before you close it.');
+  }
+})();
+</script>
+</body>
+</html>

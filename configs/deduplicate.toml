@@ -1,0 +1,24 @@
+# The duplicate rule, applied to the searched corpus before screening.
+# Read by runners/deduplicate.py.
+#
+# Run: python runners/run_all.py --only deduplicate
+
+[inputs]
+corpus = "datasets/references.json"
+
+[rule]
+# Records sharing a normalized title form a group (src/duplicates.py). Its extra records are
+# removed only when its kind is one of these and its first authors agree. Any other group,
+# such as one with distinct publisher DOIs (two_venues), is kept whole. The record kept is a
+# journal or conference record over a repository deposit or preprint, then one with a DOI.
+# Ties go to the base DOI over a suffixed one, then the higher-ranked record, then the lower
+# record number.
+removable_kinds = ["same_doi", "doi_variant", "no_doi", "repository_copy"]
+# The same prefixes as configs/corpus-profile.toml: Zenodo, figshare, arXiv, SSRN.
+repository_doi_prefixes = ["10.5281", "10.6084", "10.48550", "10.2139"]
+
+[outputs]
+# One row per removed record, read by runners/make_tables.py for the PRISMA count and by the
+# screening runners, which leave those records out of screening.
+removed = "datasets/duplicates.csv"
+report = "results/corpus/duplicates.md"

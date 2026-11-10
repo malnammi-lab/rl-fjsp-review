@@ -1,0 +1,46 @@
+# Instances, benchmark sets and dynamic events
+
+Written by `runners/core_synthesis.py` from `configs\core-synthesis.toml`; do not edit, rerun the runner.
+
+RQ 3.1. Studies, as a share of the column's studies with an answer to the question; a study with several codes counts under each.
+
+| Field | Code | All | End to end | Steering |
+| --- | --- | ---: | ---: | ---: |
+| instances | public-benchmark | 72 (72.7%) | 44 (83.0%) | 28 (60.9%) |
+| instances | generated | 84 (84.8%) | 46 (86.8%) | 38 (82.6%) |
+| instances | industrial | 14 (14.1%) | 5 (9.4%) | 9 (19.6%) |
+| benchmark_sets | brandimarte | 47 (47.5%) | 31 (58.5%) | 16 (34.8%) |
+| benchmark_sets | hurink | 37 (37.4%) | 30 (56.6%) | 7 (15.2%) |
+| benchmark_sets | dauzere-peres-paulli | 8 (8.1%) | 8 (15.1%) | 0 (0.0%) |
+| benchmark_sets | kacem | 4 (4.0%) | 1 (1.9%) | 3 (6.5%) |
+| benchmark_sets | barnes | 7 (7.1%) | 7 (13.2%) | 0 (0.0%) |
+| benchmark_sets | fattahi | 5 (5.1%) | 2 (3.8%) | 3 (6.5%) |
+| benchmark_sets | behnke-geiger | 4 (4.0%) | 4 (7.5%) | 0 (0.0%) |
+| benchmark_sets | taillard | 3 (3.0%) | 2 (3.8%) | 1 (2.2%) |
+| benchmark_sets | lawrence | 1 (1.0%) | 1 (1.9%) | 0 (0.0%) |
+| benchmark_sets | other-benchmark | 22 (22.2%) | 8 (15.1%) | 14 (30.4%) |
+| benchmark_sets | none | 27 (27.3%) | 9 (17.0%) | 18 (39.1%) |
+| largest_jobs | reported | 92 (92.9%) | 50 (94.3%) | 42 (91.3%) |
+| largest_jobs | not-stated | 7 (7.1%) | 3 (5.7%) | 4 (8.7%) |
+| largest_jobs | median | 60 | 50 | 100 |
+| largest_jobs | smallest | 5 | 15 | 5 |
+| largest_jobs | largest | 10000 | 10000 | 1200 |
+| largest_machines | reported | 91 (91.9%) | 50 (94.3%) | 41 (89.1%) |
+| largest_machines | not-stated | 8 (8.1%) | 3 (5.7%) | 5 (10.9%) |
+| largest_machines | median | 15 | 15 | 15 |
+| largest_machines | smallest | 3 | 3 | 5 |
+| largest_machines | largest | 60 | 60 | 50 |
+| event_processes | poisson | 20 (20.2%) | 9 (17.0%) | 11 (23.9%) |
+| event_processes | uniform | 13 (13.1%) | 7 (13.2%) | 6 (13.0%) |
+| event_processes | fixed-times | 6 (6.1%) | 2 (3.8%) | 4 (8.7%) |
+| event_processes | other | 10 (10.1%) | 3 (5.7%) | 7 (15.2%) |
+| event_processes | not-stated | 3 (3.0%) | 0 (0.0%) | 3 (6.5%) |
+| event_processes | not-applicable | 58 (58.6%) | 37 (69.8%) | 21 (45.7%) |
+| events_in | training-and-testing | 36 (36.4%) | 14 (26.4%) | 22 (47.8%) |
+| events_in | testing-only | 4 (4.0%) | 2 (3.8%) | 2 (4.3%) |
+| events_in | robustness-only | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| events_in | not-applicable | 58 (58.6%) | 37 (69.8%) | 21 (45.7%) |
+| reschedule_trigger | each-decision | 24 (24.2%) | 9 (17.0%) | 15 (32.6%) |
+| reschedule_trigger | event | 16 (16.2%) | 7 (13.2%) | 9 (19.6%) |
+| reschedule_trigger | other | 1 (1.0%) | 0 (0.0%) | 1 (2.2%) |
+| reschedule_trigger | not-applicable | 58 (58.6%) | 37 (69.8%) | 21 (45.7%) |

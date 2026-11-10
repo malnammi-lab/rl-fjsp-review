@@ -1,0 +1,534 @@
+﻿number,venue,source_type,issn_l,sjr_sourceid,sjr_title,sjr_type,sjr_quartile,sjr_country,icore_id,icore_title,icore_acronym,icore_rank,band,tier,basis
+1,Journal of Intelligent Manufacturing,journal,0956-5515,24363,Journal of Intelligent Manufacturing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+2,Frontiers in Environmental Science,journal,2296-665X,21100826280,Frontiers in Environmental Science,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+3,Chinese Control and Decision Conference (CCDC),conference,,,,,,,,,,,2,4,no match
+4,Chinese Control Conference (CCC),conference,,,,,,,,,,,2,4,no match
+5,Sensors,journal,1424-8220,130124,Sensors,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+6,Digital Twin,journal,2752-5783,,,,,,,,,,2,4,no match
+7,Journal of Project Management,journal,2371-8366,21101180532,Journal of Project Management (Canada),journal,Q3,Canada,,,,,2,3,SJR Q3
+8,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+9,,,,,,,,,,,,,2,4,no venue
+10,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+11,"IEEE Advanced Information Management, Communicates, Electronic and Automation Control Conference (IMCEC)",conference,,,,,,,,,,,2,4,no match
+12,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+14,"International Conference on Computer Network, Electronic and Automation (ICCNEA)",conference,,,,,,,,,,,2,4,no match
+15,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+16,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+17,Manufacturing Letters,journal,2213-8463,21100283796,Manufacturing Letters,journal,Q2,United States,,,,,2,2,SJR Q2
+18,,,,,,,,,,,,,2,4,no venue
+19,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+20,IFAC-PapersOnLine,journal,2405-8963,21100456158,IFAC-PapersOnLine,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+21,Robotics and Computer-Integrated Manufacturing,journal,0736-5845,18080,Robotics and Computer-Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+22,Journal of Computational Design and Engineering,journal,2288-4300,21100820602,Journal of Computational Design and Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+23,IET Collaborative Intelligent Manufacturing,journal,2516-8398,21101041933,IET Collaborative Intelligent Manufacturing,journal,Q2,United States,,,,,2,2,SJR Q2
+24,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+25,Mathematical Biosciences & Engineering,journal,1547-1063,5200152802,Mathematical Biosciences and Engineering,journal,Q2,United States,,,,,2,2,SJR Q2
+27,Lecture notes in electrical engineering,book series,1876-1100,19700186822,Lecture Notes in Electrical Engineering,book series,Q4,Germany,,,,,2,4,SJR Q4
+28,Journal of Computational Design and Engineering,journal,2288-4300,21100820602,Journal of Computational Design and Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+29,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+30,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+31,Journal of Management and Engineering Integration,journal,1939-7984,,,,,,,,,,2,4,no match
+32,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+33,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+35,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+36,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+37,Neural Computing and Applications,journal,0941-0643,24800,Neural Computing and Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+38,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+39,International Conference on New Trends in Computational Intelligence (NTCI),conference,,,,,,,,,,,2,4,no match
+40,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+41,IEEE Transactions on Neural Networks and Learning Systems,journal,2162-237X,21100235616,IEEE Transactions on Neural Networks and Learning Systems,journal,Q1,United States,,,,,1,1,SJR Q1
+43,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+44,Flexible Services and Manufacturing Journal,journal,1936-6582,17600155106,Flexible Services and Manufacturing Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+45,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+46,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+47,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+48,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+49,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+50,Cluster Computing,journal,1386-7857,24596,Cluster Computing,journal,Q1,United States,,,,,1,1,SJR Q1
+51,"Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics",conference,1062-922X,145097,"Conference Proceedings - IEEE International Conference on Systems, Man and Cybernetics",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+52,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+53,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+54,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+55,Proceedings of the Institution of Mechanical Engineers Part B Journal of Engineering Manufacture,journal,0954-4054,20406,"Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture",journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+56,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+57,IEEE Transactions on Neural Networks and Learning Systems,journal,2162-237X,21100235616,IEEE Transactions on Neural Networks and Learning Systems,journal,Q1,United States,,,,,1,1,SJR Q1
+58,International Joint Conference on Artificial Intelligence,conference,,,,,,,1313,International Joint Conference on Artificial Intelligence,IJCAI,A*,1,1,ICORE A*
+59,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+60,Mobile Networks and Applications,journal,1383-469X,27306,Mobile Networks and Applications,journal,Q2,Netherlands,,,,,2,2,SJR Q2
+61,International Conference on Optimization and Applications (ICOA),conference,,,,,,,,,,,2,4,no match
+62,IISE Annual Conference & Expo,conference,,,,,,,,,,,2,4,no match
+63,IEEE International Conference on Mechatronics and Automation (ICMA),conference,,,,,,,,,,,2,4,no match
+64,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+65,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+66,IEEE Internet of Things Journal,journal,2327-4662,21100338350,IEEE Internet of Things Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+68,Complex & Intelligent Systems,journal,2198-6053,21101095931,Complex and Intelligent Systems,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+69,Smart Science,journal,2308-0477,21100824682,Smart Science,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+70,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+71,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+72,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+74,"Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes",conference,0191-2216,,,,,,,,,,2,4,no match
+75,IISE Transactions,journal,2472-5854,21100794597,IISE Transactions,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+76,International Journal of Simulation Modelling,journal,1726-4529,144698,International Journal of Simulation Modelling,journal,Q2,Austria,,,,,2,2,SJR Q2
+77,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+78,IEEE Transactions on Industrial Informatics,journal,1551-3203,144912,IEEE Transactions on Industrial Informatics,journal,Q1,United States,,,,,1,1,SJR Q1
+79,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+80,International journal of production management and engineering,journal,2340-4876,21101023959,International Journal of Production Management and Engineering,journal,Q2,Spain,,,,,2,2,SJR Q2
+81,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+82,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+83,Chinese Control and Decision Conference (CCDC),conference,,,,,,,,,,,2,4,no match
+84,"International Conference on Electrical Engineering, Control and Robotics (EECR)",conference,,,,,,,,,,,2,4,no match
+86,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+87,IEEE Smart World Congress (SWC),conference,,,,,,,,,,,2,4,no match
+88,China Automation Congress (CAC),conference,,,,,,,,,,,2,4,no match
+89,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+90,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+91,Asian Conference on Artificial Intelligence Technology (ACAIT),conference,,,,,,,,,,,2,4,no match
+92,IEEE Transactions on Systems Man and Cybernetics Systems,journal,2168-2216,21100262320,"IEEE Transactions on Systems, Man, and Cybernetics: Systems",journal,Q1,United States,,,,,1,1,SJR Q1
+93,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+94,IEEE Transactions on Communications,journal,0090-6778,18931,IEEE Transactions on Communications,journal,Q1,United States,,,,,1,1,SJR Q1
+95,Sustainability,journal,2071-1050,21100240100,Sustainability (Switzerland),journal,Q1,Switzerland,,,,,1,1,SJR Q1
+96,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+98,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+99,"International Conference on Artificial Intelligence, Human-Computer Interaction and Robotics (AIHCIR)",conference,,,,,,,,,,,2,4,no match
+101,Journal of Intelligent Manufacturing,journal,0956-5515,24363,Journal of Intelligent Manufacturing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+102,2022 International Joint Conference on Neural Networks (IJCNN),conference,2161-4407,96537,Proceedings of the International Joint Conference on Neural Networks,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+103,Complex & Intelligent Systems,journal,2198-6053,21101095931,Complex and Intelligent Systems,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+104,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+105,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+106,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+107,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+108,IEEE Transactions on Industrial Informatics,journal,1551-3203,144912,IEEE Transactions on Industrial Informatics,journal,Q1,United States,,,,,1,1,SJR Q1
+109,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+110,,,,,,,,,,,,,2,4,no venue
+111,Journal of Computational Design and Engineering,journal,2288-4300,21100820602,Journal of Computational Design and Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+112,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+113,Memetic Computing,journal,1865-9284,17400154829,Memetic Computing,journal,Q2,Germany,,,,,2,2,SJR Q2
+114,Genetic and Evolutionary Computation Conference Companion (GECCO Companion),conference,,,,,,,,,,,2,4,no match
+115,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+116,International Conference on Computer Supported Cooperative Work in Design (CSCWD),conference,,,,,,,,,,,2,4,no match
+117,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+119,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+120,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+121,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+122,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+123,Electronics,journal,2079-9292,21100829272,Electronics (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+124,Journal of Manufacturing and Materials Processing,journal,2504-4494,21100977478,Journal of Manufacturing and Materials Processing,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+126,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+127,Future Generation Computer Systems,journal,0167-739X,12264,Future Generation Computer Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+128,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+129,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+130,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+131,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+132,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+133,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+134,,,,,,,,,,,,,2,4,no venue
+135,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+136,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+137,Flexible Services and Manufacturing Journal,journal,1936-6582,17600155106,Flexible Services and Manufacturing Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+138,,,,,,,,,,,,,2,4,no venue
+139,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+140,IEEE Transactions on Emerging Topics in Computational Intelligence,journal,2471-285X,21100976672,IEEE Transactions on Emerging Topics in Computational Intelligence,journal,Q1,United States,,,,,1,1,SJR Q1
+142,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+143,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+144,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+145,China Automation Congress (CAC),conference,,,,,,,,,,,2,4,no match
+146,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+147,"Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics",conference,1062-922X,145097,"Conference Proceedings - IEEE International Conference on Systems, Man and Cybernetics",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+148,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+149,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+150,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+151,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+153,Lecture notes in mechanical engineering,book series,2195-4356,21100431311,Lecture Notes in Mechanical Engineering,book series,Q4,Germany,,,,,2,4,SJR Q4
+154,Algorithms,journal,1999-4893,21100199795,Algorithms,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+155,Scientific Reports,journal,2045-2322,21100200805,Scientific Reports,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+156,Winter Simulation Conference,conference,0891-7736,145228,Proceedings - Winter Simulation Conference,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+157,IEEE Transactions on Systems Man and Cybernetics Systems,journal,2168-2216,21100262320,"IEEE Transactions on Systems, Man, and Cybernetics: Systems",journal,Q1,United States,,,,,1,1,SJR Q1
+158,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+159,Procedia CIRP,journal,2212-8271,21100243809,Procedia CIRP,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+160,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+161,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+162,International Annual Conference on Complex Systems and Intelligent Science (CSIS-IAC),conference,,,,,,,,,,,2,4,no match
+164,,,,,,,,,,,,,2,4,no venue
+165,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+166,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+167,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+168,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+169,IEEE Congress on Evolutionary Computation (CEC),conference,,,,,,,,,,,2,4,no match
+170,The Journal of Supercomputing,journal,0920-8542,25623,Journal of Supercomputing,journal,Q2,Netherlands,,,,,2,2,SJR Q2
+171,International Conference on Electronic Technology and Information Science (ICETIS),conference,,,,,,,,,,,2,4,no match
+172,International Joint Symposium on Artificial Intelligence and Natural Language Processing (iSAI-NLP),conference,,,,,,,,,,,2,4,no match
+173,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+174,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+175,Journal of applied artificial intelligence.,journal,3008-1874,,,,,,,,,,2,4,no match
+176,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+177,International Conference on Machine Learning and Intelligent Systems Engineering (MLISE),conference,,,,,,,,,,,2,4,no match
+178,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+179,Journal of Shanghai Jiaotong University (Science),journal,1007-1172,145728,Journal of Shanghai Jiaotong University (Science),journal,Q2,China,,,,,2,2,SJR Q2
+180,Journal of Systems Architecture,journal,1383-7621,12398,Journal of Systems Architecture,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+181,International Conference on Computer and Communications (ICCC),conference,,,,,,,,,,,2,4,no match
+182,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+183,Leeds Beckett Repository (Leeds Beckett University),repository,,,,,,,,,,,2,4,no match
+184,Applied System Innovation,journal,2571-5577,21101024218,Applied System Innovation,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+185,Procedia CIRP,journal,2212-8271,21100243809,Procedia CIRP,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+186,Scientific Reports,journal,2045-2322,21100200805,Scientific Reports,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+187,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+188,Robotics and Computer-Integrated Manufacturing,journal,0736-5845,18080,Robotics and Computer-Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+189,Proceedings of the International Conference on Parallel Processing,conference,0190-3918,,,,,,,,,,2,4,no match
+190,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+191,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+192,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+193,Complex System Modeling and Simulation,journal,2096-9929,21101112543,Complex System Modeling and Simulation,journal,Q1,China,,,,,1,1,SJR Q1
+194,"IEEE International Conference on Electrical, Automation and Computer Engineering (ICEACE)",conference,,,,,,,,,,,2,4,no match
+195,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+196,Proceedings of the Annual Conference of the IEEE Industrial Electronics Society,conference,1553-572X,,,,,,,,,,2,4,no match
+197,Mathematics,journal,2227-7390,21100830702,Mathematics,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+198,Flexible Services and Manufacturing Journal,journal,1936-6582,17600155106,Flexible Services and Manufacturing Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+199,Journal of Modelling in Management,journal,1746-5664,21100438074,Journal of Modelling in Management,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+200,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+201,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+203,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+204,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+205,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+206,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+207,Concurrency and Computation Practice and Experience,journal,1532-0626,27871,Concurrency and Computation: Practice and Experience,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+208,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+209,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+210,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+211,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+212,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+213,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+214,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+215,Proceedings of the Institution of Mechanical Engineers Part B Journal of Engineering Manufacture,journal,0954-4054,20406,"Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture",journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+216,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+217,IEEE Smart World Congress (SWC),conference,,,,,,,,,,,2,4,no match
+218,,,,,,,,,,,,,2,4,no venue
+219,Journal of Intelligent & Fuzzy Systems,journal,1064-1246,23917,Journal of Intelligent and Fuzzy Systems,journal,Q3,United Kingdom,,,,,2,3,SJR Q3
+220,"International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME)",conference,,,,,,,,,,,2,4,no match
+221,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+222,International Conference on Electronic Communication and Artificial Intelligence (ICECAI),conference,,,,,,,,,,,2,4,no match
+223,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+224,Lecture notes in electrical engineering,book series,1876-1100,19700186822,Lecture Notes in Electrical Engineering,book series,Q4,Germany,,,,,2,4,SJR Q4
+225,DOAJ (DOAJ: Directory of Open Access Journals),repository,,,,,,,,,,,2,4,no match
+226,Operations Research Perspectives,journal,2214-7160,21100379294,Operations Research Perspectives,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+227,,,,,,,,,,,,,2,4,no venue
+228,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+229,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+230,"International Symposium on Sensors, Mechatronics, and Automation System (ISSMAS)",conference,,,,,,,,,,,2,4,no match
+231,Information,journal,2078-2489,21100223111,Information (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+232,IEEE Conference on Industrial Electronics and Applications (ICIEA),conference,,,,,,,,,,,2,4,no match
+233,Communications in computer and information science,book series,1865-0929,17700155007,Communications in Computer and Information Science,book series,Q4,Germany,,,,,2,4,SJR Q4
+234,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+235,Journal of the Franklin Institute,journal,0016-0032,27959,Journal of the Franklin Institute,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+237,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+238,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+239,2022 IEEE 20th International Conference on Industrial Informatics (INDIN),conference,1935-4576,10900153316,IEEE International Conference on Industrial Informatics (INDIN),conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+240,Chinese Control and Decision Conference (CCDC),conference,,,,,,,,,,,2,4,no match
+241,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+242,China Automation Congress (CAC),conference,,,,,,,,,,,2,4,no match
+243,IEEE/ACS International Conference on Computer Systems and Applications (AICCSA),conference,,,,,,,,,,,2,4,no match
+244,IEEE Transactions on Neural Networks and Learning Systems,journal,2162-237X,21100235616,IEEE Transactions on Neural Networks and Learning Systems,journal,Q1,United States,,,,,1,1,SJR Q1
+245,Robotics and Computer-Integrated Manufacturing,journal,0736-5845,18080,Robotics and Computer-Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+246,IFIP advances in information and communication technology,book series,1868-422X,19400157163,IFIP Advances in Information and Communication Technology,book series,Q3,Germany,,,,,2,3,SJR Q3
+247,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+248,,,,,,,,,,,,,2,4,no venue
+249,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+250,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+251,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+252,Sustainability,journal,2071-1050,21100240100,Sustainability (Switzerland),journal,Q1,Switzerland,,,,,1,1,SJR Q1
+253,The Journal of Supercomputing,journal,0920-8542,25623,Journal of Supercomputing,journal,Q2,Netherlands,,,,,2,2,SJR Q2
+254,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+255,Sustainability,journal,2071-1050,21100240100,Sustainability (Switzerland),journal,Q1,Switzerland,,,,,1,1,SJR Q1
+256,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+257,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+258,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+259,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+260,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+261,DOAJ (DOAJ: Directory of Open Access Journals),repository,,,,,,,,,,,2,4,no match
+262,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+263,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+264,Mathematics,journal,2227-7390,21100830702,Mathematics,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+265,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+266,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+267,Computers & Electrical Engineering,journal,0045-7906,18159,Computers and Electrical Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+268,Electronics,journal,2079-9292,21100829272,Electronics (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+269,Journal of Physics Conference Series,journal,1742-6588,130053,Journal of Physics: Conference Series,conference and proceedings,-,United Kingdom,,,,,2,4,SJR no quartile
+270,The Journal of Supercomputing,journal,0920-8542,25623,Journal of Supercomputing,journal,Q2,Netherlands,,,,,2,2,SJR Q2
+271,,,,,,,,,,,,,2,4,no venue
+273,Proceedings of the ... International Florida Artificial Intelligence Research Society Conference,conference,2334-0754,21101090643,"Proceedings of the International Florida Artificial Intelligence Research Society Conference, FLAIRS",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+274,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+275,International Conference on Intelligent Computing (ICIC),conference,,,,,,,,,,,2,4,no match
+276,Computers,journal,2073-431X,21100886391,Computers,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+277,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+278,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+279,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+280,"International Conference on Artificial Intelligence, Human-Computer Interaction and Robotics (AIHCIR)",conference,,,,,,,,,,,2,4,no match
+281,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+282,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+283,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+284,Journal of Engineering Design,journal,0954-4828,12479,Journal of Engineering Design,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+285,,,,,,,,,,,,,2,4,no venue
+287,International journal of industrial engineering,journal,1072-4761,19151,International Journal of Industrial Engineering : Theory Applications and Practice,journal,Q3,United States,,,,,2,3,SJR Q3
+288,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+289,Simulation Modelling Practice and Theory,journal,1569-190X,12189,Simulation Modelling Practice and Theory,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+290,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+291,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+292,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+293,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+294,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+295,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+296,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+297,Robotics and Computer-Integrated Manufacturing,journal,0736-5845,18080,Robotics and Computer-Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+298,International Journal of Foundations of Computer Science,journal,0129-0541,4700152641,International Journal of Foundations of Computer Science,journal,Q3,Singapore,,,,,2,3,SJR Q3
+299,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+300,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+301,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+302,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+304,International Conference on Computer Supported Cooperative Work in Design (CSCWD),conference,,,,,,,,,,,2,4,no match
+305,Advances in Production Engineering & Management,journal,1854-6250,21100386518,Advances in Production Engineering and Management,journal,Q2,Slovenia,,,,,2,2,SJR Q2
+306,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+307,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+308,Journal of Physics Conference Series,journal,1742-6588,130053,Journal of Physics: Conference Series,conference and proceedings,-,United Kingdom,,,,,2,4,SJR no quartile
+309,"International Conference on Artificial Intelligence, Human-Computer Interaction and Robotics (AIHCIR)",conference,,,,,,,,,,,2,4,no match
+310,IEEE Transactions on Systems Man and Cybernetics Systems,journal,2168-2216,21100262320,"IEEE Transactions on Systems, Man, and Cybernetics: Systems",journal,Q1,United States,,,,,1,1,SJR Q1
+311,Journal of Physics Conference Series,journal,1742-6588,130053,Journal of Physics: Conference Series,conference and proceedings,-,United Kingdom,,,,,2,4,SJR no quartile
+312,International Journal of Computational Intelligence and Applications,journal,1469-0268,14500154706,International Journal of Computational Intelligence and Applications,journal,Q3,Singapore,,,,,2,3,SJR Q3
+313,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+314,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+315,Computers & Electrical Engineering,journal,0045-7906,18159,Computers and Electrical Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+316,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+317,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+318,Sensors,journal,1424-8220,130124,Sensors,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+319,Mathematics,journal,2227-7390,21100830702,Mathematics,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+320,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+321,Lecture notes in mechanical engineering,book series,2195-4356,21100431311,Lecture Notes in Mechanical Engineering,book series,Q4,Germany,,,,,2,4,SJR Q4
+322,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+323,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+325,Computer Modeling in Engineering & Sciences,journal,1526-1492,28642,CMES - Computer Modeling in Engineering and Sciences,journal,Q2,United States,,,,,2,2,SJR Q2
+326,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+327,Procedia CIRP,journal,2212-8271,21100243809,Procedia CIRP,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+328,International Conference on Advanced Algorithms and Control Engineering (ICAACE),conference,,,,,,,,,,,2,4,no match
+329,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+331,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+332,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+333,Memetic Computing,journal,1865-9284,17400154829,Memetic Computing,journal,Q2,Germany,,,,,2,2,SJR Q2
+334,Big Data and Cognitive Computing,journal,2504-2289,21101020112,Big Data and Cognitive Computing,journal,Q1,Switzerland,,,,,1,1,SJR Q1
+335,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+336,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+337,International Conference on Data-driven Optimization of Complex Systems (DOCS),conference,,,,,,,,,,,2,4,no match
+338,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+339,Journal of Intelligent Manufacturing,journal,0956-5515,24363,Journal of Intelligent Manufacturing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+341,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+342,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+343,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+344,IEEE Transactions on Systems Man and Cybernetics Systems,journal,2168-2216,21100262320,"IEEE Transactions on Systems, Man, and Cybernetics: Systems",journal,Q1,United States,,,,,1,1,SJR Q1
+345,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+346,IEEE Journal of Radio Frequency Identification,journal,2469-7281,21101060132,IEEE Journal of Radio Frequency Identification,journal,Q1,United States,,,,,1,1,SJR Q1
+348,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+349,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+350,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+352,"Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics",conference,1062-922X,145097,"Conference Proceedings - IEEE International Conference on Systems, Man and Cybernetics",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+353,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+354,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+355,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+356,International Conference on Computer Supported Cooperative Work in Design (CSCWD),conference,,,,,,,,,,,2,4,no match
+357,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+358,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+359,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+360,International Conference on Control and Intelligent Robotics (ICCIR),conference,,,,,,,,,,,2,4,no match
+361,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+363,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+364,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+365,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+366,The International Journal of Advanced Manufacturing Technology,journal,0268-3768,20428,International Journal of Advanced Manufacturing Technology,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+367,Scientific Reports,journal,2045-2322,21100200805,Scientific Reports,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+368,,,,,,,,,,,,,2,4,no venue
+369,IFIP advances in information and communication technology,book series,1868-422X,19400157163,IFIP Advances in Information and Communication Technology,book series,Q3,Germany,,,,,2,3,SJR Q3
+371,Sustainability,journal,2071-1050,21100240100,Sustainability (Switzerland),journal,Q1,Switzerland,,,,,1,1,SJR Q1
+372,Journal of Industrial and Management Optimization,journal,1547-5816,12900154727,Journal of Industrial and Management Optimization,journal,Q3,United States,,,,,2,3,SJR Q3
+373,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+375,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+376,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+378,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+379,International Conference on Intelligent Computing and Information Systems (ICICIS),conference,,,,,,,,,,,2,4,no match
+380,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+381,"Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics",conference,1062-922X,145097,"Conference Proceedings - IEEE International Conference on Systems, Man and Cybernetics",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+382,Information Sciences,journal,0020-0255,15134,Information Sciences,journal,Q1,United States,,,,,1,1,SJR Q1
+383,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+384,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+385,"International Conference on Algorithms, High Performance Computing and Artificial Intelligence (AHPCAI)",conference,,,,,,,,,,,2,4,no match
+386,"International Conference on Computer, Control and Robotics (ICCCR)",conference,,,,,,,,,,,2,4,no match
+387,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+388,IFAC-PapersOnLine,journal,2405-8963,21100456158,IFAC-PapersOnLine,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+389,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+391,European Journal of Operational Research,journal,0377-2217,22489,European Journal of Operational Research,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+392,International Journal of Advanced Computer Science and Applications,journal,2156-5570,21100867241,International Journal of Advanced Computer Science and Applications,journal,Q3,United Kingdom,,,,,2,3,SJR Q3
+393,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+394,International Journal of Network Dynamics and Intelligence,journal,2653-6226,21101292891,International Journal of Network Dynamics and Intelligence,journal,Q1,Australia,,,,,1,1,SJR Q1
+395,Journal of Control and Decision,journal,2330-7706,21100873335,Journal of Control and Decision,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+396,"IEEE International Conference on Cyber Technology in Automation, Control, and Intelligent Systems",conference,,,,,,,,,,,2,4,no match
+397,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+398,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+399,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+400,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+404,IFIP advances in information and communication technology,book series,1868-422X,19400157163,IFIP Advances in Information and Communication Technology,book series,Q3,Germany,,,,,2,3,SJR Q3
+406,IEEE Transactions on Automation Science and Engineering,journal,1545-5955,17340,IEEE Transactions on Automation Science and Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+407,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+408,Industrial Engineering and Innovation Management,journal,2522-6924,,,,,,,,,,2,4,no match
+409,Journal of Computing and Information Science in Engineering,journal,1530-9827,20952,Journal of Computing and Information Science in Engineering,journal,Q1,United States,,,,,1,1,SJR Q1
+410,Evolutionary Intelligence,journal,1864-5909,14500154734,Evolutionary Intelligence,journal,Q1,Germany,,,,,1,1,SJR Q1
+411,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+412,"International Conference on Control, Automation and Diagnosis (ICCAD)",conference,,,,,,,,,,,2,4,no match
+413,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+414,Eng—Advances in Engineering,journal,2673-4117,21101169079,Eng,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+415,Processes,journal,2227-9717,21100838131,Processes,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+416,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+417,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+418,IET conference proceedings.,journal,2732-4494,21101162960,IET Conference Proceedings,journal,Q4,United Kingdom,,,,,2,4,SJR Q4
+419,International Conference on Computational Science and Computational Intelligence (CSCI),conference,,,,,,,,,,,2,4,no match
+420,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+421,International Journal of General Systems,journal,0308-1079,12360,International Journal of General Systems,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+422,International Journal of Production Economics,journal,0925-5273,19165,International Journal of Production Economics,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+423,Journal of Heuristics,journal,1381-1231,24358,Journal of Heuristics,journal,Q2,Netherlands,,,,,2,2,SJR Q2
+425,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+426,Soft Computing,journal,1432-7643,28554,Soft Computing,journal,Q2,Germany,,,,,2,2,SJR Q2
+430,IEEE Transactions on Cybernetics,journal,2168-2267,21100274221,IEEE Transactions on Cybernetics,journal,Q1,United States,,,,,1,1,SJR Q1
+431,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+432,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+433,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+434,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+435,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+436,Proceedings - IEEE International Conference on Robotics and Automation/Proceedings,conference,1050-4729,25456,Proceedings - IEEE International Conference on Robotics and Automation,conference and proceedings,-,United States,2051,IEEE International Conference on Robotics and Automation,ICRA,A*,1,1,ICORE A*
+437,IEEE Transactions on Industrial Informatics,journal,1551-3203,144912,IEEE Transactions on Industrial Informatics,journal,Q1,United States,,,,,1,1,SJR Q1
+438,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+439,IEEE Robotics and Automation Letters,journal,2377-3766,21100900379,IEEE Robotics and Automation Letters,journal,Q1,United States,,,,,1,1,SJR Q1
+440,Egyptian Informatics Journal,journal,1110-8665,19700182731,Egyptian Informatics Journal,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+441,Journal of Industrial Information Integration,journal,2452-414X,21100787106,Journal of Industrial Information Integration,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+442,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+443,Journal of Bionic Engineering,journal,1672-6529,4700152244,Journal of Bionic Engineering,journal,Q2,China,,,,,2,2,SJR Q2
+444,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+446,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+447,IET Collaborative Intelligent Manufacturing,journal,2516-8398,21101041933,IET Collaborative Intelligent Manufacturing,journal,Q2,United States,,,,,2,2,SJR Q2
+449,,,,,,,,,,,,,2,4,no venue
+450,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+451,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+452,Flexible Services and Manufacturing Journal,journal,1936-6582,17600155106,Flexible Services and Manufacturing Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+453,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+454,China Automation Congress (CAC),conference,,,,,,,,,,,2,4,no match
+456,Lecture notes in electrical engineering,book series,1876-1100,19700186822,Lecture Notes in Electrical Engineering,book series,Q4,Germany,,,,,2,4,SJR Q4
+458,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+459,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+460,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+462,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+463,PLoS ONE,journal,1932-6203,10600153309,PLOS ONE,journal,Q1,United States,,,,,1,1,SJR Q1
+464,Chinese Control Conference (CCC),conference,,,,,,,,,,,2,4,no match
+465,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+466,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+467,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+468,Procedia CIRP,journal,2212-8271,21100243809,Procedia CIRP,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+469,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+470,"Smart innovation, systems and technologies",book series,2190-3018,21100204111,"Smart Innovation, Systems and Technologies",book series,Q4,Germany,,,,,2,4,SJR Q4
+473,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+474,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+476,Advanced Engineering Informatics,journal,1474-0346,23640,Advanced Engineering Informatics,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+477,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+481,CIRP journal of manufacturing science and technology,journal,1755-5817,12300154704,CIRP Journal of Manufacturing Science and Technology,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+482,Neurocomputing,journal,0925-2312,24807,Neurocomputing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+483,"Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics",conference,1062-922X,145097,"Conference Proceedings - IEEE International Conference on Systems, Man and Cybernetics",conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+485,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+486,Neurocomputing,journal,0925-2312,24807,Neurocomputing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+487,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+488,IEEE Transactions on Computational Social Systems,journal,2329-924X,21100364916,IEEE Transactions on Computational Social Systems,journal,Q1,United States,,,,,1,1,SJR Q1
+489,,,,,,,,,,,,,2,4,no venue
+490,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+491,Proceedings of the AAAI Conference on Artificial Intelligence,conference,2159-5399,21101185504,Proceedings of the AAAI Conference on Artificial Intelligence,conference and proceedings,-,United States,1629,National Conference of the American Association for Artificial Intelligence,AAAI,A*,1,1,ICORE A*
+496,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+497,"International Seminar on Artificial Intelligence, Networking and Information Technology (AINIT)",conference,,,,,,,,,,,2,4,no match
+499,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+500,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+502,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+503,IEEE Transactions on Systems Man and Cybernetics Systems,journal,2168-2216,21100262320,"IEEE Transactions on Systems, Man, and Cybernetics: Systems",journal,Q1,United States,,,,,1,1,SJR Q1
+504,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+505,IEEE Transactions on Cybernetics,journal,2168-2267,21100274221,IEEE Transactions on Cybernetics,journal,Q1,United States,,,,,1,1,SJR Q1
+506,Proceedings of the Institution of Mechanical Engineers Part B Journal of Engineering Manufacture,journal,0954-4054,20406,"Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture",journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+509,Advances in Complex Systems,journal,0219-5259,18761,Advances in Complex Systems,journal,Q2,Singapore,,,,,2,2,SJR Q2
+512,Proceedings of the Institution of Mechanical Engineers Part B Journal of Engineering Manufacture,journal,0954-4054,20406,"Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture",journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+514,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+516,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+517,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+522,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+523,TU/e Research Portal,repository,,,,,,,,,,,2,4,no match
+524,Proceedings of the International Conference on Automated Planning and Scheduling,journal,2334-0835,21100396641,"Proceedings International Conference on Automated Planning and Scheduling, ICAPS",conference and proceedings,-,United States,919,International Conference on Automated Planning and Scheduling,ICAPS,A*,1,1,ICORE A*
+525,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+526,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+527,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+529,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+530,IEEE Transactions on Cybernetics,journal,2168-2267,21100274221,IEEE Transactions on Cybernetics,journal,Q1,United States,,,,,1,1,SJR Q1
+534,Electronics,journal,2079-9292,21100829272,Electronics (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+536,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+540,The International Journal of Advanced Manufacturing Technology,journal,0268-3768,20428,International Journal of Advanced Manufacturing Technology,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+543,IET conference proceedings.,journal,2732-4494,21101162960,IET Conference Proceedings,journal,Q4,United Kingdom,,,,,2,4,SJR Q4
+544,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+545,Symmetry,journal,2073-8994,21100201542,Symmetry,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+547,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+548,Scientia Sinica Technologica,journal,1674-7259,21100448565,Scientia Sinica Technologica,journal,Q3,China,,,,,2,3,SJR Q3
+549,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+550,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+552,Complex System Modeling and Simulation,journal,2096-9929,21101112543,Complex System Modeling and Simulation,journal,Q1,China,,,,,1,1,SJR Q1
+553,Mathematics,journal,2227-7390,21100830702,Mathematics,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+554,,,,,,,,,,,,,2,4,no venue
+555,IEEE Transactions on Cybernetics,journal,2168-2267,21100274221,IEEE Transactions on Cybernetics,journal,Q1,United States,,,,,1,1,SJR Q1
+557,China Automation Congress (CAC),conference,,,,,,,,,,,2,4,no match
+561,,,,,,,,,,,,,2,4,no venue
+562,International Journal of Machine Learning and Cybernetics,journal,1868-8071,19700177336,International Journal of Machine Learning and Cybernetics,journal,Q2,United States,,,,,2,2,SJR Q2
+564,Sustainable Computing Informatics and Systems,journal,2210-5379,19700201455,Sustainable Computing: Informatics and Systems,journal,Q1,United States,,,,,1,1,SJR Q1
+565,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+568,Engineering Optimization,journal,0305-215X,29114,Engineering Optimization,journal,Q2,United Kingdom,,,,,2,2,SJR Q2
+570,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+572,International Conference on Computer Engineering and Application (ICCEA),conference,,,,,,,,,,,2,4,no match
+574,IEEE Transactions on Emerging Topics in Computational Intelligence,journal,2471-285X,21100976672,IEEE Transactions on Emerging Topics in Computational Intelligence,journal,Q1,United States,,,,,1,1,SJR Q1
+575,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+576,International Journal of Computational Intelligence and Applications,journal,1469-0268,14500154706,International Journal of Computational Intelligence and Applications,journal,Q3,Singapore,,,,,2,3,SJR Q3
+577,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+578,Engineering Applications of Artificial Intelligence,journal,0952-1976,24182,Engineering Applications of Artificial Intelligence,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+580,IEEE Internet of Things Journal,journal,2327-4662,21100338350,IEEE Internet of Things Journal,journal,Q1,United States,,,,,1,1,SJR Q1
+582,IEEE Symposium Series on Computational Intelligence (SSCI),conference,,,,,,,,,,,2,4,no match
+583,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+584,IFAC-PapersOnLine,journal,2405-8963,21100456158,IFAC-PapersOnLine,conference and proceedings,-,Netherlands,,,,,2,4,SJR no quartile
+586,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+587,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+588,Robotics and Computer-Integrated Manufacturing,journal,0736-5845,18080,Robotics and Computer-Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+589,International Journal of Hybrid Information Technology,journal,1738-9968,,,,,,,,,,2,4,no match
+590,Scientific Reports,journal,2045-2322,21100200805,Scientific Reports,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+591,International Conference on Network Communication and Information Security (ICNCIS),conference,,,,,,,,,,,2,4,no match
+593,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+594,Machines,journal,2075-1702,21100838145,Machines,journal,Q2,Switzerland,,,,,2,2,SJR Q2
+595,Journal of Physics Conference Series,journal,1742-6588,130053,Journal of Physics: Conference Series,conference and proceedings,-,United Kingdom,,,,,2,4,SJR no quartile
+596,Mathematical Problems in Engineering,journal,1024-123X,13082,Mathematical Problems in Engineering,journal,Q3,United States,,,,,2,3,SJR Q3
+597,Machine Learning,journal,0885-6125,24775,Machine Learning,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+598,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+599,IEEE International Conference on e-Business Engineering (ICEBE),conference,,,,,,,,,,,2,4,no match
+600,International Journal of Production Research,journal,0020-7543,27656,International Journal of Production Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+601,Journal of Manufacturing Systems,journal,0278-6125,14966,Journal of Manufacturing Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+602,2022 IEEE 18th International Conference on Automation Science and Engineering (CASE),conference,2161-8070,20500195424,IEEE International Conference on Automation Science and Engineering,conference and proceedings,-,United States,,,,,2,4,SJR no quartile
+604,IEEE Computational Intelligence Magazine,journal,1556-603X,4000148905,IEEE Computational Intelligence Magazine,journal,Q1,United States,,,,,1,1,SJR Q1
+605,Singapore Institute of Technology,repository,,,,,,,,,,,2,4,no match
+606,International Journal of Production Economics,journal,0925-5273,19165,International Journal of Production Economics,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+607,Lecture notes in computer science,book series,0302-9743,25674,Lecture Notes in Computer Science,book series,Q2,Germany,,,,,2,2,SJR Q2
+608,IEEE Transactions on Evolutionary Computation,journal,1089-778X,25037,IEEE Transactions on Evolutionary Computation,journal,Q1,United States,,,,,1,1,SJR Q1
+609,IEEE Access,journal,2169-3536,21100374601,IEEE Access,journal,Q1,United States,,,,,1,1,SJR Q1
+611,Expert Systems with Applications,journal,0957-4174,24201,Expert Systems with Applications,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+612,Electronics Letters,journal,0013-5194,24918,Electronics Letters,journal,Q3,United Kingdom,,,,,2,3,SJR Q3
+613,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+617,Computers & Chemical Engineering,journal,0098-1354,24600,Computers and Chemical Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+620,Control Engineering Practice,journal,0967-0661,18174,Control Engineering Practice,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+621,Computers & Operations Research,journal,0305-0548,24355,Computers and Operations Research,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+623,Applied Sciences,journal,2076-3417,21100829268,Applied Sciences (Switzerland),journal,Q2,Switzerland,,,,,2,2,SJR Q2
+625,Smart and Sustainable Manufacturing Systems,journal,2520-6478,21100937108,Smart and Sustainable Manufacturing Systems,journal,Q4,United States,,,,,2,4,SJR Q4
+627,Computers & Industrial Engineering,journal,0360-8352,18164,Computers and Industrial Engineering,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+631,International Conference on Machine Learning and Computer Application (ICMLCA),conference,,,,,,,,,,,2,4,no match
+632,International Journal of Computer Integrated Manufacturing,journal,0951-192X,18198,International Journal of Computer Integrated Manufacturing,journal,Q1,United Kingdom,,,,,1,1,SJR Q1
+636,Knowledge-Based Systems,journal,0950-7051,24772,Knowledge-Based Systems,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+652,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+654,Journal of Mechanical & Electrical Engineering,journal,,,,,,,,,,,2,4,no match
+656,Applied Soft Computing,journal,1568-4946,18136,Applied Soft Computing,journal,Q1,Netherlands,,,,,1,1,SJR Q1
+660,Swarm and Evolutionary Computation,journal,2210-6502,19900192513,Swarm and Evolutionary Computation,journal,Q1,Netherlands,,,,,1,1,SJR Q1

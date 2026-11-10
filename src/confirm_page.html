@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claims to confirm</title>
+<!--
+  The confirmation page: one self-contained file, opened from the computer in any browser.
+  runners/core_claims.py fills the sheet-data block below (src/screening.write_page); the
+  page shows each record's title and abstract, the models' claim with their quotes marked in
+  the abstract, and asks yes or no, with the level the abstract supports where it differs from
+  the models' and whether the full text settled it. "Export CSV" downloads the file the runner
+  reads back.
+-->
+<style>
+:root {
+  --bg: #fafaf7; --fg: #1d1d1b; --muted: #6b6b66; --line: #dcdbd3; --card: #ffffff;
+  --yes: #2f7d4f; --no: #a23b2a; --mark: #fff0a0; --accent: #2b5d8a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615; --fg: #ecebe6; --muted: #a3a29b; --line: #3a3935; --card: #1f1f1d;
+    --yes: #5fb784; --no: #e08572; --mark: #5c4d12; --accent: #7fb0dc;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+       font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header, main { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 24px; }
+h1 { font-size: 22px; margin: 0 0 10px; }
+.intro p { margin: 6px 0; }
+details.rules { background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+                padding: 10px 14px; margin: 14px 0; }
+details.rules summary { cursor: pointer; font-weight: 600; }
+details.rules pre { white-space: pre-wrap; font: inherit; margin: 10px 0 0; }
+.who { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 12px 0 4px; }
+.who input { flex: 0 1 280px; min-width: 0; }
+input[type=text] { padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+                   background: var(--card); color: inherit; font: inherit; }
+.card { background: var(--card); border: 1px solid var(--line); border-left-width: 4px;
+        border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+.card.yes { border-left-color: var(--yes); }
+.card.no { border-left-color: var(--no); }
+.meta { color: var(--muted); font-size: 13px; }
+.meta a { color: var(--accent); }
+.title { font-weight: 600; margin: 4px 0 6px; }
+.abstract { margin: 8px 0; }
+mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2px; }
+.claim { border-left: 3px solid var(--line); padding: 4px 12px; margin: 12px 0; }
+.claim .model { margin-top: 6px; }
+.claim .name { font-weight: 600; }
+.claim blockquote { margin: 4px 0 0 0; color: var(--muted); }
+.muted { color: var(--muted); }
+.answer { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+.answer .q { font-weight: 600; margin-right: 4px; }
+.answer button { border: 1px solid var(--line); background: transparent; color: inherit;
+                 border-radius: 6px; padding: 6px 16px; font: inherit; cursor: pointer; }
+.answer button.on.y { background: var(--yes); border-color: var(--yes); color: #fff; }
+.answer button.on.n { background: var(--no); border-color: var(--no); color: #fff; }
+.answer input[type=text] { flex: 1 1 260px; }
+.answer label.pick { display: inline-flex; gap: 6px; align-items: center; }
+.answer select { padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+                 background: var(--card); color: inherit; font: inherit; max-width: 100%; }
+.answer label.off { opacity: 0.5; }
+.bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line);
+       margin-top: 20px; }
+.bar .inner { max-width: 920px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px;
+              align-items: center; flex-wrap: wrap; }
+.bar .grow { flex: 1 1 200px; color: var(--muted); font-size: 13px; }
+.bar button, .bar label.btn { border: 1px solid var(--line); background: var(--card);
+       color: inherit; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+.bar button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+#progress { font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="heading">Claims to confirm</h1>
+  <div class="intro" id="intro"></div>
+  <details class="rules" id="rules-box">
+    <summary>The coding scheme's rule for the readiness claim</summary>
+    <pre id="rules"></pre>
+  </details>
+  <div class="who">
+    <label for="who">Your name</label>
+    <input id="who" type="text" autocomplete="name">
+  </div>
+</header>
+<main id="list"></main>
+<div class="bar">
+  <div class="inner">
+    <span id="progress"></span>
+    <span id="status" class="grow"></span>
+    <label class="btn" for="import-file">Import CSV</label>
+    <input id="import-file" type="file" accept=".csv,text/csv" hidden>
+    <button type="button" id="btn-save">Save page with answers</button>
+    <button type="button" id="btn-export" class="primary">Export CSV</button>
+  </div>
+</div>
+
+<script type="application/json" id="sheet-data">__SHEET_DATA__</script>
+<script>
+(function () {
+  'use strict';
+
+  // The page as generated, before anything is drawn: "Save page with answers" writes a
+  // copy of it with the answers put into the data block.
+  var ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var DATA;
+  try {
+    DATA = JSON.parse($('sheet-data').textContent);
+  } catch (e) {
+    document.body.innerHTML = '<p style="padding:24px;font:16px system-ui">This file is the ' +
+      'template, with no records in it. Open a generated sheet instead.</p>';
+    return;
+  }
+
+  var RECS = DATA.records || [];
+  var COLUMNS = DATA.columns ||
+    ['number', 'title', 'claimed_level', 'confirmed', 'level', 'read_from', 'note', 'confirmed_by'];
+  var FIELDS = ['confirmed', 'level', 'read_from', 'note', 'confirmed_by'];
+  var VALUES = ['yes', 'no'];
+  // The levels a person can confirm a claim at, and the mark of an answer the full text
+  // settled (protocol, Amendments: step 1 of the core).
+  var LEVELS = DATA.levels || [];
+  var FULL = 'full-text';
+  var BY_NUMBER = {};
+  RECS.forEach(function (r) { BY_NUMBER[String(r.number)] = r; });
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text != null) { e.textContent = text; }
+    return e;
+  }
+  function clean(a) {
+    a = a || {};
+    var o = {};
+    FIELDS.forEach(function (f) { o[f] = a[f] == null ? '' : String(a[f]); });
+    ['confirmed', 'level', 'read_from'].forEach(function (f) { o[f] = o[f].trim().toLowerCase(); });
+    if (o.read_from === 'abstract') { o.read_from = ''; }
+    return o;
+  }
+  // A level only with a yes, and the full-text mark only with an answer, as the runner reads them.
+  function fits(a) {
+    return (!a.confirmed || VALUES.indexOf(a.confirmed) >= 0) &&
+      (!a.level || (LEVELS.indexOf(a.level) >= 0 && a.confirmed === 'yes')) &&
+      (!a.read_from || (a.read_from === FULL && a.confirmed !== ''));
+  }
+  function hash(s) {
+    var h = 5381;
+    for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; }
+    return (h >>> 0).toString(36);
+  }
+
+  // ------------------------------------------------------------------ answers and storage
+
+  var answers = {};
+  RECS.forEach(function (r) { answers[r.number] = clean(r.answer); });
+
+  var KEY = 'confirm-page:' + (DATA.sheet_id || 'sheet') + ':' +
+    hash(RECS.map(function (r) { return r.number; }).join(','));
+  var NAME_KEY = 'confirm-page:name';
+
+  function readStore(key) {
+    try { var s = window.localStorage.getItem(key); return s ? JSON.parse(s) : null; }
+    catch (e) { return null; }
+  }
+  function writeStore(key, value) {
+    try { window.localStorage.setItem(key, JSON.stringify(value)); return true; }
+    catch (e) { return false; }
+  }
+
+  // Answers kept in this browser fill the records the page itself holds no answer for.
+  var restored = 0;
+  var stored = readStore(KEY);
+  if (stored && stored.answers) {
+    Object.keys(stored.answers).forEach(function (n) {
+      if (!(n in BY_NUMBER)) { return; }
+      var number = BY_NUMBER[n].number;
+      var a = clean(stored.answers[n]);
+      var here = answers[number];
+      if ((a.confirmed || a.note) && fits(a) && !here.confirmed && !here.note) {
+        answers[number] = a;
+        restored++;
+      }
+    });
+  }
+
+  var saveTimer = null;
+  function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      var ok = writeStore(KEY, { answers: answers, at: new Date().toISOString() });
+      status(ok ? 'Kept in this browser at ' + new Date().toLocaleTimeString() + '.' :
+        'This browser does not let the page keep your answers: export the CSV before you close it.');
+    }, 300);
+  }
+  function status(text) { $('status').textContent = text; }
+
+  // ------------------------------------------------------------------ the records
+
+  // Characters written by code so that this file stays plain ASCII: the byte-order mark the
+  // CSV opens with, the dot between a record's details, and the quotation marks a quote
+  // may be wrapped in, straight or curly.
+  var BOM = String.fromCharCode(0xFEFF);
+  var DOT = ' ' + String.fromCharCode(0xB7) + ' ';
+  var MARKS = '"\'' + String.fromCharCode(0x201C, 0x201D, 0x2018, 0x2019);
+  var WRAPPED = new RegExp('^[' + MARKS + ']+|[' + MARKS + ']+$', 'g');
+
+  function norm(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
+  function bare(q) { return norm(q).replace(WRAPPED, '').trim(); }
+  function found(r, q) {
+    q = bare(q);
+    return q.length > 0 && norm(r.abstract).toLowerCase().indexOf(q.toLowerCase()) >= 0;
+  }
+  // Where the models' quotes occur word for word in the abstract (case and spacing
+  // ignored), merged where they overlap.
+  function spans(text, quotes) {
+    var low = text.toLowerCase(), out = [];
+    quotes.forEach(function (q) {
+      q = bare(q);
+      if (q.length < 6) { return; }
+      var i = low.indexOf(q.toLowerCase());
+      if (i >= 0) { out.push([i, i + q.length]); }
+    });
+    out.sort(function (a, b) { return a[0] - b[0]; });
+    var merged = [];
+    out.forEach(function (s) {
+      var last = merged[merged.length - 1];
+      if (last && s[0] <= last[1]) { last[1] = Math.max(last[1], s[1]); }
+      else { merged.push(s.slice()); }
+    });
+    return merged;
+  }
+  function abstractNode(r) {
+    var p = el('p', 'abstract');
+    var text = norm(r.abstract);
+    if (!text) { p.appendChild(el('em', 'muted', 'The record has no abstract.')); return p; }
+    var at = 0;
+    spans(text, (r.models || []).map(function (m) { return m.quote; })).forEach(function (s) {
+      if (s[0] > at) { p.appendChild(document.createTextNode(text.slice(at, s[0]))); }
+      p.appendChild(el('mark', null, text.slice(s[0], s[1])));
+      at = s[1];
+    });
+    if (at < text.length) { p.appendChild(document.createTextNode(text.slice(at))); }
+    return p;
+  }
+
+  function card(r) {
+    var c = el('article', 'card');
+    c.id = 'r' + r.number;
+    var meta = el('div', 'meta', 'Record ' + r.number +
+      [r.venue, r.year, r.type].filter(function (x) { return x; })
+        .map(function (x) { return DOT + x; }).join(''));
+    if (r.link) {
+      meta.appendChild(document.createTextNode(DOT));
+      var a = el('a', null, 'the paper');
+      a.href = r.link; a.target = '_blank'; a.rel = 'noopener';
+      meta.appendChild(a);
+    }
+    c.appendChild(meta);
+    c.appendChild(el('div', 'title', r.title || '(no title)'));
+    c.appendChild(abstractNode(r));
+
+    var claim = el('div', 'claim');
+    var head = el('div');
+    head.appendChild(el('strong', null, 'The models\' claim: '));
+    head.appendChild(el('span', null, r.level + (r.level_text ? ', ' + r.level_text : '')));
+    claim.appendChild(head);
+    (r.models || []).forEach(function (m) {
+      var line = el('div', 'model');
+      line.appendChild(el('span', 'name', m.name + ': '));
+      line.appendChild(el('span', null, m.level || 'no code'));
+      if (bare(m.quote)) {
+        var q = el('blockquote', null, '"' + bare(m.quote) + '"');
+        if (!found(r, m.quote)) { q.appendChild(el('span', null, ' (not found word for word in the abstract)')); }
+        line.appendChild(q);
+      }
+      claim.appendChild(line);
+    });
+    c.appendChild(claim);
+
+    var row = el('div', 'answer');
+    row.appendChild(el('span', 'q', 'Does the abstract report a run beyond simulation?'));
+    VALUES.forEach(function (v) {
+      var b = el('button', v === 'yes' ? 'y' : 'n', v === 'yes' ? 'Yes' : 'No');
+      b.type = 'button';
+      b.setAttribute('data-v', v);
+      b.addEventListener('click', function () { setAnswer(r, v); });
+      row.appendChild(b);
+    });
+    var pick = el('label', 'pick level-pick');
+    pick.appendChild(el('span', null, 'Level'));
+    var sel = el('select', 'level');
+    var same = el('option', null, 'as claimed (' + r.level + ')');
+    same.value = '';
+    sel.appendChild(same);
+    LEVELS.forEach(function (lv) {
+      var o = el('option', null, lv);
+      o.value = lv;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function () {
+      answers[r.number].level = sel.value === r.level ? '' : sel.value;
+      touched(r);
+      paint(r);
+    });
+    pick.appendChild(sel);
+    row.appendChild(pick);
+    var full = el('label', 'pick full-pick');
+    var box = el('input', 'full');
+    box.type = 'checkbox';
+    box.addEventListener('change', function () {
+      answers[r.number].read_from = box.checked ? FULL : '';
+      touched(r);
+      paint(r);
+    });
+    full.appendChild(box);
+    full.appendChild(el('span', null, 'Settled from the full text'));
+    row.appendChild(full);
+    var note = el('input');
+    note.type = 'text';
+    note.placeholder = 'Note (optional), for example what the abstract or the full text shows';
+    note.value = answers[r.number].note;
+    note.addEventListener('input', function () { answers[r.number].note = note.value; touched(r); });
+    row.appendChild(note);
+    c.appendChild(row);
+    return c;
+  }
+
+  function paint(r) {
+    var c = $('r' + r.number), a = answers[r.number];
+    c.classList.toggle('yes', a.confirmed === 'yes');
+    c.classList.toggle('no', a.confirmed === 'no');
+    Array.prototype.forEach.call(c.querySelectorAll('.answer button'), function (b) {
+      var on = b.getAttribute('data-v') === a.confirmed;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    // The level is chosen with a yes, the full-text mark with either answer.
+    var sel = c.querySelector('select.level'), box = c.querySelector('input.full');
+    sel.value = a.level;
+    sel.disabled = a.confirmed !== 'yes';
+    c.querySelector('.level-pick').classList.toggle('off', sel.disabled);
+    box.checked = a.read_from === FULL;
+    box.disabled = !a.confirmed;
+    c.querySelector('.full-pick').classList.toggle('off', box.disabled);
+  }
+  function progress() {
+    var n = RECS.filter(function (r) { return answers[r.number].confirmed; }).length;
+    $('progress').textContent = n + ' of ' + RECS.length + ' answered';
+  }
+  function who() { return $('who').value.trim(); }
+  function touched(r) {
+    var a = answers[r.number];
+    if (a.confirmed !== 'yes') { a.level = ''; }
+    if (!a.confirmed) { a.read_from = ''; }
+    if (!a.confirmed && !a.note) { a.confirmed_by = ''; }
+    else if (who()) { a.confirmed_by = who(); }
+    autosave();
+    progress();
+  }
+  function setAnswer(r, v) {
+    var a = answers[r.number];
+    a.confirmed = a.confirmed === v ? '' : v;
+    touched(r);
+    paint(r);
+  }
+  function drawAll() {
+    var list = $('list');
+    list.textContent = '';
+    RECS.forEach(function (r) { list.appendChild(card(r)); paint(r); });
+    progress();
+  }
+
+  // ------------------------------------------------------------------ files out and in
+
+  function download(text, name, type) {
+    var blob = new Blob([text], { type: type });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+  function basename(p) { return String(p || '').split(/[\\/]/).pop(); }
+  function csvCell(v) {
+    v = v == null ? '' : String(v);
+    return /[",\r\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+  }
+  function buildCsv() {
+    var lines = [COLUMNS.map(csvCell).join(',')];
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      lines.push(COLUMNS.map(function (c) {
+        if (c === 'number') { return csvCell(r.number); }
+        if (c === 'title') { return csvCell(r.title); }
+        if (c === 'claimed_level') { return csvCell(r.level); }
+        if (FIELDS.indexOf(c) >= 0) { return csvCell(a[c]); }
+        return '';
+      }).join(','));
+    });
+    // UTF-8 with a byte-order mark and CRLF line ends, as the runners and Excel expect.
+    return BOM + lines.join('\r\n') + '\r\n';
+  }
+  function exportName() { return basename(DATA.save_as) || ((DATA.sheet_id || 'claims') + '.csv'); }
+  function doExport() {
+    var name = who();
+    RECS.forEach(function (r) {
+      var a = answers[r.number];
+      if ((a.confirmed || a.note) && !a.confirmed_by && name) { a.confirmed_by = name; }
+    });
+    var open = RECS.filter(function (r) { return !answers[r.number].confirmed; }).length;
+    var unnamed = RECS.filter(function (r) {
+      return answers[r.number].confirmed && !answers[r.number].confirmed_by;
+    }).length;
+    var notes = [];
+    if (unnamed) { notes.push('Type your name at the top: ' + unnamed + ' answers have no name, and the runner refuses an answer without one.'); }
+    if (open) { notes.push(open + ' records have no answer yet; they are exported blank, and you can carry on later.'); }
+    if (notes.length && !window.confirm(notes.join('\n\n') + '\n\nExport anyway?')) { return; }
+    download(buildCsv(), exportName(), 'text/csv;charset=utf-8');
+    autosave();
+    status('Exported ' + exportName() + ' to your downloads folder.');
+  }
+
+  function parseCsv(text) {
+    text = String(text);
+    if (text.charAt(0) === BOM) { text = text.slice(1); }
+    var rows = [], row = [], field = '', q = false, i = 0, c;
+    while (i < text.length) {
+      c = text[i];
+      if (q) {
+        if (c === '"') {
+          if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+          q = false; i++; continue;
+        }
+        field += c; i++; continue;
+      }
+      if (c === '"') { q = true; i++; continue; }
+      if (c === ',') { row.push(field); field = ''; i++; continue; }
+      if (c === '\r') { i++; continue; }
+      if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
+      field += c; i++;
+    }
+    if (field !== '' || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+  function importText(text) {
+    var rows = parseCsv(text);
+    if (!rows.length) { window.alert('The file is empty.'); return; }
+    var head = rows[0].map(function (h) { return h.trim().toLowerCase(); });
+    var col = {};
+    head.forEach(function (h, i) { col[h] = i; });
+    if (!('number' in col) || !('confirmed' in col)) {
+      window.alert('The file has no "number" and "confirmed" columns.' +
+        (rows[0].join(',').indexOf(';') >= 0 ? ' It looks separated by semicolons: in Excel, save it as "CSV UTF-8 (Comma delimited)".' : ''));
+      return;
+    }
+    var read = 0, unknown = [], bad = [];
+    rows.slice(1).forEach(function (cells) {
+      var n = (cells[col.number] || '').trim();
+      if (!n) { return; }
+      if (!(n in BY_NUMBER)) { unknown.push(n); return; }
+      // A file saved before the level and read_from columns existed reads as the models'
+      // level, from the abstract.
+      var a = clean({
+        confirmed: cells[col.confirmed],
+        level: 'level' in col ? cells[col.level] : '',
+        read_from: 'read_from' in col ? cells[col.read_from] : '',
+        note: 'note' in col ? cells[col.note] : '',
+        confirmed_by: 'confirmed_by' in col ? cells[col.confirmed_by] : ''
+      });
+      if (a.level === BY_NUMBER[n].level) { a.level = ''; }
+      if (!fits(a)) { bad.push(n); return; }
+      answers[BY_NUMBER[n].number] = a;
+      read++;
+    });
+    drawAll();
+    autosave();
+    status(read + ' records read from the file.' +
+      (unknown.length ? ' Not on this sheet, ignored: ' + unknown.join(', ') + '.' : '') +
+      (bad.length ? ' Ignored, an answer other than yes or no, a level without a yes, or a ' +
+        'full-text mark without an answer: ' + bad.join(', ') + '.' : ''));
+  }
+
+  function pageName() {
+    var n = '';
+    try { n = decodeURIComponent(location.pathname.split('/').pop()); } catch (e) { n = ''; }
+    return n || ((DATA.sheet_id || 'claims') + '.html');
+  }
+  function savePage() {
+    var copy = {};
+    Object.keys(DATA).forEach(function (k) { copy[k] = DATA[k]; });
+    copy.records = RECS.map(function (r) {
+      var o = {};
+      Object.keys(r).forEach(function (k) { o[k] = r[k]; });
+      o.answer = answers[r.number];
+      return o;
+    });
+    copy.answers_saved = new Date().toISOString();
+    var json = JSON.stringify(copy).replace(/</g, '\\u003c');
+    var html = ORIGINAL_HTML.replace(/(<script[^>]*id="sheet-data"[^>]*>)[\s\S]*?(<\/script>)/,
+      function (m, open, close) { return open + json + close; });
+    download(html, pageName(), 'text/html;charset=utf-8');
+    status('Saved a copy of this page, with your answers, to your downloads folder.');
+  }
+
+  // ------------------------------------------------------------------ start
+
+  $('heading').textContent = DATA.sheet || 'Claims to confirm';
+  document.title = DATA.sheet || document.title;
+  (DATA.intro || []).forEach(function (t) { $('intro').appendChild(el('p', null, t)); });
+  if (DATA.criteria_brief) { $('rules').textContent = DATA.criteria_brief; }
+  else { $('rules-box').hidden = true; }
+  $('who').value = readStore(NAME_KEY) || '';
+  $('who').addEventListener('input', function () { writeStore(NAME_KEY, who()); });
+  $('btn-export').addEventListener('click', doExport);
+  $('btn-save').addEventListener('click', savePage);
+  $('import-file').addEventListener('change', function (ev) {
+    var f = ev.target.files && ev.target.files[0];
+    if (!f) { return; }
+    var reader = new FileReader();
+    reader.onload = function () { importText(reader.result); ev.target.value = ''; };
+    reader.readAsText(f, 'utf-8');
+  });
+  drawAll();
+  if (restored) { status(restored + ' answers restored from this browser.'); }
+  else if (!writeStore(KEY + ':probe', 1)) {
+    status('This browser does not let the page keep your answers: export the CSV before you close it.');
+  }
+})();
+</script>
+</body>
+</html>

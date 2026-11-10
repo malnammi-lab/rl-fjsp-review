@@ -1,0 +1,369 @@
+﻿number,item,baseline,kind,run,time_limit,verdict
+1,1,"SPT, SRPT, SSO, EDD, FIFO",dispatching-rule,rerun,not-applicable,partly
+1,2,HDPSO,metaheuristic,rerun,not-stated,supported
+1,3,DQN,learned-policy,rerun,not-applicable,partly
+8,1,"SPT, FIFO, MOR with a vehicle selection rule",dispatching-rule,rerun,not-applicable,supported
+8,2,"DRL-S, HGS, DRL-Z",learned-policy,rerun,not-applicable,partly
+8,3,MILP model with Gurobi solver,exact-solver,rerun,stated,supported
+12,1,8 hybrid scheduling rules and Random rule selection,dispatching-rule,rerun,not-applicable,partly
+12,2,Genetic Algorithm (GA),metaheuristic,rerun,stated,partly
+12,3,Ant Colony Optimization (ACO),metaheuristic,rerun,stated,partly
+15,1,"the 12 SDRs (SMPT, NINQ, WINQ, SPT, SRPT, EDD, MDD)",dispatching-rule,rerun,not-applicable,partly
+15,2,"the DQN-based method (selects an SDR from the 12, per Luo 2020)",learned-policy,rerun,not-applicable,supported
+21,1,twelve common rules Rule_i and a random strategy,dispatching-rule,rerun,not-applicable,supported
+21,2,eight other well-known rules OWKRule_i and a random rule,dispatching-rule,rerun,not-applicable,supported
+21,3,twelve GP rules,dispatching-rule,rerun,not-applicable,supported
+21,4,incomplete HDQN,learned-policy,rerun,not-stated,supported
+21,5,Q-learning using SOM,learned-policy,rerun,not-stated,supported
+21,6,HDQN using common rules,learned-policy,rerun,not-stated,supported
+24,1,"eight compound dispatching rules (FIFO, MOPNR, LWKR, MWKR × SPT, EET)",dispatching-rule,rerun,not-applicable,supported
+24,2,MIP solved by Gurobi solver,exact-solver,rerun,stated,supported
+24,3,"RGA and 2SGA (Defersha & Rooyani, 2020)",metaheuristic,copied,stated,supported
+32,1,"FIFO, MOR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+32,2,improved genetic algorithm (IGA),metaheuristic,rerun,stated,supported
+32,3,heterogeneous graph scheduler (HGS),learned-policy,rerun,not-applicable,supported
+40,1,PDR1–PDR6,dispatching-rule,rerun,not-applicable,supported
+40,2,PGA,metaheuristic,not-stated,not-stated,supported
+40,3,DCGA,metaheuristic,not-stated,not-stated,supported
+40,4,HGNN,learned-policy,not-stated,not-applicable,supported
+40,5,PPO,learned-policy,not-stated,not-applicable,supported
+41,1,DPR-1 to DPR-6 and IS,dispatching-rule,rerun,not-applicable,supported
+41,2,"FIFO, MRT, SSU, SPTSSU",dispatching-rule,rerun,not-applicable,supported
+41,3,"GA, VNS, L3G, RIG",metaheuristic,rerun,stated,supported
+41,4,"LDQN, SLGA",learned-policy,rerun,stated,partly
+46,1,the six composite scheduling rules (Rule 1 to Rule 6),dispatching-rule,rerun,not-applicable,supported
+46,2,GIN-A3C,learned-policy,rerun,not-applicable,supported
+46,3,GIN-PPO,learned-policy,rerun,not-applicable,supported
+46,4,GAT-PPO,learned-policy,rerun,not-applicable,supported
+46,5,"IPSO, SLGA",metaheuristic,rerun,not-stated,partly
+52,1,DA Assigning Rules 1-6 composite scheduling rules,dispatching-rule,rerun,not-applicable,supported
+52,2,Rule 1-5 (DA+SA composite rule combinations) and Random,dispatching-rule,rerun,not-applicable,partly
+52,3,"GA-VNS, IGWO, BSO-Q",metaheuristic,rerun,not-stated,partly
+52,4,DRAACCE,learned-policy,rerun,not-stated,supported
+54,1,"SPT, MWKR, MOR, FIFO",dispatching-rule,rerun,not-applicable,supported
+54,2,"RANDOM, GREEDY",dispatching-rule,rerun,not-applicable,partly
+54,3,SLGA,metaheuristic,rerun,not-stated,supported
+54,4,"E2E-DRL (DRL-G, DRL-S)",learned-policy,rerun,not-applicable,supported
+54,5,EGA,metaheuristic,rerun,not-stated,supported
+57,1,"FIFO, MOPNR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+57,2,Google OR-Tools,exact-solver,rerun,stated,supported
+57,3,two-stage genetic algorithm (2SGA),metaheuristic,copied,not-stated,supported
+57,4,DRL method [31],learned-policy,rerun,not-applicable,partly
+65,1,"Rule1, Rule2, Rule3, Rule4",dispatching-rule,rerun,not-applicable,supported
+65,2,"THDQN, DDQN, SSDQN",learned-policy,rerun,not-applicable,partly
+65,3,"GA, DE, CSA, PSO",metaheuristic,rerun,not-stated,partly
+66,1,"FIFO, MOR, LWKR, MWKR, SPT, SEYC",dispatching-rule,rerun,not-applicable,partly
+66,2,regular genetic algorithm (RGA),metaheuristic,rerun,not-stated,supported
+66,3,two-stage genetic algorithm (2SGA),metaheuristic,rerun,not-stated,supported
+66,4,DRL [23] (GNN-based multipolicy PPO),learned-policy,rerun,not-applicable,supported
+66,5,randomized approach (RA),other,rerun,not-applicable,supported
+66,6,mixed integer programming (MIP) with Gurobi solver,exact-solver,rerun,stated,supported
+68,1,"LPT, SPT, FIFO, LIFO",dispatching-rule,rerun,not-applicable,supported
+68,2,OR-Tools,exact-solver,rerun,stated,partly
+68,3,DQN,learned-policy,rerun,not-applicable,supported
+72,1,Gurobi,exact-solver,rerun,not-stated,supported
+72,2,"GA, VNS, ALNS, SA, ABC",metaheuristic,rerun,stated,supported
+72,3,"LPT, SPT, LRTF, EDD, FIFO",dispatching-rule,rerun,not-applicable,supported
+72,4,"DQN, Q-learning, SARSA",learned-policy,rerun,not-stated,supported
+72,5,"Luo (2020), Chang et al. (2022)",learned-policy,rerun,not-stated,partly
+76,1,"SPT, SRPT, FOPNR with EF, SPT, SPTW rules",dispatching-rule,rerun,not-applicable,partly
+77,1,"10 combinations of PDR (FIFO, SPT, MOPNR, MWKR, LWKR, EET)",dispatching-rule,rerun,not-applicable,supported
+77,2,Google OR-Tools,exact-solver,rerun,stated,supported
+77,3,"GA, PSO",metaheuristic,copied,not-stated,supported
+77,4,RL model [41] (20×5 and 20×10),learned-policy,copied,not-applicable,supported
+78,1,eight compound dispatching rules (FIFO/MOPNR/LWKR/MWKR + SPT/EET),dispatching-rule,rerun,not-applicable,supported
+78,2,Learning to choose dispatching rules (L2D) with DDQN,learned-policy,rerun,not-applicable,supported
+78,3,Ant colony optimization (ACO),metaheuristic,rerun,stated,supported
+78,4,Optimal (MIP solved by Gurobi),exact-solver,rerun,stated,supported
+78,5,two-stage genetic algorithm (2SGA),metaheuristic,copied,not-stated,partly
+90,1,"FIFO, MWKR, and MOPNR",dispatching-rule,rerun,not-applicable,partly
+90,2,"IJA, RegGA, 2SGA, SLGA",metaheuristic,copied,not-stated,supported
+90,3,"the DRL methods of Song, Lei and Yuan",learned-policy,rerun,not-applicable,supported
+90,4,Google OR-Tools,exact-solver,rerun,stated,supported
+92,1,"NSGA-II, MOEA/D, TS-NSGA-II, HSLFA",metaheuristic,rerun,stated,supported
+92,2,"LRVMA, MOEA/D-DQN",learned-policy,rerun,stated,supported
+92,3,"MA, PCE-NS, PCE-ES",other,rerun,stated,not-supported
+94,1,column generation (CG),exact-solver,rerun,not-stated,partly
+94,2,random forest (RF),learned-policy,rerun,not-applicable,supported
+94,3,greedy best availability (GBA),dispatching-rule,rerun,not-applicable,supported
+94,4,random scheduling (RS),dispatching-rule,rerun,not-applicable,supported
+94,5,Google Or-Tools (ORT),exact-solver,rerun,not-stated,supported
+101,1,"FJS MATSLO+, GATS + HM, TS, HA",metaheuristic,not-stated,not-stated,supported
+101,2,DMAS,dispatching-rule,not-stated,not-applicable,supported
+101,3,"FIFO, SPT, LPT",dispatching-rule,not-stated,not-applicable,supported
+101,4,MA-Q,learned-policy,not-stated,not-applicable,supported
+101,5,DRL,learned-policy,not-stated,not-applicable,supported
+103,1,"ILS, SBA, TS, BRKGA, GA, LAHC",metaheuristic,rerun,stated,partly
+103,2,"PPO+GNNs, HGS",learned-policy,copied,not-applicable,supported
+106,1,"CDR1, CDR2, CDR3, CDR4, CDR5, CDR6",dispatching-rule,rerun,not-applicable,supported
+106,2,Luo's DDQN,learned-policy,rerun,not-applicable,supported
+106,3,"GA, TS",metaheuristic,rerun,stated,supported
+106,4,PPO-DR of Yuan et al.,learned-policy,rerun,not-applicable,supported
+108,1,"FIFO, MOR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+108,2,Google OR-Tools,exact-solver,rerun,stated,supported
+108,3,"SLGA, RegGA, 2SGA",metaheuristic,copied,not-stated,supported
+108,4,Han [34] DRL method,learned-policy,copied,not-stated,supported
+109,1,"Rule1-8 composite rules combining SPT, MWKR, MOR, FIFO with LWC or HPL",dispatching-rule,rerun,not-applicable,supported
+109,2,"PPO, DDQN",learned-policy,rerun,not-applicable,supported
+109,3,"JAYA, ACO",metaheuristic,rerun,not-stated,supported
+109,4,non-NHGNN variant of the proposed method,learned-policy,rerun,not-applicable,supported
+120,1,"IJA, DPSO",metaheuristic,rerun,not-stated,partly
+120,2,"FIFO+EET, MWKR+EET, MOPNR+EET",dispatching-rule,rerun,not-applicable,supported
+120,3,"Lei et al., Yuan et al., CNN-GRU-PPO",learned-policy,rerun,not-applicable,supported
+120,4,"SLGA, IPSO-RL",metaheuristic,rerun,not-stated,supported
+127,1,DRL[5],learned-policy,not-stated,not-applicable,supported
+127,2,DNSGA-II[3],metaheuristic,not-stated,not-stated,supported
+127,3,"FIFO, EET, SPT, MWKR (single dispatching rules)",dispatching-rule,rerun,not-applicable,supported
+127,4,nearest charging pile strategy,other,rerun,not-applicable,supported
+127,5,DDQN[30],learned-policy,not-stated,not-applicable,supported
+127,6,GCN replacement,other,rerun,not-applicable,supported
+127,7,discrete common feature extraction [31],other,not-stated,not-stated,supported
+130,1,"sixteen composite scheduling rules (FIFO, MOPNR, LWKR, MWKR with SPT/EET and V1/V2)",dispatching-rule,rerun,not-applicable,supported
+130,2,DCGA and IGA,metaheuristic,rerun,stated,supported
+130,3,MILP,exact-solver,rerun,stated,supported
+130,4,DDQN,learned-policy,not-stated,not-applicable,supported
+130,5,DQNMA,learned-policy,not-stated,stated,supported
+130,6,NSGA-II,metaheuristic,not-stated,stated,supported
+131,1,"K'GA, TS, PSO, HA, GWO, KBACO",metaheuristic,rerun,not-stated,supported
+131,2,"MATSPSO, HGWO, HLO-PSO, SLGA, ISLGA and HGA-VNS",metaheuristic,rerun,not-stated,partly
+131,3,"ABC, GWO, SLABC and HGWO",metaheuristic,rerun,not-stated,supported
+131,4,"LEGA and seven other metaheuristics (full list in evidence, Table 16)",metaheuristic,copied,not-stated,partly
+131,5,"Nine Fattahi-set comparators incl. MILP (full list in evidence, Table 17)",other,copied,not-stated,supported
+132,1,"SPT, SRPT, MOR, LB",dispatching-rule,rerun,not-applicable,partly
+132,2,"GA, SLGA, HBFOA",metaheuristic,rerun,stated,partly
+132,3,"QMIX, DDQN",learned-policy,not-stated,not-stated,partly
+132,4,"WBMR, RGEP",dispatching-rule,rerun,not-applicable,partly
+133,1,"FIFO, MOR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+133,2,OR-Tools,exact-solver,rerun,not-stated,partly
+133,3,"D-G [9], D-S [9]",learned-policy,rerun,not-applicable,supported
+133,4,"GA-SARSA, GA-Q, GA, SLGA, Hybrid Jaya",metaheuristic,copied,stated,partly
+135,1,"SPT, FIFO, EDD (with Earliest End Time RMC assignment)",dispatching-rule,rerun,not-applicable,supported
+135,2,"DQN, D3QNP, NGND3QNP",learned-policy,rerun,not-stated,partly
+135,3,DDQN (Lu et al. 2024),learned-policy,rerun,not-stated,supported
+135,4,"DDPG (Gui, Tang et al. 2023)",learned-policy,rerun,not-stated,supported
+136,1,composite rules C1 - C7,dispatching-rule,rerun,not-applicable,supported
+136,2,"classic PDRs FIFO, EDD, SRT, SPT, LPT, LRO, MRO (P1 - P7)",dispatching-rule,rerun,not-applicable,supported
+136,3,"DRL_Chang, DRL_Gui, DRL_Luo, DRL_Wang, DRL_Zhang, DRL_Lei",learned-policy,rerun,not-applicable,supported
+136,4,"MA_L, MA_Z",metaheuristic,rerun,not-stated,supported
+140,1,"HMOEA/D, TPM, BEG-NSGA-II",metaheuristic,rerun,stated,supported
+140,2,CPLEX,exact-solver,rerun,stated,supported
+157,1,"FIFO, SPT, LPT, MOR",dispatching-rule,rerun,not-applicable,supported
+157,2,"HGNN, RL",learned-policy,rerun,not-applicable,supported
+158,1,"FIFO, MOPNR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+158,2,OR-Tools,exact-solver,rerun,stated,supported
+158,3,Wang et al. (2023),learned-policy,rerun,not-applicable,supported
+158,4,"RegGA, 2SGA (Defersha and Rooyani, 2020)",metaheuristic,copied,not-stated,supported
+158,5,"SLGA (Chen et al., 2020)",learned-policy,copied,not-stated,partly
+158,6,Huang et al. (2025),learned-policy,copied,not-stated,partly
+160,1,FIFO+EET and MWKR+EET,dispatching-rule,rerun,not-applicable,supported
+160,2,"THDQN, DMDDQN, DDQN",learned-policy,rerun,not-applicable,supported
+160,3,NSGA3,metaheuristic,rerun,not-stated,supported
+161,1,MOEA/D,metaheuristic,rerun,stated,supported
+161,2,NSGA-II,metaheuristic,rerun,stated,supported
+161,3,MOMA,metaheuristic,rerun,stated,supported
+161,4,IAIS,metaheuristic,rerun,stated,supported
+161,5,RMOEA/D,learned-policy,rerun,stated,partly
+184,1,"FIFO, SPT, ES",dispatching-rule,rerun,not-applicable,supported
+184,2,"DQN, PPO, PPO-M",learned-policy,rerun,not-applicable,supported
+191,1,NSGA-III,metaheuristic,rerun,stated,supported
+191,2,SLGA,metaheuristic,rerun,stated,supported
+191,3,HMOMA,metaheuristic,rerun,stated,supported
+191,4,NSGA-III-COE,metaheuristic,rerun,stated,supported
+197,1,"Rule1, Rule3, Rule7, Rule13, Rule15, Rule19",dispatching-rule,rerun,not-applicable,supported
+197,2,Random,other,rerun,not-applicable,supported
+197,3,DQN,learned-policy,rerun,not-applicable,supported
+197,4,DDQN,learned-policy,rerun,not-applicable,supported
+197,5,PPO,learned-policy,rerun,not-applicable,supported
+197,6,DL-DDQN,learned-policy,rerun,not-applicable,supported
+197,7,Current workshop,other,rerun,not-stated,supported
+201,1,"FIFO, MOPNR, SPT, MWKR with EIS/UIS lot-splitting (8 composite rules)",dispatching-rule,rerun,not-applicable,partly
+201,2,Gurobi (MILP exact solver),exact-solver,rerun,stated,partly
+201,3,GA-MHER (genetic algorithm with MILP local search),metaheuristic,rerun,stated,supported
+201,4,DANIEL extended with UIS (DANIEL × UIS),learned-policy,rerun,not-applicable,partly
+204,1,"NO-VNS, SEQ-VNS, RD-VNS",other,rerun,stated,not-supported
+204,2,QNSGA-II,learned-policy,rerun,stated,supported
+204,3,IGA,metaheuristic,rerun,stated,supported
+204,4,EGA,metaheuristic,rerun,stated,supported
+204,5,MOEA/D,metaheuristic,rerun,stated,supported
+204,6,NSGA-II,metaheuristic,rerun,stated,supported
+204,7,SPEA2,metaheuristic,rerun,stated,supported
+211,1,MOEA/D-M2M,metaheuristic,rerun,stated,supported
+211,2,NSGA-II,metaheuristic,rerun,stated,supported
+211,3,SPEA2,metaheuristic,rerun,stated,supported
+211,4,IGA,metaheuristic,rerun,stated,supported
+211,5,LMEO,metaheuristic,rerun,stated,supported
+213,1,"SONG (Song et al., 2023)",learned-policy,rerun,not-applicable,partly
+213,2,"EDSP (Echeverria et al., 2025a)",learned-policy,rerun,not-applicable,partly
+213,3,"DANIEL (Wang et al., 2024)",learned-policy,rerun,not-applicable,partly
+213,4,"RESIDUAL (Ho et al., 2024)",learned-policy,rerun,not-applicable,partly
+213,5,"ECHEV-BC (Echeverria et al., 2025b)",learned-policy,rerun,not-applicable,partly
+213,6,"BOPO (Liao et al., 2025)",learned-policy,rerun,not-applicable,partly
+213,7,"CP (CP-SAT, results from Song et al., 2023)",exact-solver,copied,stated,partly
+214,1,"NSGA-II, MOEA/D, NSGA-III, RVEA",metaheuristic,rerun,stated,partly
+214,2,"INSBBO, TL-HGAPSO, BEG-NSGA-II",metaheuristic,copied,not-stated,partly
+214,3,PBB,exact-solver,copied,not-stated,partly
+216,1,"FIFO, MOR, SPT, LPT, MWKR, MTWR",dispatching-rule,rerun,not-applicable,supported
+216,2,"Song, Wang (heterogeneous-graph DRL)",learned-policy,rerun,not-applicable,partly
+226,1,"DQN, DDQN, D3QPN-F, GAT-DDQN",learned-policy,rerun,not-applicable,supported
+226,2,Rule1 through Rule8 (composite dispatching rules),dispatching-rule,rerun,not-applicable,supported
+228,1,Google OR-Tools,exact-solver,rerun,stated,supported
+228,2,"RegGA, 2SGA, IPSO",metaheuristic,copied,stated,partly
+228,3,"FIFO, MOPNR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+228,4,"HGNN, DAN, MLP, MCGA, ME-GNN, ARGAT",learned-policy,rerun,not-applicable,partly
+237,1,OR-Tools CP-SAT,exact-solver,rerun,stated,supported
+237,2,SI-MSGRL,learned-policy,rerun,not-applicable,supported
+237,3,"SPT, MWKR, MOR",dispatching-rule,rerun,not-applicable,supported
+244,1,"LWKR, MWKR, MOR, FIFO",dispatching-rule,rerun,not-applicable,supported
+244,2,"DE, PSO",metaheuristic,rerun,stated,supported
+244,3,"HGNN, DQN",learned-policy,rerun,stated,supported
+245,1,CPLEX,exact-solver,rerun,stated,supported
+245,2,"GA, PSO",metaheuristic,rerun,not-stated,supported
+245,3,"FACMAC, QPLEX, QMIX, DDPG",learned-policy,rerun,not-applicable,supported
+247,1,27 composite dispatching rules (CDRs),dispatching-rule,rerun,not-applicable,supported
+247,2,DQN-based method,learned-policy,rerun,not-applicable,supported
+247,3,DDPG-based method,learned-policy,rerun,not-applicable,supported
+247,4,RN (random version of NHDRL),learned-policy,rerun,not-applicable,supported
+247,5,NSGA-II-R and NSGA-II-C,metaheuristic,rerun,stated,supported
+247,6,Gurobi,exact-solver,rerun,stated,supported
+249,1,six state-of-the-art algorithms,metaheuristic,rerun,not-stated,partly
+249,2,the eight combinatorial reactive rescheduling rule methods,dispatching-rule,rerun,not-applicable,partly
+255,1,"Best HSR (composite of FIFO/MOPNR/LWKR/MWKR job, SMPT/EET machine, SWPT worker rules)",dispatching-rule,rerun,not-applicable,partly
+255,2,DQN,learned-policy,rerun,not-applicable,supported
+255,3,Rainbow DQN,learned-policy,rerun,not-applicable,supported
+255,4,THDQN,learned-policy,rerun,not-applicable,supported
+258,1,"RSR, AOR, direct RCR (DRCR), indirect RCR (IRCR), MWR",dispatching-rule,rerun,not-applicable,partly
+258,2,"DDQN, A3C (within GAT-Ptr)",learned-policy,rerun,not-applicable,supported
+258,3,HGA (Hybrid Genetic Algorithm),metaheuristic,rerun,stated,supported
+258,4,PSO (Particle Swarm Optimization),metaheuristic,rerun,not-stated,supported
+258,5,ACO (Ant Colony Optimization),metaheuristic,rerun,not-stated,supported
+259,1,MWKR-EAT,dispatching-rule,rerun,not-applicable,supported
+259,2,G-EST,dispatching-rule,rerun,not-applicable,supported
+259,3,Memetic Algorithm (MA),metaheuristic,rerun,stated,supported
+259,4,ResGAT,learned-policy,rerun,not-applicable,supported
+259,5,LSTM-Ptr,learned-policy,rerun,not-applicable,supported
+259,6,SA-PPO,learned-policy,rerun,not-applicable,supported
+262,1,"FIFO, MOPNR, LWKR, MWKR combined with SPT and EET",dispatching-rule,rerun,not-applicable,supported
+262,2,Gurobi solver,exact-solver,rerun,stated,supported
+262,3,"GA, IPSO, SLGA, QPSO, AGA, TSN, TS, HA",metaheuristic,rerun,not-stated,partly
+262,4,"GAT, CARL, MMDRL, EGRL, MGDRL",learned-policy,not-stated,not-applicable,partly
+265,1,"six PDR combinations (FIFO, LWKR, MWKR; SPT, EET)",dispatching-rule,rerun,not-applicable,supported
+265,2,MILP,exact-solver,rerun,stated,supported
+265,3,"IGA, DCGA",metaheuristic,rerun,stated,supported
+265,4,"HGDRL, HGNP",learned-policy,rerun,not-applicable,partly
+274,1,the ten SDRs in Table 2,dispatching-rule,rerun,not-applicable,supported
+274,2,DQN (fixed kitting time and DT feedback variants),learned-policy,rerun,not-applicable,supported
+274,3,PPO (fixed kitting time and DT feedback variants),learned-policy,rerun,not-applicable,supported
+290,1,"NSGA-II variants A, B and C",metaheuristic,rerun,not-stated,supported
+290,2,"NSGA-II, MOEA/D, MOPSO",metaheuristic,rerun,stated,partly
+290,3,"IS, CS",metaheuristic,rerun,stated,partly
+291,1,GA,metaheuristic,rerun,stated,supported
+291,2,"DRL-based methods from Lei et al., Yuan et al., Zhang et al.",learned-policy,copied,not-stated,partly
+291,3,"eight composite PDRs (PDR1–PDR8, job and machine rules of Table 5)",dispatching-rule,rerun,not-applicable,partly
+293,1,"MOR, SPT, FIFO, MWKR dispatching rules",dispatching-rule,rerun,not-applicable,supported
+293,2,"DRL (Song et al., 2022)",learned-policy,rerun,not-applicable,supported
+293,3,GA and Gray Wolf Optimizer (GWO),metaheuristic,copied,not-stated,supported
+293,4,OR-Tools and Gurobi solvers,exact-solver,rerun,stated,supported
+297,1,"FIFO, SPT, MOR, MWKR dispatching rules combined with KLSM",dispatching-rule,rerun,not-applicable,supported
+297,2,"NSGA-II×KLSM, MOEA/D×KLSM",metaheuristic,rerun,stated,supported
+297,3,LCGRL×KLSM,learned-policy,rerun,not-applicable,supported
+300,1,"Priority dispatching rules (FIFO, SPT, LPT, MROs, MEST, MSPT, FBLPT, EATG)",dispatching-rule,rerun,not-applicable,partly
+300,2,HA (hybrid GA and tabu search),metaheuristic,rerun,stated,supported
+300,3,HGNN (graph neural network DRL),learned-policy,rerun,not-applicable,supported
+300,4,DANIEL (dual-attention network DRL),learned-policy,rerun,not-applicable,supported
+315,1,SPT/EDD/MWKR/ATC and weighted variants (PDR),dispatching-rule,rerun,not-applicable,supported
+315,2,"Tabu Search (TS), Simulated Annealing (SA), PSO, GA (PPX/EPPX)",metaheuristic,rerun,stated,partly
+315,3,"L2D, FJSP-DRL, GNN-DRL, MHGNN-DRL, MD-GAT",learned-policy,rerun,stated,partly
+315,4,MILP (Gurobi),exact-solver,rerun,stated,supported
+336,1,"12 mixed-PDRs (FCFS/MOR/SPT + BBS/UIB/SPS, MWKR)",dispatching-rule,rerun,not-applicable,partly
+336,2,genetic algorithm (GA),metaheuristic,rerun,stated,supported
+336,3,guided shuffled frog-leaping algorithm (GSFLA),metaheuristic,rerun,stated,supported
+336,4,DANIEL,learned-policy,rerun,not-applicable,supported
+336,5,RPPO (Rule-based PPO),learned-policy,rerun,not-applicable,supported
+339,1,"eight composite PDRs (FIFO, SPT, MOR, MWKR with WB and FIMW)",dispatching-rule,rerun,not-applicable,supported
+339,2,"GA (Peng et al., 2018)",metaheuristic,rerun,not-stated,supported
+339,3,"HEA (Gong et al., 2020)",metaheuristic,rerun,not-stated,supported
+339,4,"IGA (Ali et al., 2020)",metaheuristic,rerun,not-stated,supported
+339,5,"Wang_DQN (Wang et al., 2022)",learned-policy,rerun,not-applicable,supported
+339,6,"Lei_PPO (Lei et al., 2024)",learned-policy,rerun,not-applicable,supported
+350,1,"MOR, FIFO, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+350,2,"IJA, RegGA, 2SGA, SLGA",metaheuristic,rerun,not-stated,partly
+350,3,"HGNN, DANIEL, LMLPF, ResSch",learned-policy,copied,not-applicable,partly
+350,4,OR-Tools,exact-solver,rerun,not-stated,partly
+353,1,"EMA, IMOWSA, QNSGA-II, MOEA/D, NSGA-III",metaheuristic,rerun,not-stated,supported
+353,2,Gurobi 12.0.2,exact-solver,rerun,stated,supported
+354,1,"FIFO, MOR, SPT, MWKR",dispatching-rule,rerun,not-applicable,supported
+354,2,OR-Tools,exact-solver,rerun,stated,partly
+354,3,"Song et al. (2023) D-S, D-G",learned-policy,rerun,not-applicable,supported
+354,4,"SLGA, RegGA, 2SGA, Han",metaheuristic,copied,stated,partly
+357,1,NSGAIISDR,metaheuristic,rerun,stated,supported
+357,2,MOEA/D-URAW,metaheuristic,rerun,stated,supported
+357,3,SSCEA,metaheuristic,rerun,stated,supported
+383,1,"IJA, RegGA, 2SGA, SLGA",metaheuristic,copied,not-stated,supported
+383,2,"FIFO+EET, MWKR+EET, MOPNR+EET",dispatching-rule,copied,not-applicable,supported
+383,3,OR-Tools CP-SAT,exact-solver,copied,not-stated,supported
+383,4,"BCxCP, Xu et al.",other,copied,not-stated,supported
+383,5,"[6], [46], [5]",learned-policy,copied,not-applicable,supported
+393,1,"NSGA-II, MOEA/D, SPEA-II, IMA",metaheuristic,rerun,stated,partly
+399,1,"12 composite scheduling rules (e.g. MR3+AR1+JR2, MR1+AR1+JR1)",dispatching-rule,rerun,not-applicable,supported
+399,2,"8 widely used scheduling rules (e.g. JNCR+ASPT+MSFT, JLJT+ASPT+MNBT)",dispatching-rule,rerun,not-applicable,supported
+399,3,12 GP scheduling rules generated by GP methods,dispatching-rule,rerun,not-applicable,supported
+399,4,Q-learning,learned-policy,rerun,not-stated,supported
+409,1,"NAWCO, NAWCO-INI",other,rerun,not-stated,partly
+409,2,ACO,metaheuristic,rerun,not-stated,supported
+409,3,"FIFO, MWKR, MOPNR, LWKR combined with SPT or EET",dispatching-rule,rerun,not-applicable,partly
+437,1,"SPT, FIFO, LRM, Random",dispatching-rule,rerun,not-applicable,partly
+437,2,"HGA, SLGA",metaheuristic,rerun,not-stated,partly
+437,3,"DQN, APN, HGRL, GMAS, DANIEL",learned-policy,rerun,not-applicable,partly
+437,4,Gurobi,exact-solver,rerun,stated,supported
+447,1,"SPT-WINQ, FIFO-WINQ, EDD-WINQ",dispatching-rule,rerun,not-applicable,supported
+447,2,"NDDQN, HA-DQN, GNN-DRL, QMIX",learned-policy,rerun,stated,partly
+465,1,CPLEX,exact-solver,rerun,stated,supported
+465,2,BRKGA,metaheuristic,rerun,stated,supported
+465,3,QBMA,metaheuristic,rerun,stated,supported
+465,4,DJA,metaheuristic,rerun,stated,supported
+469,1,"FIFO+EET, MWKR+EET, MOPNR+EET",dispatching-rule,rerun,not-applicable,partly
+469,2,seven state-of-the-art multiobjective algorithms,metaheuristic,rerun,stated,partly
+477,1,"DCGA, IMA, QNSGA-II, NSGA-II, SPEA2",metaheuristic,rerun,stated,supported
+477,2,Gurobi,exact-solver,rerun,stated,supported
+503,1,"NSGA-II, IMA, FLMA, ISDE, and LRVMA",metaheuristic,rerun,stated,supported
+504,1,ResSch-G and ResSch-S (greedy and sampling inference),learned-policy,rerun,not-stated,partly
+504,2,MRH-G and MRH-S (greedy and sampling inference),learned-policy,rerun,not-stated,partly
+504,3,OR-Tools solver,exact-solver,copied,not-stated,not-supported
+527,1,"Polling, SPT, LPT",dispatching-rule,rerun,not-applicable,supported
+527,2,"Default ALNS, iterated greedy (IG)",metaheuristic,rerun,stated,partly
+527,3,DR-ALNS,learned-policy,rerun,stated,supported
+527,4,"Gurobi MIP, OR-Tools CP-SAT",exact-solver,rerun,stated,supported
+530,1,MAE,metaheuristic,rerun,stated,supported
+530,2,TL-PSO,metaheuristic,rerun,stated,supported
+530,3,hGA,metaheuristic,rerun,stated,supported
+530,4,VNS-GA,metaheuristic,rerun,stated,supported
+530,5,HEA,metaheuristic,rerun,stated,supported
+555,1,TSKEA,metaheuristic,rerun,stated,supported
+555,2,FTLBO,metaheuristic,rerun,stated,supported
+555,3,ENSGA-II,metaheuristic,rerun,stated,supported
+565,1,CPLEX,exact-solver,rerun,stated,supported
+565,2,"NSGA-II, MOEA/D, SPAMA",metaheuristic,rerun,stated,supported
+572,1,GA+TS (genetic algorithm combined with tabu search),metaheuristic,rerun,not-stated,partly
+572,2,"SPT, MWKR, LRM (three PDRs)",dispatching-rule,rerun,not-applicable,partly
+572,3,retrain method (DFJSP scheduling method of Reference [24]),learned-policy,rerun,not-stated,supported
+574,1,CPLEX,exact-solver,rerun,stated,supported
+574,2,"NSGA-II, MOEA/D, EDA-VNS",metaheuristic,rerun,stated,supported
+574,3,"GA, ABC, BSO, Jaya",metaheuristic,rerun,stated,supported
+575,1,GA (genetic algorithm),metaheuristic,rerun,not-stated,supported
+575,2,"LRPT, SRPT, MOR, LOR, RR",dispatching-rule,rerun,not-applicable,supported
+575,3,pure DQN variant (without GNN),learned-policy,rerun,not-applicable,supported
+577,1,GUROBI solver (epsilon-constraint),exact-solver,rerun,not-stated,partly
+577,2,Q-Learning (QL) and Deep Learning (DL),learned-policy,rerun,not-applicable,partly
+577,3,"total, partial and adaptive (right-shift) rescheduling",other,rerun,stated,partly
+582,1,KGFOA,metaheuristic,rerun,stated,supported
+583,1,SPF (shortest path first) and LPF (longest path first),dispatching-rule,rerun,not-applicable,supported
+583,2,random resource allocation strategy,other,rerun,not-applicable,supported
+583,3,PPO MA ST from the previous article,learned-policy,not-stated,not-applicable,not-supported
+588,1,Rule1 to Rule4 (FIFO/MNRO with SPT/EET composite scheduling rules),dispatching-rule,rerun,not-applicable,supported
+588,2,GA and PSO,metaheuristic,rerun,not-stated,partly
+588,3,"GAT-PPO, DAINEL-PPO, DIFFormer-TD3, IDDQN, MultiPPO",learned-policy,rerun,not-applicable,partly
+606,1,"Model-based (fixed monthly targets, rule-based weekly scheduling)",other,rerun,not-applicable,partly
+609,1,greedy-based SFC scheduling algorithm (GFP),dispatching-rule,rerun,not-stated,partly
+609,2,Genetic Algorithm based SFC scheduling method (GA),metaheuristic,rerun,not-stated,supported
+609,3,matching based SFC scheduling algorithm (Matching),other,rerun,not-stated,supported
+609,4,fair weighted scheduling method (FWS),other,rerun,not-stated,partly
